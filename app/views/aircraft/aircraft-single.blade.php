@@ -66,6 +66,12 @@
 						 @endif
                             <tr>
                                 <td class="col-md-3">									
+									Assigned Inspector
+								</td>
+                                <td>{{$primary->assigned_inspector}}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-3">									
 									Serial Number
 								</td>
                                 <td>{{$primary->serial_number}}</td>

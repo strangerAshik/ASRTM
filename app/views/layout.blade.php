@@ -21,6 +21,9 @@
 		End Off Line--->
         <!-- Morris chart -->
 		{{ HTML::style('css/morris/morris.css') }}
+		
+		
+		
         <!-- jvectormap -->
         
 		{{ HTML::style('css/jvectormap/jquery-jvectormap-1.2.2.css') }}
@@ -43,9 +46,24 @@
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-		 
+		{{ HTML::style('search/css/selectize.css') }}
+		{{ HTML::script('search/js/selectize.js') }}
+		 <style type="text/css">
+		.demo-animals .scientific {
+			font-weight: normal;
+			opacity: 0.3;
+			margin: 0 0 0 2px;
+		}
+		.demo-animals .scientific::before {
+			content: '(';
+		}
+		.demo-animals .scientific::after {
+			content: ')';
+		}
+		</style>
     </head>
     <body class="skin-blue">
+				
         <!-- header logo: style can be found in header.less -->
         <header class="header">
            @include('header')
@@ -104,6 +122,7 @@
 			
                 <!-- Main content -->
                @yield('content')
+			  
             </aside><!-- /.right-side -->
 			
         </div><!-- ./wrapper -->

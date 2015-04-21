@@ -70,7 +70,8 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="{{URL::to('safety/main');}}"><i class="fa fa-angle-double-right"></i>Main</a></li>
-								<li><a href="{{URL::to('safety/entry');}}"><i class="fa fa-angle-double-right"></i>Issue Safety Concern </a></li>
+								<li><a href="{{URL::to('safety/newInspection');}}"><i class="fa fa-angle-double-right"></i>New Inspection</a></li>
+								<li><a href="{{URL::to('safety/newSafetyConcern');}}"><i class="fa fa-angle-double-right"></i>New Safety Concern </a></li>
                                 <li><a href="{{URL::to('safety/issuedList');}}"><i class="fa fa-angle-double-right"></i>Safety Concerns List </a></li>
                             </ul>
                         </li>

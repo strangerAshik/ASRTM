@@ -14,6 +14,12 @@ class SettingsController extends \BaseController {
 
 		return $roles;
 	}
+	public function organizations(){
+		//$roles=DB::table('roles');
+		$organizations =DB::table('organizations')->lists('org_name','org_name');// array('ashik'=>'ashik','ashik'=>'ashik');//
+
+		return $organizations;
+	}
 	public function index()
 	{
 		//return User::all()->id;
@@ -24,6 +30,7 @@ class SettingsController extends \BaseController {
 		->with('months',parent::months())
 		->with('year',parent::years_from())
 		->with('roles',$this->roles())
+		->with('organizations',$this->organizations())
 		->with('personnel',parent::getPersonnelInfo());
 	}
 	public function login(){
@@ -94,6 +101,7 @@ class SettingsController extends \BaseController {
 			$user->emp_id= Input::get('emp_id');
 			$user->email= Input::get('email');
 			$user->role= Input::get('designation');
+			$user->organization= Input::get('organization');
 			$user->password= Hash::make(Input::get('password'));
 			 
 			$user->save();

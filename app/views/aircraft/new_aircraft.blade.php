@@ -1,5 +1,8 @@
 @extends('layout')
 @section('content')
+<div style='display:none'>
+{{$role=Auth::User()->Role()}}
+</div>
 	<section class="content" style="max-width:800px;margin:0 auto;">
 	
 		@include('aircraft/menu')
@@ -18,7 +21,17 @@
                 <!-- The form is placed inside the body of modal -->
                 
 				{{Form::open(array('url'=>'aircraft/savePrimary','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-
+				   @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director')
+					<div class="form-group ">
+                                           
+											{{Form::label('assigned_inspector', 'Assigned Inspector', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											
+											{{Form::select('assigned_inspector', $inspectors,'0',array('class'=>'form-control'))}}
+											</div>
+											
+                    </div>
+				   @endif
 					<div class="form-group required">
                                            
 											{{Form::label('serial_number', 'Serial Number', array('class' => 'col-xs-4 control-label'))}}
@@ -27,6 +40,7 @@
 											</div>
 											
                     </div>
+					
 					<div class="form-group required">
                                            
 											{{Form::label('registration_no', 'Registration No#', array('class' => 'col-xs-4 control-label'))}}

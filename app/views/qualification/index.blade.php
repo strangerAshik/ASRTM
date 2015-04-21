@@ -56,9 +56,6 @@
                             </div>    
                             </div>    
       </div> 
-	  <!-- delete -->
-
-
-   <!-- End delete User-->         
+	      
 	</section>
 @stop

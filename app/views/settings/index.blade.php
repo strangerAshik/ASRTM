@@ -115,10 +115,37 @@
 											{{Form::label('designation', 'Designation', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
 											
-											{{Form::select('designation', $roles, '1', array('class' => 'form-control'));}}
+											<select id="designation" name='designation' class="demo-default" placeholder="Select  Designation...">
+												<option value="">Select  Designation...</option>
+												@foreach($roles as $role)
+												<option value="{{$role}}">{{$role}}</option>
+												@endforeach
+											</select>
+											
 											</div>
 											
                     </div>
+					
+					
+					<div class="form-group required">
+                                        
+											{{Form::label('organization', 'Organization', array('class' => 'col-xs-4 control-label'))}}
+										<div class="col-xs-6">
+											
+											<select id="organization" name='organization' class="demo-default" placeholder="Select  Organization...">
+												<option value="">Select  Organization...</option>
+												@foreach($organizations as $organization)
+												<option value="{{$organization}}">{{$organization}}</option>
+												@endforeach
+											</select>
+											
+										</div>
+											
+									
+											
+                    </div>
+					
+				
 					<div class="form-group required">
                                         
 											{{Form::label('password', 'Password', array('class' => 'col-xs-4 control-label'))}}
@@ -199,4 +226,13 @@
 	</div>
 <!--End User Settings-->
 </section>
+
+<script>
+$(document).ready(function(){
+//$('#organization').selectize();
+$('#organization').selectize({ create: true, sortField: {field: 'text',direction: 'asc'}});
+$('#designation').selectize();
+	
+});
+</script>
 @stop

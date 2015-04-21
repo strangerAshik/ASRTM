@@ -24,6 +24,8 @@ class AircraftController extends \BaseController {
 		
 		$aircraft->aircraft_MM=Input::get('aircraft_MM');
 		$aircraft->aircraft_MSN=Input::get('aircraft_MSN');
+		
+		$aircraft->assigned_inspector=Input::get('assigned_inspector');
 		$aircraft->serial_number=Input::get('serial_number');
 		$aircraft->registration_no=Input::get('registration_no');
 		
@@ -732,7 +734,7 @@ class AircraftController extends \BaseController {
 			   'soft_delete' =>'1',
 			   'updated_at' =>time()	
 			));
-	   return Redirect::back()->with('message', 'Data Approved !!');
+	   return Redirect::back()->with('message', 'Data Deleted Softly !!');
 	}
 	public function undoSoftDelete($table,$id){
 		 DB::table($table)
@@ -749,7 +751,7 @@ class AircraftController extends \BaseController {
 		 DB::table($table)
             ->where('id',$id)
             ->delete();
-	   return Redirect::back()->with('message', 'Data Approved !!');
+	   return Redirect::back()->with('message', 'Data Deleted Permanently !!');
 	}
 	//End Permanent delete
 	public function aircraftSingle($mm,$msn){
@@ -789,11 +791,15 @@ class AircraftController extends \BaseController {
 	}
 
 	public function addNewAircraft(){
+		$select=array(''=>'--Select--');
+		$inspectors=DB::table('users')->where('role','=','Inspector')->lists('role','role');
+		$inspectors=array_merge($select,$inspectors);
 		return View::make('aircraft/new_aircraft')
 		->with('PageName','Aircraft')
 		->with('dates',parent::dates())
 		->with('months',parent::months())
-		->with('years',parent::years());
+		->with('years',parent::years())
+		->with('inspectors',$inspectors);
 	}
 	public function aircraftList(){
 		$aircrafts=DB::table('aircraft_primary_info')->where('soft_delete','<>','1')->get();

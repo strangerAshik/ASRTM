@@ -17,6 +17,8 @@ class AircraftDatabase extends Migration {
 			$table->string('aircraft_MM');
 			$table->string('aircraft_MSN');
 			
+			$table->string('assigned_inspector');
+			
 			$table->string('serial_number');
 			$table->string('registration_no');
 			$table->string('aircraft_operator');

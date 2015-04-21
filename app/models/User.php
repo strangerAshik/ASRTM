@@ -45,11 +45,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getId()	{ return $this->id;	}
 	public function getName(){return $this->name;}
 	public function emp_id(){return $this->emp_id;}
-	public function level(){return $this->hasOne('level');}
+	
 	//end functions
 	
 	//
     public function Role() {return $this->role;}
+    public function Organization() {return $this->organization;}
     public function PassChange() {return $this->pass_change;}
 	
 }

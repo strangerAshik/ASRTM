@@ -51,5 +51,38 @@ class BaseController extends Controller {
 		$query=DB::table('qualification_personal')->where('emp_id', '=', $id )->get();
 		return $query;
 	}
-
+   //fill upload 
+   protected function fileUpload($field_name,$folder_name){
+	   if($file = Input::file($field_name)){
+		$destinationPath = 'files/'.$folder_name;
+		//$filename = $file->getClientOriginalName();
+		$filename = time().'_'.Auth::user()->emp_id().'.'.$file->getClientOriginalExtension();
+		$upload_success = Input::file($field_name)->move($destinationPath, $filename);
+		return $filename;
+		}
+		else{
+		return $filename='Null';
+		}
+   }
+   protected function updateFileUpload($old_file,$new_file,$folder_name){
+	   $old_file=Input::get($old_file);
+		//image upload
+		if($file = Input::file($new_file)){
+		$destinationPath = 'files/'.$folder_name;
+		//$filename = $file->getClientOriginalName();
+		$filename = time().'_'.Auth::user()->getId().'.'.$file->getClientOriginalExtension();
+		$upload_success = Input::file($new_file)->move($destinationPath, $filename);
+		File::delete('files/'.$folder_name.'/'.$old_file);
+		
+		return $filename;
+		}
+		else{
+			return $filename=$old_file;
+		}
+		//image upload end  
+   }
+   /*
+   Return the different between 2 dates 
+   */
+ 
 }

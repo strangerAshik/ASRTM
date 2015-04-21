@@ -28,9 +28,10 @@ max-width:900px;margin:0 auto;
 }
 /*Search */
 /*Search Custom*/
+.search-form select{border-color:red!importent }
 .position {
   float: right;
-  margin-bottom: -20px;
+  margin-bottom: -11px;
   margin-top: 11px;
 }
 /*End search custom*/

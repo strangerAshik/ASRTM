@@ -13,8 +13,6 @@
 //Start Role Initialization 
 Route::get('/secret', function()
 {
-   // Auth::loginUsingId(2);
- 
     $role = Auth::user()->Role();
 	return View::make('test')
 			->with('role',$role)
@@ -301,7 +299,13 @@ Route::group(array('prefix' => 'qualification','before'=>'auth'), function()
 Route::group(array('prefix'=>'safety','before'=>'auth'),function(){
 	Route::get('main','safetyConcernsController@main');
 	//entry Form
-	Route::get('entry','safetyConcernsController@entry');
+	Route::get('newSafetyConcern','safetyConcernsController@newSafetyConcern');
+	//
+	Route::get('newInspection','safetyConcernsController@newInspection');
+	Route::get('singleInspection/{ins_num}','safetyConcernsController@singleInspection');
+	
+	Route::get('singlesafetyConcern/{sc_num}','safetyConcernsController@singlesafetyConcern');
+	Route::get('followUp/{sc_num}','safetyConcernsController@followUp');
 	//view list
 	Route::get('issuedList','safetyConcernsController@issuedList');
 	//delete
@@ -310,7 +314,21 @@ Route::group(array('prefix'=>'safety','before'=>'auth'),function(){
 			return Redirect::to('safety/issuedList')->with('message', 'Successfully Deleted!!');
 	});
 	//save entry 
-	Route::post('safetyConcern/save','safetyConcernsController@save');
+	//Route::post('safetyConcern/save','safetyConcernsController@save');
+	Route::post('savePrimaryInspection','safetyConcernsController@savePrimaryInspection');
+	Route::post('updatePrimaryInspection','safetyConcernsController@updatePrimaryInspection');
+	Route::post('saveSafetyConcern','safetyConcernsController@saveSafetyConcern');
+	Route::post('updateSafetyConcern','safetyConcernsController@updateSafetyConcern');
+	Route::post('saveCorrectiveAction','safetyConcernsController@saveCorrectiveAction');
+	Route::post('updateCorrectiveAction','safetyConcernsController@updateCorrectiveAction');
+	Route::post('saveFollowUp','safetyConcernsController@saveFollowUp');
+	Route::post('saveApprovalForm','safetyConcernsController@saveApprovalForm');
+	Route::post('updateApprovalForm','safetyConcernsController@updateApprovalForm');
+	Route::post('saveForwardingInfo','safetyConcernsController@saveForwardingInfo');
+	Route::post('updateForwardingInfo','safetyConcernsController@updateForwardingInfo');
+	Route::post('saveLegalOpinion','safetyConcernsController@saveLegalOpinion');
+	Route::post('updateLegalOpinion','safetyConcernsController@updateLegalOpinion');
+	
 	Route::post('safetyConcern/update','safetyConcernsController@update');
 });
 
