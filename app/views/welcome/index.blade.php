@@ -8,7 +8,7 @@
 <a href="#" class="list-group-item active widget">
    Publicly Accessible Area 
 </a>
-<a href="#" class="list-group-item">E-library</a>
+<a href="{{URL::to('libraryPublicView')}}" class="list-group-item" target='_blink'>E-library</a>
 <a href="#" class="list-group-item">Volunteer Reporting</a>
 <a href="#" class="list-group-item">Wild Life Stike Reporting</a>
 
@@ -39,7 +39,7 @@
 		 {{HTML::image('img/slider/slide1.png','slider',array('height'=>'200'))}}
       </div>
       <div class="item">
-          {{HTML::image('img/slider/slide1.png','slider',array('height'=>'200'))}}
+          {{HTML::image('img/slider/slide1.jpg','slider',array('height'=>'200'))}}
       </div>
       <div class="item">
          {{HTML::image('img/slider/slide1.png','slider',array('height'=>'200'))}}

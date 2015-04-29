@@ -198,7 +198,7 @@
 											<div class="col-xs-6">
 											<select id="provided_to" name='provided_to' class="demo-default" placeholder="SelectProvided To">
 												<option value="">Select Provided To</option>
-												<option selected="selected" value="{{Auth::User()->}}">Select Provided To</option>
+												<option selected="selected" value="{{Auth::User()->getName()}}">Select Provided To</option>
 												{{--@foreach($roles as $role)
 												<option value="{{$role}}">{{$role}}</option>
 												@endforeach --}}

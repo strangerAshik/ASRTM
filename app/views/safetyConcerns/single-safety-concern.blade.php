@@ -32,7 +32,7 @@
 					</div>	
                     <table class="table table-bordered">
 				
-					@foreach($legalOpinions as $opinion)
+					
                         <tbody>
 						   <tr>
                                 <th>									
@@ -50,12 +50,22 @@
                                 <th>									
 									Inspector
 								</th>
-                                <td>{{$lastAssignedPerson->forwarding_to}}</td>
+                                <td>
+								@if($lastAssignedPerson)
+									
+										{{$lastAssignedPerson->forwarding_to}}
+									
+								@else
+									@foreach($safetyConcernDatas as $sc)
+										{{$sc->assigned_inspector}}
+									@endforeach
+								@endif
+								</td>
                             </tr>
 							<tr>
                                 <th>									
 									Corrective Status
-								</th>
+								</th> 
                                 <td>
 								@foreach($safetyConcernDatas as $sc)
 								{{$sc->corrective_satatus}}
@@ -77,11 +87,13 @@
 									Legal Opinion
 								</th>
                                 <td>
+								@foreach($legalOpinions as $opinion)
 								@if($legalOpinions)
 										Some Legal Opinion Is Given.
 								@else
 									No Legal Opinion Is Given.
 								@endif
+								@endforeach
 								</td>
                             </tr>
 							<tr>
@@ -95,7 +107,7 @@
                             </tr>
 							
 						</tbody>
-					 @endforeach
+					 
 					 
 					
 					 

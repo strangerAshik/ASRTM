@@ -30,4 +30,12 @@ class CommonFunction extends \Eloquent {
      return floor($datediff/(60*60*24));
 
    }
+      static function updateMultiSelection($table_name, $where_field_name, $where_field_value, $field_name_of_target_value){
+	   //Multiple selection update
+		$query =  DB::table($table_name) ->where( $where_field_name,'=',$where_field_value)->pluck( $field_name_of_target_value);
+		return $dquery=unserialize($query);
+		//return 'Hellod';
+		//End Multiple selection update
+	   
+   }
 }

@@ -308,11 +308,7 @@ Route::group(array('prefix'=>'safety','before'=>'auth'),function(){
 	Route::get('followUp/{sc_num}','safetyConcernsController@followUp');
 	//view list
 	Route::get('issuedList','safetyConcernsController@issuedList');
-	//delete
-	Route::get('deleteSafety/{id}',function($id){
-			DB::table('safeties')->where('id', '=', $id)->delete();
-			return Redirect::to('safety/issuedList')->with('message', 'Successfully Deleted!!');
-	});
+	
 	//save entry 
 	//Route::post('safetyConcern/save','safetyConcernsController@save');
 	Route::post('savePrimaryInspection','safetyConcernsController@savePrimaryInspection');
@@ -331,6 +327,23 @@ Route::group(array('prefix'=>'safety','before'=>'auth'),function(){
 	
 	Route::post('safetyConcern/update','safetyConcernsController@update');
 });
+
+Route::group(array('prefix'=>'library','before'=>'auth'),function(){
+	Route::get('main','libraryController@main');
+	Route::get('newSupportingDocuments','libraryController@newSupportingDocuments');
+	Route::post('saveSupportingDocument','libraryController@saveSupportingDocument');
+	Route::post('updateSupportingDocument','libraryController@updateSupportingDocument');
+	Route::post('saveSupportingDocumentType','libraryController@saveSupportingDocumentType');
+	Route::post('updateSupportingDocumentType','libraryController@updateSupportingDocumentType');
+	Route::get('privateView','libraryController@privateView');	
+	Route::get('publicView','libraryController@publicView');
+});
+//Route::get('library/publicView','libraryController@publicView');
+Route::get('libraryPublicView','PublicController@SDpublicView');
+/*Route::get('libraryPublicView',function(){
+	return 'Hello';
+});*/
+
 
 Route::group(array('prefix'=>'admin','before'=>'auth'),function(){
 	Route::get('main','AdminTrackingController@main');

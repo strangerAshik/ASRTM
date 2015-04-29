@@ -157,16 +157,16 @@ class SafetyConcernsController extends \BaseController {
 		->where('safety_issue_number','=',$sc_num)
 		->where('soft_delete','<>','1')
 		->get();
-		$forwardings=DB::table('sc_forwarding')
+		 $forwardings=DB::table('sc_forwarding')
 		->where('safety_issue_number','=',$sc_num)
 		->where('soft_delete','<>','1')
 		->get();
-		$legalOpinions=DB::table('sc_legal_openion')
+		 $legalOpinions=DB::table('sc_legal_openion')
 		->where('safety_issue_number','=',$sc_num)
 		->where('soft_delete','<>','1')
 		->get();
 		//last Assigned person
-		$lastAssignedPerson=DB::table('sc_forwarding')
+		  $lastAssignedPerson=DB::table('sc_forwarding')
 		->where('safety_issue_number','=',$sc_num)
 		->where('soft_delete','<>','1')
 		->orderBy('id', 'desc')->first();

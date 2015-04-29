@@ -79,10 +79,25 @@ class BaseController extends Controller {
 		else{
 			return $filename=$old_file;
 		}
-		//image upload end  
+		
    }
-   /*
-   Return the different between 2 dates 
-   */
+/*
+ static function updateAuthors($table_name,$where_field_name,$where_value,$target_data_field_name){
+	 $query=DB::table($table_name)->where($where_field_name, $where_value)->pluck($target_data_field_name);
+	 return unserialize ( $query);
+ }*/
+ protected function getMultipleOptionList($table_name,$value_container_field_name)
+ {
+	 $table=DB::table($table_name)->select('id')->get();
+		$result=[];
+		foreach($table as $tab){
+		$authors =  DB::table($table_name) ->where('id','=',$tab->id)->pluck($value_container_field_name);
+		if($authors){
+		$authors=unserialize($authors);
+		$result=array_merge($authors,$result);
+		}
+		}
+		return $result;
+ }
  
 }

@@ -252,7 +252,7 @@
                                 <div class="icon">
                                     <i class="icon ion-document-text"></i>
                                 </div>
-                                <a class="small-box-footer" href="#">
+                                <a class="small-box-footer" href="{{URL::to('library/main');}}">
                                     More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>

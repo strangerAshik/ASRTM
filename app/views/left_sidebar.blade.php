@@ -1,13 +1,16 @@
 @section('left_sidebar')
  <!-- sidebar: style can be found in sidebar.less -->
  <div style='display:none'>
+ @if(Auth::check())
 {{$role = Auth::user()->Role();}}
 {{$emp_id = Auth::user()->emp_id();}}
+@endif
 </div>
                 <section class="sidebar">
                     <!-- Sidebar user panel -->
-				 
+				    @if(Auth::check())
 				   <div class="user-panel">
+				
                         <div class="pull-left image">
 						
 							{{HTML::image('img/PersonnelPhoto/'.Employee::profilePic($emp_id),'User',array('class'=>'img-circle'))}}						 
@@ -18,7 +21,9 @@
 
                             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                         </div>
+						
                     </div>
+					@endif
 					
                     <!-- search form -->
                     <!--<form action="#" method="get" class="sidebar-form">
@@ -32,11 +37,15 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
+					@if(Auth::check())
                         <li class="active">
                             <a href="{{URL::to('dashboard')}}">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
+						@endif
+						
+						@if(Auth::check())
                       @if($role=='Chief Admin'||$role=='Employee'||$role=='Director'||$role=='Inspector')
                         <li class="treeview">
                             <a href="#">
@@ -62,6 +71,10 @@
                                 <li><a href="{{URL::to('qualification/comp_view')}}"><i class="fa fa-angle-double-right"></i>Comprehensive View </a></li>
                             </ul>
                         </li>
+						@endif
+						@endif
+						
+						@if(Auth::check())
 						@if($role=='Chief Admin')
 						<li class="treeview">
                             <a href="#">
@@ -76,6 +89,8 @@
                             </ul>
                         </li>
 						@endif
+						@endif
+						@if(Auth::check())
 						@if($role=='Chief Admin')
 						<li class="treeview">
                             <a href="#">
@@ -89,7 +104,9 @@
                             </ul>
                         </li>
 						@endif
-						@if($role=='Chief Admin')
+						@endif
+						@if(Auth::check())
+						@if( $role=='Chief Admin')
 						<li class="treeview">
                             <a href="#">
                                 <i class="glyphicon glyphicon-tags"></i> <span>Document Control</span>
@@ -101,8 +118,12 @@
                                 <li><a href="{{URL::to('doc/listView');}}"><i class="fa fa-angle-double-right"></i>Document Control List</a></li>
                             </ul>
                         </li>
-						@endif
+						@endif	
+						@endif	
 						
+						
+						
+						@if(Auth::check())
 						@if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector'||$role=='Maintenance Eng.')
 						<li class="treeview">
                             <a href="#">
@@ -118,11 +139,26 @@
                                 <li><a href="{{URL::to('aircraft/aircraftList');}}"><i class="fa fa-angle-double-right"></i>Aircraft List</a></li>	
 								@endif
                             </ul>
-                        </li>
+                        </li>						
+						@endif
 						@endif
 					
-						
-					@endif
+			<li class="treeview">
+                            <a href="#">
+                                <i class="glyphicon  glyphicon-book"></i> <span>Library</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                              @if(Auth::check())
+								  <li><a href="{{URL::to('library/main');}}"><i class="fa fa-angle-double-right"></i>Main</a></li>
+								<li><a href="{{URL::to('library/newSupportingDocuments');}}"><i class="fa fa-angle-double-right"></i>Add Supporting Doc</a></li>
+                                <li><a href="{{URL::to('library/privateView');}}"><i class="fa fa-angle-double-right"></i>Private  SD List View</a></li>
+								 <li><a href="{{URL::to('library/publicView');}}"><i class="fa fa-angle-double-right"></i>Public SD List View</a></li>
+								@else                               
+                                <li><a href="{{URL::to('libraryPublicView');}}"><i class="fa fa-angle-double-right"></i>Public SD List View</a></li>
+								@endif
+                            </ul>
+                        </li>
 						  
 					  
                     </ul>

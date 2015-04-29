@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+
 <span style='display:none'>
 {{$role=Auth::User()->Role()}}
 </span>
