@@ -10,18 +10,20 @@
 </a>
 <a href="{{URL::to('libraryPublicView')}}" class="list-group-item" target='_blink'>E-library</a>
 <a href="#" class="list-group-item">Volunteer Reporting</a>
-<a href="#" class="list-group-item">Wild Life Stike Reporting</a>
+<a href="#" class="list-group-item">Wild Life Strike Reporting</a>
+<a href="#" class="list-group-item">Incident Reporting</a>
+<a href="#" class="list-group-item">Automated Height Certification</a>
 
 <a href="#" class="list-group-item active widget" ">
 {{--News--}} Notice Board
 </a>
-{{--<marquee style="border:1px dotted #DDD"  scrollamount='2' behavior=ALTERNATE height='300' direction=up> --}}
+<marquee style="border:1px dotted #DDD"  scrollamount='2' behavior=ALTERNATE height='300' direction=up> 
 <a href="#" class="list-group-item">ASRTM Partially Released</a>
-<a href="#" class="list-group-item">Employee Information Update Is Going On</a>
-<a href="#" class="list-group-item">Aircraft Certification Management Is up coming</a>
-<a href="#" class="list-group-item">Please Update Your Employee Information</a>
-
-{{--</marquee>--}}
+<a href="#" class="list-group-item">Update Your Employee Information</a>
+<a href="#" class="list-group-item">Update Aircraft Information</a>
+<a href="#" class="list-group-item">Safety Concern Module Released</a>
+<a href="#" class="list-group-item">Supporting Document Now Publicly Accessable</a>
+</marquee>
 
 </div>
 <!--Carasol -->
@@ -36,13 +38,13 @@
    <!-- Carousel items -->
    <div class="carousel-inner">
       <div class="item active">         
-		 {{HTML::image('img/slider/slide1.png','slider',array('height'=>'200'))}}
+		 {{HTML::image('img/slider/slide3.jpg','slider',array('height'=>'200'))}}
       </div>
       <div class="item">
-          {{HTML::image('img/slider/slide1.jpg','slider',array('height'=>'200'))}}
+          {{HTML::image('img/slider/slide2.jpg','slider',array('height'=>'200'))}}
       </div>
       <div class="item">
-         {{HTML::image('img/slider/slide1.png','slider',array('height'=>'200'))}}
+         {{HTML::image('img/slider/slide1.jpg','slider',array('height'=>'200'))}}
       </div>
    </div>
    <!-- Carousel nav -->

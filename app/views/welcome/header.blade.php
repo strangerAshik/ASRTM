@@ -84,6 +84,7 @@
   <li><a href="{{URL::to('contact')}}">Contact</a></li>
   <li><a href="#" data-toggle="modal" 
    data-target="#myModal">Login</a></li>
+  <span class='pull-right' style='margin:15px 10px 0px 0px;color:#fff;font-weight:bold'>{{gmdate('D, d M Y H:i:s T', time())}}</span>
   
 </ul>
 

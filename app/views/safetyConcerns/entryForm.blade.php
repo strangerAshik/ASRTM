@@ -129,9 +129,36 @@
                     </div>
 					<div class="form-group ">
                                         
-											{{Form::label('cvr_statement', 'CBR Statement', array('class' => 'col-xs-4 control-label'))}}
+											{{Form::label('cvr_statement', 'Severity Statement', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
 											{{Form::text('cvr_statement','', array('class' => 'form-control','placeholder'=>''))}}
+											</div>
+											
+                    </div>
+
+                    <div class="form-group ">
+                                        
+											{{Form::label('hazard_statement', 'Hazard Statement', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('hazard_statement','', array('class' => 'form-control','placeholder'=>''))}}
+											</div>
+											
+                    </div>
+
+					<div class="form-group ">
+                                        
+											{{Form::label('risk_assesment', 'Risk Assesment', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('risk_assesment','', array('class' => 'form-control','placeholder'=>''))}}
+											</div>
+											
+                    </div>
+
+					<div class="form-group ">
+                                        
+											{{Form::label('risk_management', 'Risk Management', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('risk_management','', array('class' => 'form-control','placeholder'=>''))}}
 											</div>
 											
                     </div>

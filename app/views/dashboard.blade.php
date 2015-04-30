@@ -17,7 +17,7 @@
                             <!-- small box -->
 						<div class="small-box bg-aqua height" >
 							<div class="inner">
-								<h4 style='font-weight:bold;'>Action Entry</h4>
+								<h4 style='font-weight:bold;'>Surveillance Inspection & Audit Entry</h4>
 							</div>
 							<div class="icon">
 								<i class=" icon ion-social-buffer"></i>
@@ -50,7 +50,7 @@
                             <!-- small box -->
                             <div class="small-box bg-yellow height" >
                                 <div class="inner">
-                                   <h4 style='font-weight:bold;'>Air Craft</h4>
+                                   <h4 style='font-weight:bold;'>Aircraft</h4>
                                    
                                 </div>
                                 <div class="icon">
@@ -87,7 +87,7 @@
                             <div class="small-box bg-blue height">
                                 <div class="inner">
                                     <h4 class='title'>
-                                        PEL
+                                    Personnel Licensing
                                     </h4>
                                    
                                 </div>
@@ -165,7 +165,7 @@
                             <div class="small-box bg-aqua height">
                                 <div class="inner">
                                     <h4 class='title'> 
-                                        ANS/AGS
+                                        ANS/AGA/Aerodrome Inspection
                                     </h4>
                                     <p>
                                         
@@ -204,7 +204,7 @@
                             <div class="small-box bg-yellow height">
                                 <div class="inner">
                                     <h4 class='title'>
-                                        Wild Life Stack
+                                        Wild Life Strike
                                     </h4>
                                     
                                 </div>
@@ -223,7 +223,7 @@
                             <div class="small-box bg-red height">
                                 <div class="inner">
                                     <h4 class='title'> 
-											Accident And Incident Investigation 
+											Accident & Incident Investigation 
                                     </h4>
                                    
                                 </div>

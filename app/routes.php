@@ -343,8 +343,11 @@ Route::get('libraryPublicView','PublicController@SDpublicView');
 /*Route::get('libraryPublicView',function(){
 	return 'Hello';
 });*/
-
-
+Route::group(array('prefix'=>'organization','before'=>'auth'),function(){
+	Route::get('main','organizationController@main');
+	
+});
+/**/
 Route::group(array('prefix'=>'admin','before'=>'auth'),function(){
 	Route::get('main','AdminTrackingController@main');
 	//entry Form
