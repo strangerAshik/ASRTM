@@ -986,12 +986,9 @@
 					 @foreach($org_exemptions_divinations as $item)	
 					<div class="box-body">
 					
-                    <table class="table table-bordered">
-									 
-					   <tbody>	
-						
-                        
-						 <tr>
+                    <table class="table table-bordered">								 
+					   <tbody>				
+                        <tr>
 							<th colspan='2'>Exemptions Divination #{{++$num}}  
 								 <span class='hidden-print'>
                                    @if($role=='Chief Admin'||$role=='Director')
@@ -1013,7 +1010,7 @@
 									@endif
 									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
 
-									 <a data-toggle="modal" data-target="#editTCIForm{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
+									 <a data-toggle="modal" data-target="#orgExemptionsDivinationUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
 									@endif
@@ -1161,7 +1158,7 @@
 									@endif
 									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
 
-									 <a data-toggle="modal" data-target="#editTCIForm{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
+									 <a data-toggle="modal" data-target="#orgAircraftListingUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
 									@endif
@@ -1328,7 +1325,7 @@
 									@endif
 									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
 
-									 <a data-toggle="modal" data-target="#editTCIForm{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
+									 <a data-toggle="modal" data-target="#orgPolicyMenualApprovalUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
 									@endif
@@ -1469,7 +1466,7 @@
 									@endif
 									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
 
-									 <a data-toggle="modal" data-target="#editTCIForm{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
+									 <a data-toggle="modal" data-target="#orgComplexityReviewUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
 									@endif
@@ -1656,7 +1653,7 @@
 									@endif
 									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
 
-									 <a data-toggle="modal" data-target="#editTCIForm{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
+									 <a data-toggle="modal" data-target="#orgAerialWorkApprovalUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
 									@endif
@@ -1803,7 +1800,7 @@
 									@endif
 									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
 
-									 <a data-toggle="modal" data-target="#editTCIForm{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
+									 <a data-toggle="modal" data-target="#orgNonCertificatedOperationsUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
 									@endif
@@ -1961,7 +1958,7 @@
 									@endif
 									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
 
-									 <a data-toggle="modal" data-target="#editTCIForm{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
+									 <a data-toggle="modal" data-target="#orgFlightOperationsApprovalsUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
 									@endif
@@ -2118,7 +2115,7 @@
 									@endif
 									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
 
-									 <a data-toggle="modal" data-target="#editTCIForm{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
+									 <a data-toggle="modal" data-target="#orgFleetOperationsApprovalUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
 									@endif
@@ -2282,7 +2279,7 @@
 									@endif
 									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
 
-									 <a data-toggle="modal" data-target="#editTCIForm{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
+									 <a data-toggle="modal" data-target="#orgFleetMaintananceApprovalUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
 									@endif
@@ -2445,7 +2442,7 @@
 									@endif
 									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
 
-									 <a data-toggle="modal" data-target="#editTCIForm{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
+									 <a data-toggle="modal" data-target="#orgAirportAuthUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
 									@endif

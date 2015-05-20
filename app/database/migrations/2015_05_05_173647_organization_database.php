@@ -235,6 +235,7 @@ class OrganizationDatabase extends Migration {
 						$table->string('org_terminated_year');
 
 						
+						$table->string('aircraft_mms');						
 						$table->string('registration_number');						
 						$table->string('control_number');
 						$table->string('rvsm');
