@@ -17,12 +17,12 @@
                             <!-- small box -->
 						<div class="small-box bg-aqua height" >
 							<div class="inner">
-								<h4 style='font-weight:bold;'>Surveillance Inspection & Audit Entry</h4>
+								<h4 style='font-weight:bold;'>Surveillance,Inspection & Audit </h4>
 							</div>
 							<div class="icon">
 								<i class=" icon ion-social-buffer"></i>
 							</div>
-							<a class="small-box-footer" href="#">
+							<a class="small-box-footer" href="{{'action/main'}}">
 								More info <i class="fa fa-arrow-circle-right"></i>
 							</a>
 						</div>
@@ -73,7 +73,7 @@
                                 <div class="icon">
                                     <i class="icon ion-briefcase"></i>
                                 </div>
-                                <a class="small-box-footer" href="#">
+                                <a class="small-box-footer" href="{{'organization/main'}}">
                                     More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>

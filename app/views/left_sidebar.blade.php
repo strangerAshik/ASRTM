@@ -45,6 +45,22 @@
                         </li>
 						@endif
 						
+                        @if(Auth::check())
+                      @if($role=='Chief Admin'||$role=='Employee'||$role=='Director'||$role=='Inspector')
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-screenshot"></i> <span>SIA</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{URL::to('action/main');}}"><i class="fa fa-angle-double-right"></i>Main</a></li>
+                                 <li><a href="{{URL::to('action/newActionEnrty');}}"><i class="fa fa-angle-double-right"></i>New SIA Entry</a></li>  
+                                 <li><a href="{{--URL::to('action/newActionEnrty');--}}"><i class="fa fa-angle-double-right"></i>SIA List</a></li> 
+                               
+                            </ul>
+                        </li>
+                        @endif
+                        @endif
 						@if(Auth::check())
                       @if($role=='Chief Admin'||$role=='Employee'||$role=='Director'||$role=='Inspector')
                         <li class="treeview">
@@ -90,6 +106,23 @@
                         </li>
 						@endif
 						@endif
+
+                        @if(Auth::check())
+                        @if($role=='Chief Admin')
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-briefcase"></i> <span>Organizations</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{URL::to('organization/main');}}"><i class="fa fa-angle-double-right"></i>Main</a></li>
+                                <li><a href="{{URL::to('organization/newOrganization');}}"><i class="fa fa-angle-double-right"></i>Add Organization</a></li>
+                                <li><a href="{{URL::to('organization/organizationList');}}"><i class="fa fa-angle-double-right"></i>Organizations List </a></li>
+                            </ul>
+                        </li>
+                        @endif
+                        @endif
+
 						@if(Auth::check())
 						@if($role=='Chief Admin')
 						<li class="treeview">

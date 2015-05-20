@@ -111,7 +111,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">New Supporting Document</h4>
             </div>
-			{{$num=$info->id}}
+		<div style='display:none'>	{{$num=$info->id}}</div>>
 				{{--*/$authors=CommonFunction::updateMultiSelection('lib_suporting_doc_authors', 'doc_authors',$num,'doc_authors_name'); /*---}}
 					
             <div class="modal-body">

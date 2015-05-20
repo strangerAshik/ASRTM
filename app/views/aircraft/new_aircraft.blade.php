@@ -69,9 +69,18 @@
 					<div class="form-group ">
                                            
 											{{Form::label('aircraft_operator', 'Aircraft Operator', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-6">
-											{{Form::text('aircraft_operator','', array('class' => 'form-control','placeholder'=>''))}}
+											
+											<div class="col-xs-6">											
+											<select id="organizations" name='aircraft_operator' class="demo-default" placeholder="Select  Operator...">
+												<option value="">Select  Operator...</option>
+												@foreach($organizations as $organization)
+												<option value="{{$organization}}">{{$organization}}</option>
+												@endforeach
+											</select>
+
+										
 											</div>
+										
 											
                     </div>
 					<div class="form-group required">
@@ -189,5 +198,11 @@
         </div>
     </div>
 </div>
-		
+	<script>
+$(document).ready(function(){
+$('#organizations').selectize();
+//$('#organizations').selectize({ create: true, sortField: {field: 'text',direction: 'asc'}});
+	
+});
+</script>	
 @stop

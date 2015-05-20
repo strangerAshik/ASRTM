@@ -21,6 +21,9 @@
     <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#correctiveIssue" >Add New Corrective Action</button>	
 </p>
 <p class="text-center">
+    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#" >Enforcement Action (EDP)</button>    
+</p>
+<p class="text-center">
     <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#legalOpenion" >Opinion Of Legal Department</button>	
 </p>
 <p class="text-center">

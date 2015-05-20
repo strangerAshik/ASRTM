@@ -43,6 +43,7 @@
 												<th>Aircraft MM </th>
 												<th>Aircraft MSN </th>
 												<th>Assigned Inspector</th>
+												<th>Operator</th>
 												<th>View Details</th>
 											</tr>
 										</thead>
@@ -57,6 +58,7 @@
 												<td class='text-centre'>{{$aircraft->aircraft_MM}}</td>
 												<td class='text-centre'>{{$aircraft->aircraft_MSN}}</td>
 												<td class='text-centre'>{{$aircraft->assigned_inspector}}</td>
+												<td class='text-centre'>{{$aircraft->aircraft_operator}}</td>
 												
 												<td class='text-centre'>
 												<a href="single/{{$aircraft->aircraft_MM.'/'.$aircraft->aircraft_MSN}}">view Details</a>
@@ -71,6 +73,7 @@
 												<td class='text-centre'>{{$aircraft->aircraft_MM}}</td>
 												<td class='text-centre'>{{$aircraft->aircraft_MSN}}</td>
 												<td class='text-centre'>{{$aircraft->assigned_inspector}}</td>
+												<td class='text-centre'>{{$aircraft->aircraft_operator}}</td>
 												
 												<td class='text-centre'>
 												<a href="single/{{$aircraft->aircraft_MM.'/'.$aircraft->aircraft_MSN}}">view Details</a>

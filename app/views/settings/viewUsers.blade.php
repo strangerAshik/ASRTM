@@ -106,7 +106,22 @@
 											{{Form::label('designation', 'Designation', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
 											
-											{{Form::select('designation', $roles, $user->role_name, array('class' => 'form-control'));}}
+											{{Form::select('designation', $roles, $user->role, array('class' => 'form-control'));}}
+											</div>
+											
+                    </div>
+					<div class="form-group required">
+                                        
+											{{Form::label('organization', 'Organization', array('class' => 'col-xs-4 control-label'))}}
+											
+											
+											<div class="col-xs-6">											
+											<select id="organizations{{$user->id}}" name='organization' class="demo-default" placeholder="Select  Organization...">
+												<option  selected='selected'value="{{$user->organization}}">{{$user->organization}}</option>
+												@foreach($organizations as $organization)
+												<option value="{{$organization}}">{{$organization}}</option>
+												@endforeach
+											</select>										
 											</div>
 											
                     </div>
@@ -138,6 +153,13 @@
         </div>
     </div>
 	</div>
+	<script>
+$(document).ready(function(){
+//$('#organization').selectize();
+$('#organizations{{$user->id}}').selectize({ create: true, sortField: {field: 'text',direction: 'asc'}});
+	
+});
+</script>
 @endforeach
    <!-- End update User-->    
 <!-- delete -->
@@ -175,4 +197,5 @@
 @endforeach
    <!-- End delete User-->                        
 </section>
+
 @stop

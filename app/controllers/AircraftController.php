@@ -767,6 +767,7 @@ class AircraftController extends \BaseController {
 	$lesseeData=DB::table('aircraft_lessee_info')->where('aircraft_MM', '=',$mm)->where('aircraft_MSN', '=',$msn)->where('soft_delete', '=','0')->get();
 	$insurerData=DB::table('aircraft_insurer_info')->where('aircraft_MM', '=',$mm)->where('aircraft_MSN', '=',$msn)->where('soft_delete', '=','0')->get();
 	$equipmentData=DB::table('aircraft_equipment_review_info')->where('aircraft_MM', '=',$mm)->where('aircraft_MSN', '=',$msn)->where('soft_delete', '=','0')->get();
+	$organizations =DB::table('users')->lists('organization');
 	
 		return View::make('aircraft/aircraft-single')
 		->with('PageName','Aircraft Info.')
@@ -785,12 +786,14 @@ class AircraftController extends \BaseController {
 		->with('lesseeData',$lesseeData)
 		->with('insurerData',$insurerData)
 		->with('equipmentData',$equipmentData)
+		->with('organizations',$organizations)
 		->with('ND',0)
 		
 		;
 	}
 
 	public function addNewAircraft(){
+		$organizations =DB::table('users')->lists('organization');
 		$select=array(''=>'--Select--');
 		$inspectors=DB::table('users')->where('role','=','Inspector')->lists('role','role');
 		$inspectors=array_merge($select,$inspectors);
@@ -799,6 +802,7 @@ class AircraftController extends \BaseController {
 		->with('dates',parent::dates())
 		->with('months',parent::months())
 		->with('years',parent::years())
+		->with('organizations',$organizations)
 		->with('inspectors',$inspectors);
 	}
 	public function aircraftList(){

@@ -51,7 +51,12 @@
                                            
 											{{Form::label('aircraft_operator', 'Aircraft Operator', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
-											{{Form::text('aircraft_operator',$primary->aircraft_operator, array('class' => 'form-control','placeholder'=>''))}}
+											<select id="organizations" name='aircraft_operator' class="demo-default" placeholder="Select  Operator...">
+												<option value="{{$primary->aircraft_operator}}">{{$primary->aircraft_operator}}</option>
+												@foreach($organizations as $organization)
+												<option value="{{$organization}}">{{$organization}}</option>
+												@endforeach
+											</select>
 											</div>
 											
                     </div>
@@ -115,7 +120,7 @@
                                 <div class="col-xs-6">
 										<div class="radio">
 									 
-									  <label> <label> {{ Form::radio('current_exemptions', 'Yes',Input::old('current_exemptions', $primary->current_exemptions == 'Yes'),array()) }} &nbsp  Yes</label>
+									  <label> {{ Form::radio('current_exemptions', 'Yes',Input::old('current_exemptions', $primary->current_exemptions == 'Yes'),array()) }} &nbsp  Yes</label>
 									 <label> {{ Form::radio('current_exemptions', 'No',Input::old('current_exemptions', $primary->current_exemptions == 'No'),array()) }} &nbsp  No</label>
 									</div>
 									
@@ -170,6 +175,13 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+$('#organizations').selectize();
+
+	
+});
+</script>
 @stop
 
 @section('editTCIForm')

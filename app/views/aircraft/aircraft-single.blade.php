@@ -14,7 +14,7 @@
 
 {{--Aircraft Primary Information--}}
  <div class="row" >
-                        
+                      
 		  @foreach($primaryData as $primary)
                         <div class="col-md-12">
                             <!-- general form elements -->
@@ -200,6 +200,7 @@
 					<div style='display:none'>
 					{{$num=0;}}
 					</div>
+					 @if($tcData) 
 					 @foreach($tcData as $tc)	
 					<div class="box-body">
 					
@@ -342,6 +343,19 @@
                 </div>
 				
 					@endforeach
+						@else
+					<div class="box-body">					
+                    <table class="table table-bordered">
+									 
+					   <tbody>	                        
+						 <tr>
+						 	<td> No Data Is Provided Yet!!</td>
+						 </tr>
+						 </tbody>
+					</table>
+					</div>
+
+					@endif
                 <!-- /.box-body -->
                                
                           </div><!-- /.box -->
@@ -367,6 +381,7 @@
 					<div style='display:none'>
 					{{$num=0;}}
 					</div>
+					@if($stcData)
 					 @foreach($stcData as $stc)
 					<div class="box-body">
 					
@@ -475,7 +490,20 @@
                 </div>
                 <!-- /.box-body -->
 				@endforeach
-			
+				@else
+					<div class="box-body">					
+                    <table class="table table-bordered">
+									 
+					   <tbody>	                        
+						 <tr>
+						 	<td> No Data Is Provided Yet!!</td>
+						 </tr>
+						 </tbody>
+					</table>
+					</div>
+
+					@endif
+				
 			
 				
                                
@@ -505,6 +533,7 @@
 					<div class="box-body">
 					
                     <table class="table table-bordered">
+                    @if ($exemptionData) 
 					 @foreach($exemptionData as $exemption)
 					   <tbody>						
                          <tr>
@@ -581,11 +610,24 @@
 						</tr>
                            
                         
-                        </tbody>
+                        </tbody>					
 					@endforeach
                     </table>
 					
                 </div>
+                
+                @else
+					<div class="box-body">					
+                    <table class="table table-bordered">
+									 
+					   <tbody>	                        
+						 <tr>
+						 	<td> No Data Is Provided Yet!!</td>
+						 </tr>
+						 </tbody>
+					</table>
+					</div>
+				@endif
                 <!-- /.box-body -->
                                
                           </div><!-- /.box -->
@@ -614,6 +656,7 @@
 					<div class="box-body">
 					
                     <table class="table table-bordered">
+                    @if($registrationData)
 					 @foreach($registrationData as $registration)
 					   <tbody>						
                          <tr>
@@ -754,10 +797,23 @@
                            
                         
                         </tbody>
-					@endforeach
+					 @endforeach
                     </table>
 					
                 </div>
+               
+                @else
+					<div class="box-body">					
+                    <table class="table table-bordered">
+									 
+					   <tbody>	                        
+						 <tr>
+						 	<td> No Data Is Provided Yet!!</td>
+						 </tr>
+						 </tbody>
+					</table>
+					</div>
+					@endif
                 <!-- /.box-body -->
                                
                           </div><!-- /.box -->
@@ -786,6 +842,7 @@
 					<div class="box-body">
 					
                     <table class="table table-bordered">
+                    @if($airworthinessData)
 					 @foreach($airworthinessData as $airworthiness)
 					   <tbody>						
                          <tr>
@@ -922,7 +979,20 @@
                     </table>
 					
                 </div>
+
                 <!-- /.box-body -->
+                 @else
+					<div class="box-body">					
+                    <table class="table table-bordered">
+									 
+					   <tbody>	                        
+						 <tr>
+						 	<td> No Data Is Provided Yet!!</td>
+						 </tr>
+						 </tbody>
+					</table>
+					</div>
+					@endif
                                
                           </div><!-- /.box -->
 						</div>
@@ -950,6 +1020,7 @@
 					<div class="box-body">
 					
                     <table class="table table-bordered">
+                    @if($approvalData)
 					 @foreach($approvalData as $approval)
 					   <tbody>						
                          <tr>
@@ -1037,6 +1108,19 @@
 					
                 </div>
                 <!-- /.box-body -->
+                	@else
+					<div class="box-body">					
+                    <table class="table table-bordered">
+									 
+					   <tbody>	                        
+						 <tr>
+						 	<td> No Data Is Provided Yet!!</td>
+						 </tr>
+						 </tbody>
+					</table>
+					</div>
+
+					@endif
                                
                           </div><!-- /.box -->
 						</div>
@@ -1064,6 +1148,7 @@
 					<div class="box-body">
 					
                     <table class="table table-bordered">
+                     @if($ownerData)
 					 @foreach($ownerData as $owner)
 					   <tbody>						
                          <tr>
@@ -1183,6 +1268,19 @@
 					
                 </div>
                 <!-- /.box-body -->
+                	@else
+					<div class="box-body">					
+                    <table class="table table-bordered">
+									 
+					   <tbody>	                        
+						 <tr>
+						 	<td> No Data Is Provided Yet!!</td>
+						 </tr>
+						 </tbody>
+					</table>
+					</div>
+
+					@endif
                                
                           </div><!-- /.box -->
 						</div>
@@ -1210,6 +1308,7 @@
 					<div class="box-body">
 					
                     <table class="table table-bordered">
+                     @if($lesseeData)
 					 @foreach($lesseeData as $lessee)
 					   <tbody>						
                          <tr>
@@ -1326,6 +1425,19 @@
 					
                 </div>
                 <!-- /.box-body -->
+                	@else
+					<div class="box-body">					
+                    <table class="table table-bordered">
+									 
+					   <tbody>	                        
+						 <tr>
+						 	<td> No Data Is Provided Yet!!</td>
+						 </tr>
+						 </tbody>
+					</table>
+					</div>
+
+					@endif
                                
                           </div><!-- /.box -->
 						</div>
@@ -1353,6 +1465,7 @@
 					<div class="box-body">
 					
                     <table class="table table-bordered">
+                     @if($insurerData)
 					 @foreach($insurerData as $insurer)
 					   <tbody>						
                          <tr>
@@ -1484,7 +1597,21 @@
                     </table>
 					
                 </div>
+
                 <!-- /.box-body -->
+                	@else
+					<div class="box-body">					
+                    <table class="table table-bordered">
+									 
+					   <tbody>	                        
+						 <tr>
+						 	<td> No Data Is Provided Yet!!</td>
+						 </tr>
+						 </tbody>
+					</table>
+					</div>
+
+					@endif
                                
                           </div><!-- /.box -->
 						</div>
@@ -1512,6 +1639,7 @@
 					<div class="box-body">
 					
                     <table class="table table-bordered">
+                    @if($equipmentData)
 					 @foreach($equipmentData as $equipment)
 					   <tbody>						
                          <tr>
@@ -1754,6 +1882,19 @@
 					
                 </div>
                 <!-- /.box-body -->
+                	@else
+					<div class="box-body">					
+                    <table class="table table-bordered">
+									 
+					   <tbody>	                        
+						 <tr>
+						 	<td> No Data Is Provided Yet!!</td>
+						 </tr>
+						 </tbody>
+					</table>
+					</div>
+
+					@endif
                                
                           </div><!-- /.box -->
 						</div>

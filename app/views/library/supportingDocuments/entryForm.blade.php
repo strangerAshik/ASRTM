@@ -58,12 +58,12 @@
 											</div>
 											
                     </div>
-					<div class="form-group ">
+					<div class="form-group required">
                                         
 											{{Form::label('doc_tags', 'Tags', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
 											
-											<select id="doc_tags"  multiple name="doc_tags[]" class="demo-default" >
+											<select required id="doc_tags"  multiple name="doc_tags[]" class="demo-default" >
 												<option value="">Select Tags</option>
 													@foreach($tags as $tag)
 												<option value="{{$tag}}">{{$tag}}</option>

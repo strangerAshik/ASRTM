@@ -345,9 +345,44 @@ Route::get('libraryPublicView','PublicController@SDpublicView');
 });*/
 Route::group(array('prefix'=>'organization','before'=>'auth'),function(){
 	Route::get('main','organizationController@main');
+	Route::get('organizationList','organizationController@organizationList');
+	Route::get('newOrganization','organizationController@newOrganization');
+	Route::post('saveOrgPrimary','organizationController@saveOrgPrimary');
+	Route::get('singleOrganization/{orgNum}','organizationController@singleOrganization');
+	Route::post('saveOrgbusinessName','organizationController@saveOrgbusinessName');
+	Route::post('saveOrgCertificate','organizationController@saveOrgCertificate');
+	Route::post('saveOrgBaseLocation','organizationController@saveOrgBaseLocation');
+	Route::post('saveOrgManagementContact','organizationController@saveOrgManagementContact');
+	Route::post('saveOrgCAAContact','organizationController@saveOrgCAAContact');
+	Route::post('saveOrgExemptionsDivination','organizationController@saveOrgExemptionsDivination');
+	Route::post('saveOrgAircraftListing','organizationController@saveOrgAircraftListing');
+	Route::post('saveOrgPolicyMenualApproval','organizationController@saveOrgPolicyMenualApproval');
+	Route::post('saveOrgComplexityReview','organizationController@saveOrgComplexityReview');
+	Route::post('saveOrgAerialWorkApproval','organizationController@saveOrgAerialWorkApproval');
+	Route::post('saveOrgNonCertificatedOperation','organizationController@saveOrgNonCertificatedOperation');
+	Route::post('saveOrgFlightOperationsApproval','organizationController@saveOrgFlightOperationsApproval');
+	Route::post('saveOrgFleetOperationApproval','organizationController@saveOrgFleetOperationApproval');
+	Route::post('saveOrgFleetMaintananceApproval','organizationController@saveOrgFleetMaintananceApproval');
+	Route::post('saveOrgAirportAuth','organizationController@saveOrgAirportAuth');
+	Route::post('saveOrgLeasingArrangment','organizationController@saveOrgLeasingArrangment');
+	Route::post('saveOrgContractedService','organizationController@saveOrgContractedService');
+	Route::post('saveOrgAmoApproval','organizationController@saveOrgAmoApproval');
+	Route::post('saveOrgAtoApproval','organizationController@saveOrgAtoApproval');
+	Route::post('saveOrgAocApprovalArea','organizationController@saveOrgAocApprovalArea');
+	Route::post('saveOrgAocApprovalRoute','organizationController@saveOrgAocApprovalRoute');
+	Route::post('saveOrgAocMaintenanceArrangement','organizationController@saveOrgAocMaintenanceArrangement');
+	Route::post('saveOrgAocTrainingArrangement','organizationController@saveOrgAocTrainingArrangement');
+	Route::post('saveOrgApprovalSimulator','organizationController@saveOrgApprovalSimulator');
+	
+
 	
 });
-/**/
+/*Action Entry */
+Route::group(array('prefix'=>'action','before'=>'auth'),function(){
+	Route::get('main','actionController@main');
+	Route::get('newActionEnrty','actionController@newActionEnrty');
+	
+});
 Route::group(array('prefix'=>'admin','before'=>'auth'),function(){
 	Route::get('main','AdminTrackingController@main');
 	//entry Form

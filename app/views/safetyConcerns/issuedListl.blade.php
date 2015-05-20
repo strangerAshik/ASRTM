@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-<section class='content widthController' style='margin: 0 auto; max-width: 1000px;'>
+<section class='content widthController' >
 
          <div class="row">
                         <div class="col-md-12">
