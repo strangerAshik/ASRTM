@@ -30,26 +30,7 @@ $infos=DB::table('org_primary')
 		->with('PageName','New Organization');
 	}
  
-	
-	public function saveOrgPrimary()
-	{
-		$org=new OrgPrimary;    
 
-		$org->org_number=Input::get('org_number');
-		$org->org_name=Input::get('org_name');
-		$org->active=Input::get('active');
-
-		$org->row_creator=Auth::user()->getName();
-		$org->row_updator=Auth::user()->getName();
-		$org->approve=0;
-		$org->warning=0;
-		$org->soft_delete=0;
-		$org->save();
-
-		return Redirect::to('organization/singleOrganization/'.Input::get('org_number'));
-
-
-	}
 	public function singleOrganization($orgNum){
 	
 $orgPrimary=DB::table('org_primary')
@@ -187,6 +168,41 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		;
 	}
 
+	public function saveOrgPrimary()
+	{
+		$org=new OrgPrimary;    
+
+		$org->org_number=Input::get('org_number');
+		$org->org_name=Input::get('org_name');
+		$org->active=Input::get('active');
+
+		$org->row_creator=Auth::user()->getName();
+		$org->row_updator=Auth::user()->getName();
+		$org->approve=0;
+		$org->warning=0;
+		$org->soft_delete=0;
+		$org->save();
+
+		return Redirect::to('organization/singleOrganization/'.Input::get('org_number'));
+
+
+	}
+	public function updateOrgPrimary(){
+		$id=Input::get('id');
+		DB::table('org_primary')
+		->where('id',$id)
+		->update(array(
+
+		'org_number' => Input::get('org_number'),		
+		'org_name' => Input::get('org_name'),
+		'active' => Input::get('active'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		return Redirect::back()->with('message','Org Primary Data Updated ');
+	}
 
 	public function saveOrgbusinessName(){
 		$org=new OrgBusinessName;
@@ -215,7 +231,27 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','Business Name Saved');
 	}
-	
+	public function updateOrgbusinessName(){
+		$id=Input::get('id');
+		 DB::table('org_business_name')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+		'org_business_name' => Input::get('org_business_name'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_business_name_note' => Input::get('org_business_name_note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		return Redirect::back()->with('message','Org Business Name Data Updated ');
+	}
 	public function saveOrgCertificate(){
 		$org=new OrgCertificate;
 
@@ -252,6 +288,37 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		return Redirect::back()->with('message','Certificate Information Saved');
 
 	}
+	public function updateOrgCertificate(){
+		$id=Input::get('id');
+		 DB::table('org_certificates')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_certificate_type' => Input::get('org_certificate_type'),
+
+		'org_issued_date' => Input::get('org_issued_date'),
+		'org_issued_month' => Input::get('org_issued_month'),
+		'org_issued_year' => Input::get('org_issued_year'),
+
+		'org_expiration_date' => Input::get('org_expiration_date'),
+		'org_expiration_month' => Input::get('org_expiration_month'),
+		'org_expiration_year' => Input::get('org_expiration_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'org_control_number' => Input::get('org_control_number'),
+		'org_basis_note' => Input::get('org_basis_note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		return Redirect::back()->with('message','Data Updated !!');
+	}
 
 	public function saveOrgBaseLocation(){
 		
@@ -287,7 +354,38 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','Base Location Saved');
 	}
-	
+	public function updateOrgBaseLocation(){
+		$id=Input::get('id');
+		 DB::table('org_base_location')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		
+		'org_location_type' => Input::get('org_location_type'),
+		'contract_person' => Input::get('contract_person'),
+		'org_telephone_number' => Input::get('org_telephone_number'),
+		'org_fax_number' => Input::get('org_fax_number'),
+		'org_lecation' => Input::get('org_lecation'),
+		'org_address' => Input::get('org_address'),
+		'org_city' => Input::get('org_city'),
+		'org_state_province' => Input::get('org_state_province'),
+		'org_postal_code' => Input::get('org_postal_code'),
+		'org_country' => Input::get('org_country'),
+		'memo_note' => Input::get('memo_note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		return Redirect::back()->with('message','Data Updated !!');
+	}
+
 	public function saveOrgManagementContact(){
 		$org=new OrgManagementContact;
 
@@ -326,6 +424,42 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','Management Contact Saved');
 	}
+	public function updateOrgManagementContact(){
+		$id=Input::get('id');
+		 DB::table('org_management_contacts')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'management_position' => Input::get('management_position'),
+		'first_name' => Input::get('first_name'),
+		'last_name' => Input::get('last_name'),
+		'actual_title' => Input::get('actual_title'),
+		'work_phone' => Input::get('work_phone'),
+		'cell_number' => Input::get('cell_number'),
+		'fax_number' => Input::get('fax_number'),
+		'location' => Input::get('location'),
+		'email' => Input::get('email'),
+		'address' => Input::get('address'),
+		'city' => Input::get('city'),
+		'state_province' => Input::get('state_province'),
+		'postal_code' => Input::get('postal_code'),
+		'country' => Input::get('country'),
+		'control_number' => Input::get('control_number'),
+		'memo_note' => Input::get('memo_note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		return Redirect::back()->with('message','Data Updated !!');
+	}
+
 	public function saveOrgCAAContact(){
 		$org=new OrgCAAContact;
 
@@ -364,6 +498,42 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','CAA Contact Saved');
 	}
+	public function updateOrgCAAContact(){
+		$id=Input::get('id');
+		 DB::table('org_caa_contacts')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'inspector_position' => Input::get('inspector_position'),
+		'first_name' => Input::get('first_name'),
+		'last_name' => Input::get('last_name'),
+		'actual_title' => Input::get('actual_title'),
+		'work_phone' => Input::get('work_phone'),
+		'cell_number' => Input::get('cell_number'),
+		'fax_number' => Input::get('fax_number'),
+		'location' => Input::get('location'),
+		'email' => Input::get('email'),
+		'address' => Input::get('address'),
+		'city' => Input::get('city'),
+		'state_province' => Input::get('state_province'),
+		'postal_code' => Input::get('postal_code'),
+		'country' => Input::get('country'),
+		'control_number' => Input::get('control_number'),
+		'basis_note' => Input::get('basis_note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		return Redirect::back()->with('message','Data Updated !!');
+	}
+
 	public function saveOrgExemptionsDivination(){
 		$org=new OrgExemptionsDivination;
 
@@ -396,6 +566,35 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','Exemptions Divination Saved');
 	}
+	public function updateOrgExemptionsDivination(){
+		$id=Input::get('id');
+		 DB::table('org_exemptions_divinations')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'type' => Input::get('type'),
+		'assigned_number' => Input::get('assigned_number'),
+		'regulation' => Input::get('regulation'),
+		'control_number' => Input::get('control_number'),
+		'basis_note' => Input::get('basis_note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		return Redirect::back()->with('message','Data Updated !!');
+	}
+
 	public function saveOrgAircraftListing(){
 		$org=new OrgAircraftListing;
 
@@ -432,6 +631,38 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','Aircraft Listing Saved');
 	}
+	public function updateOrgAircraftListing(){
+		$id=Input::get('id');
+		 DB::table('org_aircraft_listings')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'aircraft_mms' => Input::get('aircraft_mms'),
+		'registration_number' => Input::get('registration_number'),
+		'control_number' => Input::get('control_number'),
+		'rvsm' => Input::get('rvsm'),
+		'parts_pool' => Input::get('parts_pool'),
+		'reliability' => Input::get('reliability'),
+		'lease_acceptable' => Input::get('lease_acceptable'),
+		'interchange' => Input::get('interchange'),
+		'note' => Input::get('note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		return Redirect::back()->with('message','Data Updated !!');
+	}
 	public function saveOrgPolicyMenualApproval(){
 		$org=new OrgPolicyMenualApproval;
 
@@ -463,6 +694,33 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','Policy Menual Approval Saved');
 	}
+	public function updateOrgPolicyMenualApproval(){
+		$id=Input::get('id');
+		 DB::table('org_policy_menual_approvals')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'type_of_approval' => Input::get('type_of_approval'),
+		'revision_number' => Input::get('revision_number'),
+		'control_number' => Input::get('control_number'),
+		'basis_note' => Input::get('basis_note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		return Redirect::back()->with('message','Data Updated !!');
+	}
 	public function saveOrgComplexityReview(){
 		$org=new OrgComplexityReview;
 
@@ -474,6 +732,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_review_date=Input::get('org_review_date');
 		$org->org_review_month=Input::get('org_review_month');
 		$org->org_review_year=Input::get('org_review_year');
+
 		$org->purpose_of_review=Input::get('purpose_of_review');
 		$org->total_employees=Input::get('total_employees');
 		$org->total_flt_ops_employees=Input::get('total_flt_ops_employees');
@@ -498,6 +757,39 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->save();
 
 		return Redirect::back()->with('message','Complexity Review Saved');
+	}
+	public function updateOrgComplexityReview(){
+		$id=Input::get('id');
+		 DB::table('org_complexity_reviews')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_review_date' => Input::get('org_review_date'),
+		'org_review_month' => Input::get('org_review_month'),
+		'org_review_year' => Input::get('org_review_year'),
+
+		'purpose_of_review' => Input::get('purpose_of_review'),
+		'total_employees' => Input::get('total_employees'),
+		'total_flt_ops_employees' => Input::get('total_flt_ops_employees'),
+		'total_pilots' => Input::get('total_pilots'),
+		'total_check_airmen' => Input::get('total_check_airmen'),
+		'total_flight_attendants' => Input::get('total_flight_attendants'),
+		'total_aircraft_dispatchers' => Input::get('total_aircraft_dispatchers'),
+		'flight_followers' => Input::get('flight_followers'),
+		'total_load_controllers' => Input::get('total_load_controllers'),
+		'total_maint_employees' => Input::get('total_maint_employees'),
+		'total_av_maint_technicians' => Input::get('total_av_maint_technicians'),
+		'total_av_repair_specialists' => Input::get('total_av_repair_specialists'),
+		'total_quality_assurance' => Input::get('total_quality_assurance'),
+		'note' => Input::get('note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgAerialWorkApproval(){
 
@@ -530,6 +822,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->save();
 
 		return Redirect::back()->with('message','Aerial Work Approval Saved');
+	}
+	public function updateOrgAerialWorkApproval(){
+		
 	}
 	public function saveOrgNonCertificatedOperation(){
 
@@ -565,6 +860,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','Non Certificated Operation Saved');
 	}
+	public function updateOrgNonCertificatedOperation(){
+		
+	}
 	public function saveOrgFlightOperationsApproval(){
 
 		$org=new OrgFlightOperationsApproval;
@@ -597,6 +895,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->save();
 
 		return Redirect::back()->with('message','Flight Operations Approval Saved');
+	}
+	public function updateOrgFlightOperationsApproval(){
+		
 	}
 	public function saveOrgFleetOperationApproval(){
 
@@ -632,6 +933,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->save();
 
 		return Redirect::back()->with('message','Fleet Operation Approval Saved');
+	}
+	public function updateOrgFleetOperationApproval(){
+		
 	}
 	
 	public function saveOrgFleetMaintananceApproval(){
@@ -669,7 +973,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','Fleet Maintanance Approval Information Saved');
 	}
-	
+	public function updateOrgFleetMaintananceApproval(){
+		
+	}
 	public function saveOrgAirportAuth(){
 
 		$org=new OrgAirportAuth;
@@ -705,6 +1011,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','Airport Auth. Information Saved');
 	}
+	public function updateOrgAirportAuth(){
+		
+	}
 	public function saveOrgLeasingArrangment(){
 
 		$org=new OrgLeasingArrangment;
@@ -736,6 +1045,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->save();
 
 		return Redirect::back()->with('message','Leasing Arrangment Information Saved');
+	}
+	public function updateOrgLeasingArrangment(){
+		
 	}
 	public function saveOrgContractedService(){
 
@@ -770,6 +1082,11 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','Contracted Service Information Saved');
 	}
+
+	public function updateOrgContractedService(){
+		
+	}
+
 	public function saveOrgAmoApproval(){
 
 		$org=new OrgAmoApproval;
@@ -805,6 +1122,10 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','AMO Approval Information Saved');
 	}
+	public function updateOrgAmoApproval(){
+		
+	}
+
 	public function saveOrgAtoApproval(){
 
 		$org=new OrgAtoApproval;
@@ -837,6 +1158,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->save();
 
 		return Redirect::back()->with('message','ATO Approval Information Saved');
+	}
+	public function updateOrgAtoApproval(){
+		
 	}
 	
 	public function saveOrgAocApprovalArea(){
@@ -872,6 +1196,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','Aoc Approval Area Information Saved');
 	}
+	public function updateOrgAocApprovalArea(){
+		
+	}
 	
 	public function saveOrgAocApprovalRoute(){
 
@@ -906,7 +1233,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','Aoc Approval Route Information Saved');
 	}
-	
+	public function updateOrgAocApprovalRoute(){
+		
+	}
 	public function saveOrgAocMaintenanceArrangement(){
 
 		$org=new OrgAocMaintenanceArrangement;
@@ -940,6 +1269,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','AOC Maintenance Arrangement Information Saved');
 	}
+	public function updateOrgAocMaintenanceArrangement(){
+		
+	}
 	public function saveOrgAocTrainingArrangement(){
 
 		$org=new OrgAocTrainingArrangement;
@@ -972,6 +1304,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		return Redirect::back()->with('message','AOC Training Arrangement Information Saved');
 	}
+	public function updateOrgAocTrainingArrangement(){
+		
+	}
 	
 	public function saveOrgApprovalSimulator(){
 
@@ -1002,6 +1337,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->save();
 
 		return Redirect::back()->with('message','Approval Simulator Information Saved');
+	}
+	public function updateOrgApprovalSimulator(){
+		
 	}
 	
 	

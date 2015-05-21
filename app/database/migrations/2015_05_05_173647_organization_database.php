@@ -745,8 +745,7 @@ class OrganizationDatabase extends Migration {
 						$table->string('org_terminated_date');
 						$table->string('org_terminated_month');
 						$table->string('org_terminated_year');
-
-						$table->string('type_of_approval');						
+		
 						$table->string('location');						
 						$table->string('service_provider');						
 						$table->string('control_number');

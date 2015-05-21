@@ -27,6 +27,7 @@
 												<th>Full Name</th>
 												<th>Email</th>
 												<th>Role</th>
+												<th>Organization</th>
 												<th>Update</th>
 												<th>Delete</th>
 											</tr>
@@ -39,6 +40,7 @@
 												<td class='text-centre'>{{$user->name}}</td>
 												<td class='text-centre'>{{$user->email}}</td>
 												<td class='text-centre'>{{$user->role}}</td>
+												<td class='text-centre'>{{$user->organization}}</td>
 												
 												<td class='text-centre'>
 													<a data-toggle="modal" data-target="#updateUser{{$user->id}}" href='' style='color:green;float:right;padding:5px;'>

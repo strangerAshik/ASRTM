@@ -12,7 +12,7 @@
             <div class="modal-body"> 
                               
 				{{Form::open(array('url'=>'organization/updateOrgPrimary','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-				  
+				  	{{Form::hidden('id',$item->id)}}				  	
 					<div class="form-group required">
                                            
 											{{Form::label('org_number', 'Organization Number', array('class' => 'col-xs-4 control-label'))}}
@@ -74,7 +74,7 @@
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgbusinessName','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
 					  
-					
+						{{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -161,7 +161,7 @@
 					{{Form::open(array('url'=>'organization/updateOrgCertificate','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
 					 
 						  
-						 
+						 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">                                           
 							{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}									
 	                        <div class="col-xs-6">
@@ -300,7 +300,7 @@
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgBaseLocation','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
 					 
-						  
+						  {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -464,8 +464,8 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgManagementContact','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
-						
+					
+					 {{Form::hidden('id',$item->id)}}						
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -671,7 +671,7 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgCAAContact','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -877,7 +877,7 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgExemptionsDivination','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -1007,7 +1007,7 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgAircraftListing','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -1218,7 +1218,7 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgPolicyMenualApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -1343,7 +1343,7 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgComplexityReview','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -1535,7 +1535,7 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgAerialWorkApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -1667,7 +1667,7 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgNonCertificatedOperation','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -1816,7 +1816,7 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgFlightOperationsApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
+					 {{Form::hidden('id',$item->id)}}
 						  
 						<div class="form-group required">
 	                                           
@@ -1959,7 +1959,7 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgFleetOperationApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
+					 {{Form::hidden('id',$item->id)}}
 						  
 						<div class="form-group required">
 	                                           
@@ -2117,7 +2117,7 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgFleetMaintananceApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -2272,7 +2272,7 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgAirportAuth','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -2408,32 +2408,31 @@
 	@stop
 
 	@section('orgLeasingArrangmentUpdate')
-	@foreach($org_management_contacts as $item)	
+	@foreach($org_leasing_arrangment as $item)	
 	<div class="modal fade" id="orgLeasingArrangmentUpdate{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">Add Leasing Arrangement</h4>
+	                <h4 class="modal-title">Update Leasing Arrangement</h4>
 	            </div>
 
 	            <div class="modal-body">
 	                              
-					{{Form::open(array('url'=>'organization/saveOrgLeasingArrangment','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
-						   @foreach($orgPrimary as $primary)
-						  	{{Form::hidden('org_number',$primary->org_number)}}
-						  	{{Form::hidden('org_name',$primary->org_name)}}
-						   @endforeach
+					{{Form::open(array('url'=>'organization/updateOrgLeasingArrangment','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
 												
 	                                <div class="col-xs-6">
 											<div class="radio">
-										 
-										  <label> <label> {{ Form::radio('active', 'Yes',true) }} &nbsp  Yes</label>
-										 <label> {{ Form::radio('active', 'No') }} &nbsp  No</label>
+										 	<label>
+											 	 {{ Form::radio('active', 'Yes',Input::old('active', $item->active == 'Yes'),array()) }} &nbsp  Yes
+											</label>
+											<label>
+											 {{ Form::radio('active', 'No',Input::old('active', $item->active == 'No'),array()) }} &nbsp  No
+											</label>
 										</div>
 										
 									</div>
@@ -2444,15 +2443,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_effective_date', $dates,date('d'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_date', $dates,$item->org_effective_date,array('class'=>'form-control','required'=>''))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_effective_month',$months,date('F'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_month',$months,$item->org_effective_month,array('class'=>'form-control','required'=>''))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_effective_year',$years,date('Y'),array('class'=>'form-control','required'=>''))}}
+																{{Form::select('org_effective_year',$years,$item->org_effective_year,array('class'=>'form-control','required'=>''))}}
 															</div>
 														</div>
 												
@@ -2463,15 +2462,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_terminated_date', $dates,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_date', $dates,$item->org_terminated_date,array('class'=>'form-control'))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_terminated_month',$months,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_month',$months,$item->org_terminated_month,array('class'=>'form-control'))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_terminated_year',$years,'0',array('class'=>'form-control'))}}
+																{{Form::select('org_terminated_year',$years,$item->org_terminated_year,array('class'=>'form-control'))}}
 															</div>
 														</div>
 												
@@ -2480,7 +2479,7 @@
 	                                           
 												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),$item->org_identifier, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2488,7 +2487,7 @@
 	                                           
 												{{Form::label('arrangement', 'Arrangement', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('arrangement',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('arrangement',array(''=>'--Select--','1234'=>'1234'),$item->arrangement, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2497,7 +2496,7 @@
 	                                           
 												{{Form::label('revision_number', 'Revision Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('revision_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('revision_number',$item->revision_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2505,7 +2504,7 @@
 	                                           
 												{{Form::label('other', 'Other', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('other','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('other',$item->other, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2515,7 +2514,7 @@
 	                                           
 												{{Form::label('control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('control_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('control_number',$item->control_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>                   	
@@ -2523,7 +2522,7 @@
 	                                           
 												{{Form::label('notes', 'Notes', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('notes','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('notes',$item->notes, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>
@@ -2543,32 +2542,31 @@
 	@stop
 
 	@section('orgContractedServicesUpdate')
-	@foreach($org_management_contacts as $item)	
+	@foreach($org_contracted_services as $item)	
 	<div class="modal fade" id="orgContractedServicesUpdate{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">Add Contracted Services</h4>
+	                <h4 class="modal-title">Update Contracted Services</h4>
 	            </div>
 
 	            <div class="modal-body">
 	                              
-					{{Form::open(array('url'=>'organization/saveOrgContractedService','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
-						   @foreach($orgPrimary as $primary)
-						  	{{Form::hidden('org_number',$primary->org_number)}}
-						  	{{Form::hidden('org_name',$primary->org_name)}}
-						   @endforeach
+					{{Form::open(array('url'=>'organization/updateOrgContractedService','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
 												
 	                                <div class="col-xs-6">
-											<div class="radio">
-										 
-										  <label> <label> {{ Form::radio('active', 'Yes',true) }} &nbsp  Yes</label>
-										 <label> {{ Form::radio('active', 'No') }} &nbsp  No</label>
+										<div class="radio">
+										<label>
+											 	 {{ Form::radio('active', 'Yes',Input::old('active', $item->active == 'Yes'),array()) }} &nbsp  Yes
+											</label>
+											<label>
+											 {{ Form::radio('active', 'No',Input::old('active', $item->active == 'No'),array()) }} &nbsp  No
+											</label>
 										</div>
 										
 									</div>
@@ -2579,15 +2577,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('issued_date', $dates,date('d'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('issued_date', $dates,$item->issued_date,array('class'=>'form-control','required'=>''))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('issued_month',$months,date('F'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('issued_month',$months,$item->issued_month,array('class'=>'form-control','required'=>''))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('issued_year',$years,date('Y'),array('class'=>'form-control','required'=>''))}}
+																{{Form::select('issued_year',$years,$item->issued_year,array('class'=>'form-control','required'=>''))}}
 															</div>
 														</div>
 												
@@ -2598,15 +2596,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_terminated_date', $dates,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_date', $dates,$item->org_terminated_date,array('class'=>'form-control'))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_terminated_month',$months,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_month',$months,$item->org_terminated_month,array('class'=>'form-control'))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_terminated_year',$years,'0',array('class'=>'form-control'))}}
+																{{Form::select('org_terminated_year',$years,$item->org_terminated_year,array('class'=>'form-control'))}}
 															</div>
 														</div>
 												
@@ -2615,7 +2613,7 @@
 	                                           
 												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),$item->org_identifier, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2623,7 +2621,7 @@
 	                                           
 												{{Form::label('type_of_approval', 'Type Of Approval', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('type_of_approval',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('type_of_approval',array(''=>'--Select--','1234'=>'1234'),$item->type_of_approval, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2632,7 +2630,7 @@
 	                                           
 												{{Form::label('revision_number', 'Revision Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('revision_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('revision_number',$item->revision_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2640,7 +2638,7 @@
 	                                           
 												{{Form::label('aircraft_mms', 'Aircraft MMS', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('aircraft_mms','', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::text('aircraft_mms',$item->aircraft_mms, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2649,7 +2647,7 @@
 	                                           
 												{{Form::label('limiting_factor', 'Limiting Factor', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('limiting_factor','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('limiting_factor',$item->limiting_factor, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2659,7 +2657,7 @@
 	                                           
 												{{Form::label('control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('control_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('control_number',$item->control_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>                   	
@@ -2667,7 +2665,7 @@
 	                                           
 												{{Form::label('basis_note', 'Basis & Notes', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('basis_note','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('basis_note',$item->basis_note, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>
@@ -2687,32 +2685,31 @@
 	@stop
 
 	@section('orgAmoApprovalsUpdate')
-	@foreach($org_management_contacts as $item)	
+	@foreach($org_amo_approvals as $item)	
 	<div class="modal fade" id="orgAmoApprovalsUpdate{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">Add AMO Approvals</h4>
+	                <h4 class="modal-title">Update AMO Approvals</h4>
 	            </div>
 
 	            <div class="modal-body">
 	                              
-					{{Form::open(array('url'=>'organization/saveOrgAmoApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
-						   @foreach($orgPrimary as $primary)
-						  	{{Form::hidden('org_number',$primary->org_number)}}
-						  	{{Form::hidden('org_name',$primary->org_name)}}
-						   @endforeach
+					{{Form::open(array('url'=>'organization/updateOrgAmoApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
 												
 	                                <div class="col-xs-6">
 											<div class="radio">
-										 
-										  <label> <label> {{ Form::radio('active', 'Yes',true) }} &nbsp  Yes</label>
-										 <label> {{ Form::radio('active', 'No') }} &nbsp  No</label>
+											 <label>
+											 	 {{ Form::radio('active', 'Yes',Input::old('active', $item->active == 'Yes'),array()) }} &nbsp  Yes
+											</label>
+											<label>
+											 {{ Form::radio('active', 'No',Input::old('active', $item->active == 'No'),array()) }} &nbsp  No
+											</label>
 										</div>
 										
 									</div>
@@ -2723,15 +2720,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_effective_date', $dates,date('d'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_date', $dates,$item->org_effective_date,array('class'=>'form-control','required'=>''))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_effective_month',$months,date('F'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_month',$months,$item->org_effective_month,array('class'=>'form-control','required'=>''))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_effective_year',$years,date('Y'),array('class'=>'form-control','required'=>''))}}
+																{{Form::select('org_effective_year',$years,$item->org_effective_year,array('class'=>'form-control','required'=>''))}}
 															</div>
 														</div>
 												
@@ -2742,15 +2739,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_terminated_date', $dates,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_date', $dates,$item->org_terminated_date,array('class'=>'form-control'))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_terminated_month',$months,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_month',$months,$item->org_terminated_month,array('class'=>'form-control'))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_terminated_year',$years,'0',array('class'=>'form-control'))}}
+																{{Form::select('org_terminated_year',$years,$item->org_terminated_year,array('class'=>'form-control'))}}
 															</div>
 														</div>
 												
@@ -2759,7 +2756,7 @@
 	                                           
 												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),$item->org_identifier, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2767,7 +2764,7 @@
 	                                           
 												{{Form::label('category_rating', 'Category Rating', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('category_rating',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('category_rating',array(''=>'--Select--','1234'=>'1234'),$item->category_rating, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2776,7 +2773,7 @@
 	                                           
 												{{Form::label('class_rating', 'Class Rating', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('class_rating',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::select('class_rating',array(''=>'--Select--','1234'=>'1234'),$item->class_rating, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2785,7 +2782,7 @@
 	                                           
 												{{Form::label('rating_description', 'Rating Description', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('rating_description','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('rating_description',$item->rating_description, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2793,7 +2790,7 @@
 	                                           
 												{{Form::label('revision_number', 'Revision Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('revision_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('revision_number',$item->revision_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2803,7 +2800,7 @@
 	                                           
 												{{Form::label('contractor', 'Contractor', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('contractor','', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::text('contractor',$item->contractor, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2812,7 +2809,7 @@
 	                                           
 												{{Form::label('control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('control_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('control_number',$item->control_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>                   
@@ -2821,7 +2818,7 @@
 	                                           
 												{{Form::label('specific_equipment', 'Specific Equipment', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('specific_equipment','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('specific_equipment',$item->specific_equipment, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>	
@@ -2829,7 +2826,7 @@
 	                                           
 												{{Form::label('available_method', 'Available Method', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('available_method','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('available_method',$item->available_method, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>
@@ -2849,32 +2846,31 @@
 	@stop
 
 	@section('orgAtoApprovalsUpdate')
-	@foreach($org_management_contacts as $item)	
+	@foreach($org_ato_approvals as $item)	
 	<div class="modal fade" id="orgAtoApprovalsUpdate{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">Add ATO Approvals</h4>
+	                <h4 class="modal-title">Update ATO Approvals</h4>
 	            </div>
 
 	            <div class="modal-body">
 	                              
-					{{Form::open(array('url'=>'organization/saveOrgAtoApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
-						   @foreach($orgPrimary as $primary)
-						  	{{Form::hidden('org_number',$primary->org_number)}}
-						  	{{Form::hidden('org_name',$primary->org_name)}}
-						   @endforeach
+					{{Form::open(array('url'=>'organization/updateOrgAtoApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
 												
 	                                <div class="col-xs-6">
 											<div class="radio">
-										 
-										  <label> <label> {{ Form::radio('active', 'Yes',true) }} &nbsp  Yes</label>
-										 <label> {{ Form::radio('active', 'No') }} &nbsp  No</label>
+												<label>
+												 	 {{ Form::radio('active', 'Yes',Input::old('active', $item->active == 'Yes'),array()) }} &nbsp  Yes
+												</label>
+												<label>
+												 {{ Form::radio('active', 'No',Input::old('active', $item->active == 'No'),array()) }} &nbsp  No
+												</label>
 										</div>
 										
 									</div>
@@ -2885,15 +2881,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_effective_date', $dates,date('d'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_date', $dates,$item->org_effective_date,array('class'=>'form-control','required'=>''))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_effective_month',$months,date('F'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_month',$months,$item->org_effective_month,array('class'=>'form-control','required'=>''))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_effective_year',$years,date('Y'),array('class'=>'form-control','required'=>''))}}
+																{{Form::select('org_effective_year',$years,$item->org_effective_year,array('class'=>'form-control','required'=>''))}}
 															</div>
 														</div>
 												
@@ -2904,15 +2900,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_terminated_date', $dates,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_date', $dates,$item->org_terminated_date,array('class'=>'form-control'))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_terminated_month',$months,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_month',$months,$item->org_terminated_month,array('class'=>'form-control'))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_terminated_year',$years,'0',array('class'=>'form-control'))}}
+																{{Form::select('org_terminated_year',$years,$item->org_terminated_year,array('class'=>'form-control'))}}
 															</div>
 														</div>
 												
@@ -2921,7 +2917,7 @@
 	                                           
 												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),$item->org_identifier, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2929,7 +2925,7 @@
 	                                           
 												{{Form::label('ato_category', 'ATO Category', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('ato_category',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('ato_category',array(''=>'--Select--','1234'=>'1234'),$item->ato_category, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2938,7 +2934,7 @@
 	                                           
 												{{Form::label('ato_curriculums', 'ATO Curriculums', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('ato_curriculums',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('ato_curriculums',array(''=>'--Select--','1234'=>'1234'),$item->ato_curriculums, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2947,7 +2943,7 @@
 	                                           
 												{{Form::label('revision_number', 'Revision Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('revision_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('revision_number',$item->revision_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2956,7 +2952,7 @@
 	                                           
 												{{Form::label('control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('control_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('control_number',$item->control_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>                   
@@ -2965,7 +2961,7 @@
 	                                           
 												{{Form::label('approved_training_equipment', 'Approved Training Equipment', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('approved_training_equipment','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('approved_training_equipment',$item->approved_training_equipment, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>	
@@ -2973,7 +2969,7 @@
 	                                           
 												{{Form::label('approved_method', 'Approved Method', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('approved_method','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('approved_method',$item->approved_method, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>
@@ -2993,23 +2989,19 @@
 	@stop
 	<!-- AOC Approval(Areas) -->
 	@section('orgAocApprovalsAreasUpdate')
-	@foreach($org_management_contacts as $item)	
+	@foreach($org_aoc_approvals_areas as $item)	
 	<div class="modal fade" id="orgAocApprovalsAreasUpdate{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">Add AOC Approvals(Areas)</h4>
+	                <h4 class="modal-title">Update AOC Approvals(Areas)</h4>
 	            </div>
 
 	            <div class="modal-body">
 	                              
-					{{Form::open(array('url'=>'organization/saveOrgAocApprovalArea','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
-						   @foreach($orgPrimary as $primary)
-						  	{{Form::hidden('org_number',$primary->org_number)}}
-						  	{{Form::hidden('org_name',$primary->org_name)}}
-						   @endforeach
+					{{Form::open(array('url'=>'organization/updateOrgAocApprovalArea','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -3017,8 +3009,12 @@
 	                                <div class="col-xs-6">
 											<div class="radio">
 										 
-										  <label> <label> {{ Form::radio('active', 'Yes',true) }} &nbsp  Yes</label>
-										 <label> {{ Form::radio('active', 'No') }} &nbsp  No</label>
+										  		<label>
+												 	 {{ Form::radio('active', 'Yes',Input::old('active', $item->active == 'Yes'),array()) }} &nbsp  Yes
+												</label>
+												<label>
+												 {{ Form::radio('active', 'No',Input::old('active', $item->active == 'No'),array()) }} &nbsp  No
+												</label>
 										</div>
 										
 									</div>
@@ -3029,15 +3025,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_effective_date', $dates,date('d'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_date', $dates,$item->org_effective_date,array('class'=>'form-control','required'=>''))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_effective_month',$months,date('F'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_month',$months,$item->org_effective_month,array('class'=>'form-control','required'=>''))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_effective_year',$years,date('Y'),array('class'=>'form-control','required'=>''))}}
+																{{Form::select('org_effective_year',$years,$item->org_effective_year,array('class'=>'form-control','required'=>''))}}
 															</div>
 														</div>
 												
@@ -3048,15 +3044,13 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_terminated_date', $dates,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_date', $dates,$item->org_terminated_date,array('class'=>'form-control'))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_terminated_month',$months,'0',array('class'=>'form-control'))}}
-												
-																
+															{{Form::select('org_terminated_month',$months,$item->org_terminated_month,array('class'=>'form-control'))}}															
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_terminated_year',$years,'0',array('class'=>'form-control'))}}
+																{{Form::select('org_terminated_year',$years,$item->org_terminated_year,array('class'=>'form-control'))}}
 															</div>
 														</div>
 												
@@ -3065,7 +3059,7 @@
 	                                           
 												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),$item->org_identifier, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3073,7 +3067,7 @@
 	                                           
 												{{Form::label('approved_areas_of_operation', 'Approved Areas Of Operation', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('approved_areas_of_operation',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('approved_areas_of_operation',array(''=>'--Select--','1234'=>'1234'),$item->approved_areas_of_operation, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3084,7 +3078,7 @@
 	                                           
 												{{Form::label('revision_number', 'Revision Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('revision_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('revision_number',$item->revision_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3093,7 +3087,7 @@
 	                                           
 												{{Form::label('control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('control_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('control_number',$item->control_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>                   
@@ -3102,7 +3096,7 @@
 	                                           
 												{{Form::label('aircraft_authorized', 'Aircraft Authorized', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('aircraft_authorized','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('aircraft_authorized',$item->aircraft_authorized, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>	
@@ -3110,7 +3104,7 @@
 	                                           
 												{{Form::label('special_authorizations', 'Special Authorizations', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('special_authorizations','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('special_authorizations',$item->special_authorizations, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>
@@ -3118,7 +3112,7 @@
 	                                           
 												{{Form::label('limitations', 'Limitations', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('limitations','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('limitations',$item->limitations, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>
@@ -3139,32 +3133,31 @@
 
 	<!-- AOC Approval(Routes) -->
 	@section('orgAocApprovalsRoutesUpdate')
-	@foreach($org_management_contacts as $item)	
+	@foreach($org_aoc_approval_routes as $item)	
 	<div class="modal fade" id="orgAocApprovalsRoutesUpdate{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">Add AOC Approvals(Routes)</h4>
+	                <h4 class="modal-title">Update AOC Approvals(Routes)</h4>
 	            </div>
 
 	            <div class="modal-body">
 	                              
-					{{Form::open(array('url'=>'organization/saveOrgAocApprovalRoute','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
-						   @foreach($orgPrimary as $primary)
-						  	{{Form::hidden('org_number',$primary->org_number)}}
-						  	{{Form::hidden('org_name',$primary->org_name)}}
-						   @endforeach
+					{{Form::open(array('url'=>'organization/updateOrgAocApprovalRoute','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
 												
 	                                <div class="col-xs-6">
-											<div class="radio">
-										 
-										  <label> <label> {{ Form::radio('active', 'Yes',true) }} &nbsp  Yes</label>
-										 <label> {{ Form::radio('active', 'No') }} &nbsp  No</label>
+										<div class="radio">
+											<label>
+											 	 {{ Form::radio('active', 'Yes',Input::old('active', $item->active == 'Yes'),array()) }} &nbsp  Yes
+											</label>
+											<label>
+											 {{ Form::radio('active', 'No',Input::old('active', $item->active == 'No'),array()) }} &nbsp  No
+											</label>
 										</div>
 										
 									</div>
@@ -3175,15 +3168,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_effective_date', $dates,date('d'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_date', $dates,$item->org_effective_date,array('class'=>'form-control','required'=>''))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_effective_month',$months,date('F'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_month',$months,$item->org_effective_month,array('class'=>'form-control','required'=>''))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_effective_year',$years,date('Y'),array('class'=>'form-control','required'=>''))}}
+																{{Form::select('org_effective_year',$years,$item->org_effective_year,array('class'=>'form-control','required'=>''))}}
 															</div>
 														</div>
 												
@@ -3194,15 +3187,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_terminated_date', $dates,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_date', $dates,$item->org_terminated_date,array('class'=>'form-control'))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_terminated_month',$months,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_month',$months,$item->org_terminated_month,array('class'=>'form-control'))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_terminated_year',$years,'0',array('class'=>'form-control'))}}
+																{{Form::select('org_terminated_year',$years,$item->org_terminated_year,array('class'=>'form-control'))}}
 															</div>
 														</div>
 												
@@ -3211,7 +3204,7 @@
 	                                           
 												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),$item->org_identifier, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3219,7 +3212,7 @@
 	                                           
 												{{Form::label('origination_city', 'Origination City', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('origination_city',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('origination_city',array(''=>'--Select--','1234'=>'1234'),$item->origination_city, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3228,7 +3221,7 @@
 	                                           
 												{{Form::label('destination_city', 'Destination City', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('destination_city',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('destination_city',array(''=>'--Select--','1234'=>'1234'),$item->destination_city, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3238,7 +3231,7 @@
 	                                           
 												{{Form::label('revision_number', 'Revision Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('revision_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('revision_number',$item->revision_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3247,7 +3240,7 @@
 	                                           
 												{{Form::label('control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('control_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('control_number',$item->control_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>                   
@@ -3256,7 +3249,7 @@
 	                                           
 												{{Form::label('special_route', 'Special Route', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('special_route','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('special_route',$item->special_route, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>	
@@ -3264,7 +3257,7 @@
 	                                           
 												{{Form::label('operational_limitations', 'Operational Limitations', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('operational_limitations','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('operational_limitations',$item->operational_limitations, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>
@@ -3286,33 +3279,32 @@
 
 	<!-- AOC Maintenance Arrangement -->
 	@section('orgAocMaintenanceArrangementUpdate')
-	@foreach($org_management_contacts as $item)	
+	@foreach($org_aoc_maintenance_arrangement as $item)	
 	<div class="modal fade" id="orgAocMaintenanceArrangementUpdate{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">AOC Maintenance Arrangement</h4>
+	                <h4 class="modal-title">Update AOC Maintenance Arrangement</h4>
 	            </div>
 
 	            <div class="modal-body">
 	                              
-					{{Form::open(array('url'=>'organization/saveOrgAocMaintenanceArrangement','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
-						   @foreach($orgPrimary as $primary)
-						  	{{Form::hidden('org_number',$primary->org_number)}}
-						  	{{Form::hidden('org_name',$primary->org_name)}}
-						   @endforeach
+					{{Form::open(array('url'=>'organization/updateOrgAocMaintenanceArrangement','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
 												
 	                                <div class="col-xs-6">
-											<div class="radio">
-										 
-										  <label> <label> {{ Form::radio('active', 'Yes',true) }} &nbsp  Yes</label>
-										 <label> {{ Form::radio('active', 'No') }} &nbsp  No</label>
-										</div>
+											<div class="radio">										 
+												 <label>
+												 	 {{ Form::radio('active', 'Yes',Input::old('active', $item->active == 'Yes'),array()) }} &nbsp  Yes
+												</label>
+												<label>
+												 {{ Form::radio('active', 'No',Input::old('active', $item->active == 'No'),array()) }} &nbsp  No
+												</label>
+											</div>
 										
 									</div>
 	                    </div>
@@ -3323,15 +3315,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_effective_date', $dates,date('d'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_date', $dates,$item->org_effective_date,array('class'=>'form-control','required'=>''))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_effective_month',$months,date('F'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_month',$months,$item->org_effective_month,array('class'=>'form-control','required'=>''))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_effective_year',$years,date('Y'),array('class'=>'form-control','required'=>''))}}
+																{{Form::select('org_effective_year',$years,$item->org_effective_year,array('class'=>'form-control','required'=>''))}}
 															</div>
 														</div>
 												
@@ -3342,15 +3334,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_terminated_date', $dates,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_date', $dates,$item->org_terminated_date,array('class'=>'form-control'))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_terminated_month',$months,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_month',$months,$item->org_terminated_month,array('class'=>'form-control'))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_terminated_year',$years,'0',array('class'=>'form-control'))}}
+																{{Form::select('org_terminated_year',$years,$item->org_terminated_year,array('class'=>'form-control'))}}
 															</div>
 														</div>
 												
@@ -3359,7 +3351,7 @@
 	                                           
 												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),$item->org_identifier, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3367,7 +3359,7 @@
 	                                           
 												{{Form::label('type_of_approval', 'Type Of Approval', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('type_of_approval',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('type_of_approval',array(''=>'--Select--','1234'=>'1234'),$item->type_of_approval, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3376,7 +3368,7 @@
 	                                           
 												{{Form::label('location', 'Location', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('location',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::select('location',array(''=>'--Select--','1234'=>'1234'),$item->location, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3386,7 +3378,7 @@
 	                                           
 												{{Form::label('service_provider', 'Service Provider', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('service_provider','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('service_provider',$item->service_provider, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3395,7 +3387,7 @@
 	                                           
 												{{Form::label('control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('control_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('control_number',$item->control_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>                   
@@ -3404,7 +3396,7 @@
 	                                           
 												{{Form::label('applicable_aircraft', 'Applicable Aircraft', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('applicable_aircraft','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('applicable_aircraft',$item->applicable_aircraft, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>	
@@ -3412,7 +3404,7 @@
 	                                           
 												{{Form::label('specific_authorizations', 'Specific Authorizations', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('specific_authorizations','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('specific_authorizations',$item->specific_authorizations, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>
@@ -3433,33 +3425,32 @@
 	<!-- End AOC Maintenance Arrangement -->
 	<!-- AOC Training Arrangement -->
 	@section('orgAocTrainingArrangementUpdate')
-	@foreach($org_management_contacts as $item)	
+	@foreach($org_aoc_training_arrangement as $item)	
 	<div class="modal fade" id="orgAocTrainingArrangementUpdate{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal fade" id="orgAocTrainingArrangementForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	
 	    <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">AOC Training Arrangement</h4>
+	                <h4 class="modal-title">Update AOC Training Arrangement</h4>
 	            </div>
 
 	            <div class="modal-body">
 	                              
-					{{Form::open(array('url'=>'organization/saveOrgAocTrainingArrangement','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
-						   @foreach($orgPrimary as $primary)
-						  	{{Form::hidden('org_number',$primary->org_number)}}
-						  	{{Form::hidden('org_name',$primary->org_name)}}
-						   @endforeach
+					{{Form::open(array('url'=>'organization/updateOrgAocTrainingArrangement','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
 												
 	                                <div class="col-xs-6">
 											<div class="radio">
-										 
-										  <label> <label> {{ Form::radio('active', 'Yes',true) }} &nbsp  Yes</label>
-										 <label> {{ Form::radio('active', 'No') }} &nbsp  No</label>
+												<label>
+												 	 {{ Form::radio('active', 'Yes',Input::old('active', $item->active == 'Yes'),array()) }} &nbsp  Yes
+												</label>
+												<label>
+												 {{ Form::radio('active', 'No',Input::old('active', $item->active == 'No'),array()) }} &nbsp  No
+												</label>
 										</div>
 										
 									</div>
@@ -3470,15 +3461,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_effective_date', $dates,date('d'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_date', $dates,$item->org_effective_date,array('class'=>'form-control','required'=>''))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_effective_month',$months,date('F'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_month',$months,$item->org_effective_month,array('class'=>'form-control','required'=>''))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_effective_year',$years,date('Y'),array('class'=>'form-control','required'=>''))}}
+																{{Form::select('org_effective_year',$years,$item->org_effective_year,array('class'=>'form-control','required'=>''))}}
 															</div>
 														</div>
 												
@@ -3489,15 +3480,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_terminated_date', $dates,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_date', $dates,$item->org_terminated_date,array('class'=>'form-control'))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_terminated_month',$months,'0',array('class'=>'form-control'))}}
+															{{Form::select('org_terminated_month',$months,$item->org_terminated_month,array('class'=>'form-control'))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_terminated_year',$years,'0',array('class'=>'form-control'))}}
+																{{Form::select('org_terminated_year',$years,$item->org_terminated_year,array('class'=>'form-control'))}}
 															</div>
 														</div>
 												
@@ -3506,7 +3497,7 @@
 	                                           
 												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),$item->org_identifier, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3515,7 +3506,7 @@
 	                                           
 												{{Form::label('location', 'Location', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('location',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('location',array(''=>'--Select--','1234'=>'1234'),$item->location, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3525,7 +3516,7 @@
 	                                           
 												{{Form::label('service_provider', 'Service Provider', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('service_provider','', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::text('service_provider',$item->service_provider, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3534,7 +3525,7 @@
 	                                           
 												{{Form::label('control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('control_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('control_number',$item->control_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>                   
@@ -3543,7 +3534,7 @@
 	                                           
 												{{Form::label('authorized_training', 'Authorized Training', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('authorized_training','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('authorized_training',$item->authorized_training, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>	
@@ -3564,24 +3555,19 @@
 	<!-- End AOC Training Arrangement -->
 <!--  Approval Simulators  -->
 	@section('orgApprovalSimulatorsUpdate')
-	@foreach($org_management_contacts as $item)	
+	@foreach($org_approval_simulators as $item)	
 	<div class="modal fade" id="orgApprovalSimulatorsUpdate{{$item->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal fade" id="orgApprovalSimulatorsForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	    <div class="modal-dialog">
 	        <div class="modal-content">
 	            <div class="modal-header">
 	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	                <h4 class="modal-title">AOC Approved Simulators</h4>
+	                <h4 class="modal-title">Update AOC Approved Simulators</h4>
 	            </div>
 
 	            <div class="modal-body">
 	                              
-					{{Form::open(array('url'=>'organization/saveOrgApprovalSimulator','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 
-						   @foreach($orgPrimary as $primary)
-						  	{{Form::hidden('org_number',$primary->org_number)}}
-						  	{{Form::hidden('org_name',$primary->org_name)}}
-						   @endforeach
+					{{Form::open(array('url'=>'organization/updateOrgApprovalSimulator','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+					 {{Form::hidden('id',$item->id)}}
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -3589,8 +3575,12 @@
 	                                <div class="col-xs-6">
 											<div class="radio">
 										 
-										  <label> <label> {{ Form::radio('active', 'Yes',true) }} &nbsp  Yes</label>
-										 <label> {{ Form::radio('active', 'No') }} &nbsp  No</label>
+										  <label>
+												 	 {{ Form::radio('active', 'Yes',Input::old('active', $item->active == 'Yes'),array()) }} &nbsp  Yes
+												</label>
+												<label>
+												 {{ Form::radio('active', 'No',Input::old('active', $item->active == 'No'),array()) }} &nbsp  No
+												</label>
 										</div>
 										
 									</div>
@@ -3601,15 +3591,15 @@
 												
 														<div class="row">
 															<div class="col-xs-2">
-															{{Form::select('org_effective_date', $dates,date('d'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_date', $dates,$item->org_effective_date,array('class'=>'form-control','required'=>''))}}
 															</div>
 															<div class="col-xs-3">
-															{{Form::select('org_effective_month',$months,date('F'),array('class'=>'form-control','required'=>''))}}
+															{{Form::select('org_effective_month',$months,$item->org_effective_month,array('class'=>'form-control','required'=>''))}}
 												
 																
 															</div>
 															<div class="col-xs-2">
-																{{Form::select('org_effective_year',$years,date('Y'),array('class'=>'form-control','required'=>''))}}
+																{{Form::select('org_effective_year',$years,$item->org_effective_year,array('class'=>'form-control','required'=>''))}}
 															</div>
 														</div>
 												
@@ -3619,7 +3609,7 @@
 	                                           
 												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),$item->org_identifier, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3627,7 +3617,7 @@
 	                                           
 												{{Form::label('aircraft_mms', 'Aircraft MMS', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('aircraft_mms','', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::text('aircraft_mms',$item->aircraft_mms, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3636,7 +3626,7 @@
 	                                           
 												{{Form::label('assigned_level', 'Assigned Level', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('assigned_level','', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::text('assigned_level',$item->assigned_level, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3644,7 +3634,7 @@
 	                                           
 												{{Form::label('location', 'Location', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::select('location',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('location',array(''=>'--Select--','1234'=>'1234'),$item->location, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3654,7 +3644,7 @@
 	                                           
 												{{Form::label('simulator_number', 'Simulator Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('simulator_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('simulator_number',$item->simulator_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3662,7 +3652,7 @@
 	                                           
 												{{Form::label('simulator_provider', 'Simulator Provider', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('simulator_provider','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('simulator_provider',$item->simulator_provider, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3670,7 +3660,7 @@
 	                                           
 												{{Form::label('control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::text('control_number','', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::text('control_number',$item->control_number, array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>                   
@@ -3679,7 +3669,7 @@
 	                                           
 												{{Form::label('authorized_purpose', 'Authorized Purpose', array('class' => 'col-xs-4 control-label'))}}
 												<div class="col-xs-6">
-												{{Form::textarea('authorized_purpose','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												{{Form::textarea('authorized_purpose',$item->authorized_purpose, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 												</div>
 												
 	                    </div>	
