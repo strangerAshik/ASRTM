@@ -196,34 +196,6 @@
 											</div>
 											
                     </div>
-					<!--
-					<div class="form-group ">
-                                           
-											{{Form::label('resived_date', 'Revised Date', array('class' => 'col-xs-4 control-label'))}}
-											<div class="row">
-														<div class="col-xs-2">
-														{{Form::select('resived_date', $dates,$sc->resived_date,array('class'=>'form-control'))}}
-														</div>
-														<div class="col-xs-3">
-														{{Form::select('resived_month',$months,$sc->resived_month,array('class'=>'form-control'))}}
-											
-															
-														</div>
-														<div class="col-xs-2">
-															{{Form::select('resived_year',$years, $sc->resived_year,array('class'=>'form-control'))}}
-														</div>
-													</div>
-											
-                    </div>
-					<div class="form-group ">
-                                        
-											{{Form::label('revised_time', 'Revised Time', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-6">
-											{{Form::text('revised_time',$sc->revised_time , array('class' => 'form-control','placeholder'=>''))}}
-											</div>
-											
-                    </div>
-					-->
 					
 					<div class="form-group ">
                                         
@@ -713,7 +685,7 @@ $(document).ready(function(){
 				{{Form::open(array('url' => 'safety/updateForwardingInfo', 'method' => 'post',  'class'=>'form-horizontal','data-toggle'=>'validator', 'role'=>'form'))}}
 					
 									
-					{{Form::hidden('id',$info->id)}}							
+					{{Form::hidden('id',$forwarding->id)}}							
 					
 					<div class="form-group required">
                                         

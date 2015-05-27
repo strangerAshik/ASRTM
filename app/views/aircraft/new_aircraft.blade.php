@@ -21,7 +21,7 @@
                 <!-- The form is placed inside the body of modal -->
                 
 				{{Form::open(array('url'=>'aircraft/savePrimary','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-				   @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director')
+				   
 					<div class="form-group ">
                                            
 											{{Form::label('assigned_inspector', 'Assigned Inspector', array('class' => 'col-xs-4 control-label'))}}
@@ -31,7 +31,7 @@
 											</div>
 											
                     </div>
-				   @endif
+				  
 					<div class="form-group required">
                                            
 											{{Form::label('serial_number', 'Serial Number', array('class' => 'col-xs-4 control-label'))}}
@@ -76,9 +76,7 @@
 												@foreach($organizations as $organization)
 												<option value="{{$organization}}">{{$organization}}</option>
 												@endforeach
-											</select>
-
-										
+											</select>										
 											</div>
 										
 											

@@ -12,7 +12,7 @@
                       
 						
 						<div class="row">
-						@if($role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('surveillance_inspection_audit',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
                             <!-- small box -->
 						<div class="small-box bg-aqua height" >
@@ -28,7 +28,7 @@
 						</div>
                         </div><!-- ./col -->
 						@endif
-						@if($role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('safety_concern',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-green height" >
@@ -45,7 +45,7 @@
                             </div>
                         </div><!-- ./col -->
 						@endif
-						@if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector'||$role=='Maintenance Eng.')
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-yellow height" >
@@ -62,7 +62,7 @@
                             </div>
                         </div><!-- ./col -->
 						@endif
-						@if($role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-red height">
@@ -79,9 +79,8 @@
                             </div>
                         </div><!-- ./col -->
 						@endif
-                    </div>
-					<div class="row">
-					@if($role=='Chief Admin')
+                    
+					@if('true'==CommonFunction::hasPermission('personnel_licensing',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-blue height">
@@ -100,7 +99,7 @@
                             </div>
                         </div><!-- ./col -->
 						@endif
-						@if($role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('admin_tracking',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-purple height">
@@ -119,7 +118,7 @@
                             </div>
                         </div><!-- ./col -->
 						@endif
-						@if($role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('document_control ',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-teal height">
@@ -138,7 +137,7 @@
                             </div>
                         </div><!-- ./col -->
 						@endif
-						@if($role=='Chief Admin'|| $role=='Employee'|| $role=='Director'|| $role=='Inspector')
+						@if('true'==CommonFunction::hasPermission('employee ',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-maroon height">
@@ -157,9 +156,8 @@
                             </div>
                         </div><!-- ./col -->
 						@endif
-                    </div>
-					<div class="row">
-					@if($role=='Chief Admin')
+                    
+					@if('true'==CommonFunction::hasPermission('ans_aga_aerodrome_inspection ',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-aqua height">
@@ -180,7 +178,7 @@
                             </div>
                         </div><!-- ./col -->
 						@endif
-						@if($role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('report ',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-green height">
@@ -198,7 +196,7 @@
                             </div>
                         </div><!-- ./col -->
 						@endif
-						@if($role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('wild_life_strike ',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-yellow height">
@@ -217,7 +215,7 @@
                             </div>
                         </div><!-- ./col -->
 						@endif
-						@if($role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('accident_&_incident_investigation',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-red height">
@@ -237,9 +235,8 @@
                         </div><!-- ./col -->
 						@endif
 
-                    </div>
-					<div class="row">
-					@if($role=='Chief Admin')
+                   
+					@if('true'==CommonFunction::hasPermission('e_library',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3 ">
                             <!-- small box -->
                             <div class="small-box bg-blue height">
@@ -258,7 +255,7 @@
                             </div>
                         </div><!-- ./col -->
 					@endif
-					@if($role=='Chief Admin')
+					@if('true'==CommonFunction::hasPermission('volunteer_reporting',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-purple height">
@@ -279,7 +276,7 @@
                             </div>
                         </div><!-- ./col -->
 						@endif
-						@if($role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('notifications',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-teal height">
@@ -300,7 +297,7 @@
                             </div>
                         </div><!-- ./col -->
 						@endif
-						@if($role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('settings',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-maroon height">
@@ -312,7 +309,7 @@
                                 <div class="icon">
                                     <i class="icon ion-ios7-gear"></i>
                                 </div>
-                                <a class="small-box-footer" href="#">
+                                <a class="small-box-footer" href="{{'settings'}}">
                                     More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>

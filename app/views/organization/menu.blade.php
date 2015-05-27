@@ -1,5 +1,5 @@
 @section('orgMenuPrimary')
-<div class='row col-md-12'>
+<div class='row col-md-12 hidden-print'>
 		
 				<p class="text-center col-md-9">
 				<button class="btn btn-primary btn-block " data-toggle="modal" data-target="#orgPrimaryForm">Add Organization Primary Record</button>
@@ -98,7 +98,7 @@
 </div>
 @stop
 @section('orgMenuDetails')
-<div class='row col-md-12'>
+<div class='row col-md-12 hidden-print'>
 				<p class="text-center col-md-8">
 				<button class="btn btn-primary btn-block " data-toggle="modal" disabled="disabled" data-target="#orgPrimaryForm">Add Organization Primary Record</button>
 				</p>

@@ -2,12 +2,21 @@
 
 class OrganizationController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /organization
-	 *
-	 * @return Response
-	 */
+	
+	
+	/*
+	This function track all kind of changes in a module. 
+	This is made specially for Organization module
+	*/
+	protected  function updateTracking($tableName,$orgNum){
+	DB::table('org_update_tracking')->insert(array(
+				'table_name'=>$tableName,
+				'updater'=>Auth::user()->getName(),
+				'date_time'=>date('d  F  Y '),
+				//'date_time'=>time(),
+				'org_number'=>$orgNum,
+		 	));
+	}
 	public function main()
 	{
 		return View::make('organization.main')
@@ -22,17 +31,29 @@ $infos=DB::table('org_primary')
 		->with('PageName','Organization List')
 		->with('infos',$infos);
 }
+public function myOrganization(){
+
+$infos=DB::table('org_primary')			
+			->where('soft_delete','<>','1')
+			->where('org_name','=',Auth::user()->Organization())
+			->get();
+	return View::make('organization.myOrg')
+		->with('PageName','My Organization')
+		->with('infos',$infos);
+}
 
 
 	public function newOrganization()
 	{
+		$organizations =DB::table('users')->lists('organization');
 		return View::make('organization.newOrg')
+		->with('organizations',$organizations)
 		->with('PageName','New Organization');
 	}
  
 
 	public function singleOrganization($orgNum){
-	
+$organizations =DB::table('users')->lists('organization');
 $orgPrimary=DB::table('org_primary')
 			->where('org_number','=',$orgNum)
 			->where('soft_delete','<>','1')
@@ -165,11 +186,17 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->with('org_aoc_maintenance_arrangement',$org_aoc_maintenance_arrangement)
 		->with('org_aoc_training_arrangement',$org_aoc_training_arrangement)
 		->with('org_approval_simulators',$org_approval_simulators)
+		->with('organizations',$organizations)
 		;
 	}
 
 	public function saveOrgPrimary()
 	{
+		$validation=Validator::make(Input::all(),OrgCommonFunction::$OrgPrimaryRule);
+		if($validation->fails())
+			{
+				return Redirect::back()->with('error', 'Organization Number Should Be Unique!!');
+			}
 		$org=new OrgPrimary;    
 
 		$org->org_number=Input::get('org_number');
@@ -182,7 +209,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_primary',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::to('organization/singleOrganization/'.Input::get('org_number'));
 
 
@@ -201,6 +230,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		'soft_delete' =>0,		
 		'updated_at' =>time()		
 		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_primary',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Org Primary Data Updated ');
 	}
 
@@ -228,13 +260,15 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_business_name',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Business Name Saved');
 	}
 	public function updateOrgbusinessName(){
-		$id=Input::get('id');
+		 $id=Input::get('id');
 		 DB::table('org_business_name')
-		->where('id',$id)
+		->where('id',Input::get('id'))
 		->update(array(
 		'active' => Input::get('active'),
 		'org_identifier' => Input::get('org_identifier'),
@@ -250,7 +284,10 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		'soft_delete' =>0,		
 		'updated_at' =>time()		
 		));
-		return Redirect::back()->with('message','Org Business Name Data Updated ');
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_business_name',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgCertificate(){
 		$org=new OrgCertificate;
@@ -284,7 +321,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_certificates',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Certificate Information Saved');
 
 	}
@@ -317,6 +356,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		'soft_delete' =>0,		
 		'updated_at' =>time()		
 		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_certificates',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Data Updated !!');
 	}
 
@@ -351,7 +393,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_base_location',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Base Location Saved');
 	}
 	public function updateOrgBaseLocation(){
@@ -383,6 +427,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		'soft_delete' =>0,		
 		'updated_at' =>time()		
 		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_base_location',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Data Updated !!');
 	}
 
@@ -421,7 +468,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_management_contacts',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Management Contact Saved');
 	}
 	public function updateOrgManagementContact(){
@@ -457,6 +506,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		'soft_delete' =>0,		
 		'updated_at' =>time()		
 		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_management_contacts',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Data Updated !!');
 	}
 
@@ -495,7 +547,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_caa_contacts',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','CAA Contact Saved');
 	}
 	public function updateOrgCAAContact(){
@@ -531,6 +585,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		'soft_delete' =>0,		
 		'updated_at' =>time()		
 		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_caa_contacts',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Data Updated !!');
 	}
 
@@ -563,7 +620,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_exemptions_divinations',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Exemptions Divination Saved');
 	}
 	public function updateOrgExemptionsDivination(){
@@ -592,6 +651,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		'soft_delete' =>0,		
 		'updated_at' =>time()		
 		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_exemptions_divinations',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Data Updated !!');
 	}
 
@@ -628,7 +690,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_aircraft_listings',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Aircraft Listing Saved');
 	}
 	public function updateOrgAircraftListing(){
@@ -661,6 +725,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		'soft_delete' =>0,		
 		'updated_at' =>time()		
 		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_aircraft_listings',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgPolicyMenualApproval(){
@@ -691,7 +758,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_policy_menual_approvals',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Policy Menual Approval Saved');
 	}
 	public function updateOrgPolicyMenualApproval(){
@@ -719,6 +788,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		'soft_delete' =>0,		
 		'updated_at' =>time()		
 		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_policy_menual_approvals',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgComplexityReview(){
@@ -755,7 +827,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_complexity_reviews',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Complexity Review Saved');
 	}
 	public function updateOrgComplexityReview(){
@@ -789,6 +863,9 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		'soft_delete' =>0,		
 		'updated_at' =>time()		
 		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_complexity_reviews',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgAerialWorkApproval(){
@@ -820,11 +897,41 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_aerial_work_approvals',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Aerial Work Approval Saved');
 	}
 	public function updateOrgAerialWorkApproval(){
-		
+		$id=Input::get('id');
+		 DB::table('org_aerial_work_approvals')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'type_of_approval' => Input::get('type_of_approval'),
+		'revision_number' => Input::get('revision_number'),
+		'aircraft_mms' => Input::get('aircraft_mms'),
+		'control_number' => Input::get('control_number'),
+		'method' => Input::get('method'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_aerial_work_approvals',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgNonCertificatedOperation(){
 
@@ -857,11 +964,44 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_non_certificated_operations',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Non Certificated Operation Saved');
 	}
 	public function updateOrgNonCertificatedOperation(){
-		
+		$id=Input::get('id');
+		 DB::table('org_non_certificated_operations')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'operations_type' => Input::get('operations_type'),
+		'revision_number' => Input::get('revision_number'),
+		'aircraft_mms' => Input::get('aircraft_mms'),
+		'limiting_factor' => Input::get('limiting_factor'),
+		'limiting_factor' => Input::get('limiting_factor'),
+		'control_number' => Input::get('control_number'),
+		'method' => Input::get('method'),
+		'basis_notes' => Input::get('basis_notes'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_non_certificated_operations',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgFlightOperationsApproval(){
 
@@ -893,11 +1033,42 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_flight_operation_Approvals',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Flight Operations Approval Saved');
 	}
 	public function updateOrgFlightOperationsApproval(){
-		
+		$id=Input::get('id');
+		 DB::table('org_flight_operation_Approvals')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'type_of_approval' => Input::get('type_of_approval'),
+		'revision_number' => Input::get('revision_number'),
+		'limiting_factor' => Input::get('limiting_factor'),
+		'control_number' => Input::get('control_number'),
+		'method' => Input::get('method'),
+		'basis_notes' => Input::get('basis_notes'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_flight_operation_Approvals',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgFleetOperationApproval(){
 
@@ -931,11 +1102,44 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_fleet_operation_approvals',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Fleet Operation Approval Saved');
 	}
 	public function updateOrgFleetOperationApproval(){
-		
+		$id=Input::get('id');
+		 DB::table('org_fleet_operation_approvals')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'type_of_approval' => Input::get('type_of_approval'),
+		'revision_number' => Input::get('revision_number'),
+		'limiting_factor' => Input::get('limiting_factor'),
+		'aircraft_mms' => Input::get('aircraft_mms'),
+		'control_number' => Input::get('control_number'),
+		'equipment' => Input::get('equipment'),
+		'method' => Input::get('method'),
+		'basis_note' => Input::get('basis_note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_fleet_operation_approvals',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	
 	public function saveOrgFleetMaintananceApproval(){
@@ -970,11 +1174,44 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_fleet_maintanance_approvals',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Fleet Maintanance Approval Information Saved');
 	}
 	public function updateOrgFleetMaintananceApproval(){
-		
+		$id=Input::get('id');
+		 DB::table('org_fleet_maintanance_approvals')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'type_of_approval' => Input::get('type_of_approval'),
+		'revision_number' => Input::get('revision_number'),
+		'limiting_factor' => Input::get('limiting_factor'),
+		'aircraft_mms' => Input::get('aircraft_mms'),
+		'control_number' => Input::get('control_number'),
+		'equipment' => Input::get('equipment'),
+		'method' => Input::get('method'),
+		'basis_note' => Input::get('basis_note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_fleet_maintanance_approvals',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgAirportAuth(){
 
@@ -997,7 +1234,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->type_of_approval=Input::get('type_of_approval');
 		$org->revision_number=Input::get('revision_number');
 		$org->limiting_factor=Input::get('limiting_factor');
-		$org->limiting_factor=Input::get('limiting_factor');
+		
 		$org->aircraft_mms=Input::get('aircraft_mms');
 		$org->control_number=Input::get('control_number');
 		$org->note=Input::get('note');
@@ -1008,11 +1245,43 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_airport_auth',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Airport Auth. Information Saved');
 	}
 	public function updateOrgAirportAuth(){
-		
+		$id=Input::get('id');
+		 DB::table('org_airport_auth')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'location' => Input::get('location'),
+		'type_of_approval' => Input::get('type_of_approval'),
+		'revision_number' => Input::get('revision_number'),
+		'limiting_factor' => Input::get('limiting_factor'),
+		'aircraft_mms' => Input::get('aircraft_mms'),
+		'control_number' => Input::get('control_number'),
+		'note' => Input::get('note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_airport_auth',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgLeasingArrangment(){
 
@@ -1043,11 +1312,42 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_leasing_arrangment',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Leasing Arrangment Information Saved');
 	}
 	public function updateOrgLeasingArrangment(){
 		
+		$id=Input::get('id');
+		 DB::table('org_leasing_arrangment')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'arrangement' => Input::get('arrangement'),
+		'revision_number' => Input::get('revision_number'),
+		'other' => Input::get('other'),
+		'control_number' => Input::get('control_number'),
+		'notes' => Input::get('notes'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_leasing_arrangment',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgContractedService(){
 
@@ -1079,12 +1379,43 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_contracted_services',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Contracted Service Information Saved');
 	}
 
 	public function updateOrgContractedService(){
-		
+		$id=Input::get('id');
+		 DB::table('org_contracted_services')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'issued_date' => Input::get('issued_date'),
+		'issued_month' => Input::get('issued_month'),
+		'issued_year' => Input::get('issued_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'type_of_approval' => Input::get('type_of_approval'),
+		'revision_number' => Input::get('revision_number'),
+		'aircraft_mms' => Input::get('aircraft_mms'),
+		'limiting_factor' => Input::get('limiting_factor'),
+		'control_number' => Input::get('control_number'),		
+		'basis_note' => Input::get('basis_note'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_contracted_services',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 
 	public function saveOrgAmoApproval(){
@@ -1119,11 +1450,44 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_amo_approvals',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','AMO Approval Information Saved');
 	}
 	public function updateOrgAmoApproval(){
-		
+		$id=Input::get('id');
+		 DB::table('org_amo_approvals')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'category_rating' => Input::get('category_rating'),
+		'class_rating' => Input::get('class_rating'),
+		'rating_description' => Input::get('rating_description'),
+		'revision_number' => Input::get('revision_number'),
+		'contractor' => Input::get('contractor'),		
+		'control_number' => Input::get('control_number'),
+		'specific_equipment' => Input::get('specific_equipment'),
+		'available_method' => Input::get('available_method'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_amo_approvals',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 
 	public function saveOrgAtoApproval(){
@@ -1156,11 +1520,42 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_ato_approvals',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','ATO Approval Information Saved');
 	}
 	public function updateOrgAtoApproval(){
-		
+		$id=Input::get('id');
+		 DB::table('org_ato_approvals')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'ato_category' => Input::get('ato_category'),
+		'ato_curriculums' => Input::get('ato_curriculums'),
+		'revision_number' => Input::get('revision_number'),	
+		'control_number' => Input::get('control_number'),
+		'approved_training_equipment' => Input::get('approved_training_equipment'),
+		'approved_method' => Input::get('approved_method'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_ato_approvals',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	
 	public function saveOrgAocApprovalArea(){
@@ -1193,11 +1588,43 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_aoc_approvals_areas',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Aoc Approval Area Information Saved');
 	}
 	public function updateOrgAocApprovalArea(){
 		
+		$id=Input::get('id');
+		 DB::table('org_aoc_approvals_areas')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'approved_areas_of_operation' => Input::get('approved_areas_of_operation'),
+		'revision_number' => Input::get('revision_number'),	
+		'control_number' => Input::get('control_number'),
+		'aircraft_authorized' => Input::get('aircraft_authorized'),
+		'special_authorizations' => Input::get('special_authorizations'),
+		'limitations' => Input::get('limitations'),
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_aoc_approvals_areas',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	
 	public function saveOrgAocApprovalRoute(){
@@ -1230,11 +1657,44 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_aoc_approval_routes',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Aoc Approval Route Information Saved');
 	}
 	public function updateOrgAocApprovalRoute(){
 		
+		$id=Input::get('id');
+		 DB::table('org_aoc_approval_routes')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'origination_city' => Input::get('origination_city'),
+		'destination_city' => Input::get('destination_city'),	
+		'revision_number' => Input::get('revision_number'),	
+		'control_number' => Input::get('control_number'),
+		'special_route' => Input::get('special_route'),
+		'operational_limitations' => Input::get('operational_limitations'),
+		
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_aoc_approval_routes',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgAocMaintenanceArrangement(){
 
@@ -1266,11 +1726,43 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_aoc_maintenance_arrangement',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','AOC Maintenance Arrangement Information Saved');
 	}
 	public function updateOrgAocMaintenanceArrangement(){
+		$id=Input::get('id');
+		 DB::table('org_aoc_maintenance_arrangement')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'type_of_approval' => Input::get('type_of_approval'),
+		'location' => Input::get('location'),	
+		'service_provider' => Input::get('service_provider'),	
+		'control_number' => Input::get('control_number'),
+		'applicable_aircraft' => Input::get('applicable_aircraft'),
+		'specific_authorizations' => Input::get('specific_authorizations'),
 		
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_aoc_maintenance_arrangement',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	public function saveOrgAocTrainingArrangement(){
 
@@ -1301,11 +1793,41 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_aoc_training_arrangement',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','AOC Training Arrangement Information Saved');
 	}
 	public function updateOrgAocTrainingArrangement(){
+		$id=Input::get('id');
+		 DB::table('org_aoc_training_arrangement')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'org_terminated_date' => Input::get('org_terminated_date'),
+		'org_terminated_month' => Input::get('org_terminated_month'),
+		'org_terminated_year' => Input::get('org_terminated_year'),
+
+		'location' => Input::get('location'),	
+		'service_provider' => Input::get('service_provider'),	
+		'control_number' => Input::get('control_number'),
+		'authorized_training' => Input::get('authorized_training'),
 		
+
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_aoc_training_arrangement',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	
 	public function saveOrgApprovalSimulator(){
@@ -1335,11 +1857,39 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->warning=0;
 		$org->soft_delete=0;
 		$org->save();
-
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_approval_simulators',Input::get('org_number'));
+		/*End Tracking quary*/
 		return Redirect::back()->with('message','Approval Simulator Information Saved');
 	}
 	public function updateOrgApprovalSimulator(){
-		
+		$id=Input::get('id');
+		 DB::table('org_approval_simulators')
+		->where('id',$id)
+		->update(array(
+		'active' => Input::get('active'),
+		'org_identifier' => Input::get('org_identifier'),
+
+		'org_effective_date' => Input::get('org_effective_date'),
+		'org_effective_month' => Input::get('org_effective_month'),
+		'org_effective_year' => Input::get('org_effective_year'),
+
+		'aircraft_mms' => Input::get('aircraft_mms'),
+		'assigned_level' => Input::get('assigned_level'),	
+		'location' => Input::get('location'),	
+		'simulator_number' => Input::get('simulator_number'),	
+		'simulator_provider' => Input::get('simulator_provider'),	
+		'control_number' => Input::get('control_number'),
+		'authorized_purpose' => Input::get('authorized_purpose'),
+	
+		'row_updator' =>Auth::user()->getName(),
+		'soft_delete' =>0,		
+		'updated_at' =>time()		
+		));
+		/*Tracking quary*/		
+			 $callTrackingFunction=$this->updateTracking('org_approval_simulators',Input::get('org_number'));
+		/*End Tracking quary*/
+		return Redirect::back()->with('message','Data Updated !!');
 	}
 	
 	

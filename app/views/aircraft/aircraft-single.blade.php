@@ -4,9 +4,10 @@
 <span style='display:none'>
 {{$role=Auth::User()->Role()}}
 </span>
-<section class="content" style="max-width:900px;margin:0 auto;">
+<section class='content widthController' >
+
 {{--Menu--}}
-@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'entry'))
 @include('aircraft/menu')
 	@yield('aircraftMenuDetails')
 @endif
@@ -23,26 +24,25 @@
 									<h3 class="box-title">Aircraft Primary Information</h3>
 							  </div>
 							  <div class='col-md-6 hidden-print'>
-							  @if($role=='Chief Admin'||$role=='Director')
+							  @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'par_delete'))
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('aircraft_primary_info',$primary->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 							  @endif
-							  @if($role=='Chief Admin')
+							  @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'sof_delete'))
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('aircraft_primary_info',$primary->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 							   @endif
 									
-									{{-- HTML::linkAction('AircraftController@undoSoftDelete', 'Undo.D',array('aircraft_primary_info',$primary->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) --}}
-								@if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+							@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'approve'))
                                   
 									{{ HTML::linkAction('AircraftController@approve', '',array('aircraft_primary_info',$primary->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:green;float:right;padding:5px;')) }}
 								
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('aircraft_primary_info',$primary->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:red;float:right;padding:5px;')) }}
 								@endif
-								@if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+							@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'worning'))
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('aircraft_primary_info',$primary->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('aircraft_primary_info',$primary->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:red;float:right;padding:5px;')) }}
-								@endif
-								@if($role=='Chief Admin'||$role=='Director'||$role=='Maintenance Eng.')
+							@endif
+							@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'update'))
 									 <a data-toggle="modal" data-target="#editPrimaryInfoForm{{$primary->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 									</a>
@@ -212,24 +212,25 @@
 						 <tr>
 							<th colspan='2'>TC Information #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                  @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'par_delete'))
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('aircraft_tc_info',$tc->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+									@endif
+								@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'sof_delete'))
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('aircraft_tc_info',$tc->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
+								@endif	
 									
-									{{-- HTML::linkAction('AircraftController@undoSoftDelete', 'Undo.D',array('aircraft_tc_info',$tc->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) --}}
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								 @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('aircraft_tc_info',$tc->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('aircraft_tc_info',$tc->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('aircraft_tc_info',$tc->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('aircraft_tc_info',$tc->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'update'))
 
 									 <a data-toggle="modal" data-target="#editTCIForm{{$tc->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
@@ -391,28 +392,28 @@
                          <tr>
 							<th colspan='2'>TC Information #{{++$num}} 
 							 <span class='hidden-print'>
-								@if($role=='Chief Admin'||$role=='Director')
+								@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'par_delete'))
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('aircraft_stc_info',$stc->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('aircraft_stc_info',$stc->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 								@endif
-									{{-- HTML::linkAction('AircraftController@undoSoftDelete', 'Undo.D',array('aircraft_stc_info',$stc->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) --}}
-                                  
-								@if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('aircraft_stc_info',$stc->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('aircraft_stc_info',$stc->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('aircraft_stc_info',$stc->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('aircraft_stc_info',$stc->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'update'))
 									<a data-toggle="modal" data-target="#editSTCForm{{$stc->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 									
 								</span>
 									</th>
@@ -539,24 +540,26 @@
                          <tr>
 							<th colspan='2'>Exemption Information #{{++$num}} 
 							 <span class='hidden-print'>
-						@if($role=='Chief Admin'||$role=='Director')
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'par_delete'))
 
 						{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('aircraft_exemption_info',$exemption->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-						
+						@endif
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'sof_delete'))
 						{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('aircraft_exemption_info',$exemption->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 						
-						{{-- HTML::linkAction('AircraftController@undoSoftDelete', 'Undo.D',array('aircraft_exemption_info',$exemption->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) --}}
 						@endif
-						@if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'approve'))
 
 						{{ HTML::linkAction('AircraftController@approve', '',array('aircraft_exemption_info',$exemption->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:green;float:right;padding:5px;')) }}
 						
 						{{ HTML::linkAction('AircraftController@notApprove', '',array('aircraft_exemption_info',$exemption->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:red;float:right;padding:5px;')) }}
+						@endif
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'worning'))
 						
 						{{ HTML::linkAction('AircraftController@removeWarning', '',array('aircraft_exemption_info',$exemption->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:green;float:right;padding:5px;')) }}
 						{{ HTML::linkAction('AircraftController@warning', '',array('aircraft_exemption_info',$exemption->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:red;float:right;padding:5px;')) }}
 						@endif
-						@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'update'))
 
 						 <a data-toggle="modal" data-target="#editExemptionForm{{$exemption->id}}" href='' style='color:green;float:right;padding:5px;'>
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -662,28 +665,31 @@
                          <tr>
 							<th colspan='2'>Registration Information #{{++$num}} 
 							 <span class='hidden-print'>
-					    @if($role=='Chief Admin'||$role=='Director')
+					    @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'par_delete'))
 
 						{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('aircraft_registration_info',$registration->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
+						@endif
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'sof_delete'))
 						
 						{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('aircraft_registration_info',$registration->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-						
-						{{-- HTML::linkAction('AircraftController@undoSoftDelete', 'Undo.D',array('aircraft_registration_info',$registration->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) --}}
 					  @endif
-					  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+					 @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'approve'))
 
 						{{ HTML::linkAction('AircraftController@approve', '',array('aircraft_registration_info',$registration->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:green;float:right;padding:5px;')) }}
-						
+					
+
 						{{ HTML::linkAction('AircraftController@notApprove', '',array('aircraft_registration_info',$registration->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:red;float:right;padding:5px;')) }}
+					@endif
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'worning'))
 						
 						{{ HTML::linkAction('AircraftController@removeWarning', '',array('aircraft_registration_info',$registration->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:green;float:right;padding:5px;')) }}
 						{{ HTML::linkAction('AircraftController@warning', '',array('aircraft_registration_info',$registration->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:red;float:right;padding:5px;')) }}
-						@endif
-						@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+					@endif
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'update'))
 						 <a data-toggle="modal" data-target="#editRegistrationInfoForm{{$registration->id}}" href='' style='color:green;float:right;padding:5px;'>
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 						</a>
-						@endif
+					@endif
 							</span>
 							</th>
                          </tr>
@@ -848,28 +854,28 @@
                          <tr>
 							<th colspan='2'>Airworthiness Information #{{++$num}}   
 							 <span class='hidden-print'>
-					    @if($role=='Chief Admin'||$role=='Director')
+					    @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'par_delete'))
 
 						{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('aircraft_airworthiness_info',$airworthiness->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-						
+						@endif
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'sof_delete'))
 						{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('aircraft_airworthiness_info',$airworthiness->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-						
-						{{-- HTML::linkAction('AircraftController@undoSoftDelete', 'Undo.D',array('aircraft_airworthiness_info',$airworthiness->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) --}}
-					  @endif
-					  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+					    @endif
+					 @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'approve'))
 
 						{{ HTML::linkAction('AircraftController@approve', '',array('aircraft_airworthiness_info',$airworthiness->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:green;float:right;padding:5px;')) }}
 						
 						{{ HTML::linkAction('AircraftController@notApprove', '',array('aircraft_airworthiness_info',$airworthiness->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:red;float:right;padding:5px;')) }}
-						
+					@endif	
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'worning'))
 						{{ HTML::linkAction('AircraftController@removeWarning', '',array('aircraft_airworthiness_info',$airworthiness->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:green;float:right;padding:5px;')) }}
 						{{ HTML::linkAction('AircraftController@warning', '',array('aircraft_airworthiness_info',$airworthiness->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:red;float:right;padding:5px;')) }}
-						@endif
-						@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+					@endif
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'update'))
 						 <a data-toggle="modal" data-target="#editACForm{{$airworthiness->id}}" href='' style='color:green;float:right;padding:5px;'>
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 						</a>
-						@endif
+					@endif
 						</span>
 							</th>
                          </tr> 
@@ -1026,24 +1032,26 @@
                          <tr>
 							<th colspan='2'>Approval Information #{{++$num}}
 							 <span class='hidden-print'>
-						@if($role=='Chief Admin'||$role=='Director')
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'par_delete'))
 
 						{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('aircraft_caa_approval_info',$approval->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-						
+						@endif
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'sof_delete'))
 						{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('aircraft_caa_approval_info',$approval->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-						
-						{{-- HTML::linkAction('AircraftController@undoSoftDelete', 'Undo.D',array('aircraft_caa_approval_info',$approval->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) --}}
+					
 					  @endif
-					  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+					 @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'approve'))
 
 						{{ HTML::linkAction('AircraftController@approve', '',array('aircraft_caa_approval_info',$approval->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:green;float:right;padding:5px;')) }}
 						
 						{{ HTML::linkAction('AircraftController@notApprove', '',array('aircraft_caa_approval_info',$approval->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:red;float:right;padding:5px;')) }}
+					@endif
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'worning'))
 						
 						{{ HTML::linkAction('AircraftController@removeWarning', '',array('aircraft_caa_approval_info',$approval->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:green;float:right;padding:5px;')) }}
 						{{ HTML::linkAction('AircraftController@warning', '',array('aircraft_caa_approval_info',$approval->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:red;float:right;padding:5px;')) }}
 						@endif
-						@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'update'))
 
 						 <a data-toggle="modal" data-target="#editApprovalForm{{$approval->id}}" href='' style='color:green;float:right;padding:5px;'>
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -1154,24 +1162,26 @@
                          <tr>
 							<th colspan='2'>Exemption Information #{{++$num}}   
 							 <span class='hidden-print'>
-						@if($role=='Chief Admin'||$role=='Director')
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'par_delete'))
 
 						{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('aircraft_owner_info',$owner->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
+						@endif
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'sof_delete'))
 						
 						{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('aircraft_owner_info',$owner->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 						
-						{{-- HTML::linkAction('AircraftController@undoSoftDelete', 'Undo.D',array('aircraft_owner_info',$owner->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) --}}
 					  @endif
-					  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+					  @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'approve'))
 
 						{{ HTML::linkAction('AircraftController@approve', '',array('aircraft_owner_info',$owner->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:green;float:right;padding:5px;')) }}
 						
 						{{ HTML::linkAction('AircraftController@notApprove', '',array('aircraft_owner_info',$owner->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:red;float:right;padding:5px;')) }}
-						
+					  @endif
+					  @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'worning'))
 						{{ HTML::linkAction('AircraftController@removeWarning', '',array('aircraft_owner_info',$owner->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:green;float:right;padding:5px;')) }}
 						{{ HTML::linkAction('AircraftController@warning', '',array('aircraft_owner_info',$owner->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:red;float:right;padding:5px;')) }}
 						@endif
-						@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'update'))
 						<a data-toggle="modal" data-target="#editOwnerForm{{$owner->id}}" href='' style='color:green;float:right;padding:5px;'>
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 						</a>
@@ -1314,24 +1324,24 @@
                          <tr>
 							<th colspan='2'>Lessee Information #{{++$num}}
 							 <span class='hidden-print'>
-					 @if($role=='Chief Admin'||$role=='Director')
+					 @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'par_delete'))
 
 						{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('aircraft_lessee_info',$lessee->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-						
+					@endif
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'sof_delete'))	
 						{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('aircraft_lessee_info',$lessee->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-						
-						{{-- HTML::linkAction('AircraftController@undoSoftDelete', 'Undo.D',array('aircraft_lessee_info',$lessee->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) --}}
 					  @endif
-					  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'approve'))
 
 						{{ HTML::linkAction('AircraftController@approve', '',array('aircraft_lessee_info',$lessee->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:green;float:right;padding:5px;')) }}
 						
 						{{ HTML::linkAction('AircraftController@notApprove', '',array('aircraft_lessee_info',$lessee->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:red;float:right;padding:5px;')) }}
-						
+					@endif	
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'worning'))
 						{{ HTML::linkAction('AircraftController@removeWarning', '',array('aircraft_lessee_info',$lessee->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:green;float:right;padding:5px;')) }}
 						{{ HTML::linkAction('AircraftController@warning', '',array('aircraft_lessee_info',$lessee->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:red;float:right;padding:5px;')) }}
-					   @endif
-					   @if($role=='Chief Admin'||$role=='Maintenance Eng.')
+					 @endif
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'update'))
 
 						 <a data-toggle="modal" data-target="#editLesseeForm{{$lessee->id}}" href='' style='color:green;float:right;padding:5px;'>
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -1471,25 +1481,24 @@
                          <tr>
 							<th colspan='2'>Exemption Information #{{++$num}} 
 							 <span class='hidden-print'>
-						@if($role=='Chief Admin'||$role=='Director')
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'par_delete'))
 
 						{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('aircraft_insurer_info',$insurer->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-						
+						@endif
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'sof_delete'))
 						{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('aircraft_insurer_info',$insurer->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-						
-						{{-- HTML::linkAction('AircraftController@undoSoftDelete', 'Undo.D',array('aircraft_insurer_info',$insurer->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) --}}
 					  @endif
-					  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+					  @if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'approve'))
 
 						{{ HTML::linkAction('AircraftController@approve', '',array('aircraft_insurer_info',$insurer->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:green;float:right;padding:5px;')) }}
 						
 						{{ HTML::linkAction('AircraftController@notApprove', '',array('aircraft_insurer_info',$insurer->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:red;float:right;padding:5px;')) }}
-						
+					@endif
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'worning'))	
 						{{ HTML::linkAction('AircraftController@removeWarning', '',array('aircraft_insurer_info',$insurer->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:green;float:right;padding:5px;')) }}
 						{{ HTML::linkAction('AircraftController@warning', '',array('aircraft_insurer_info',$insurer->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:red;float:right;padding:5px;')) }}
-						 @endif
-						 @if($role=='Chief Admin'||$role=='Maintenance Eng.')
-
+					@endif
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'update'))	
 						 <a data-toggle="modal" data-target="#editInsurerForm{{$insurer->id}}" href='' style='color:green;float:right;padding:5px;'>
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 						</a>
@@ -1645,25 +1654,24 @@
                          <tr>
 							<th colspan='2'>Exemption Information #{{++$num}}
 							 <span class='hidden-print'>
-							 @if($role=='Chief Admin'||$role=='Director')
-
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'par_delete'))	
+						
 						{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('aircraft_equipment_review_info',$equipment->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-						
-						{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('aircraft_equipment_review_info',$equipment->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-						
-						{{-- HTML::linkAction('AircraftController@undoSoftDelete', 'Undo.D',array('aircraft_equipment_review_info',$equipment->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) --}}
-					      @endif
-						  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+					@endif
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'sof_delete'))	
 
+						{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('aircraft_equipment_review_info',$equipment->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
+					 @endif
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'approve'))	
 						{{ HTML::linkAction('AircraftController@approve', '',array('aircraft_equipment_review_info',$equipment->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:green;float:right;padding:5px;')) }}
 						
 						{{ HTML::linkAction('AircraftController@notApprove', '',array('aircraft_equipment_review_info',$equipment->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:red;float:right;padding:5px;')) }}
-						
+					@endif
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'worning'))		
 						{{ HTML::linkAction('AircraftController@removeWarning', '',array('aircraft_equipment_review_info',$equipment->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:green;float:right;padding:5px;')) }}
 						{{ HTML::linkAction('AircraftController@warning', '',array('aircraft_equipment_review_info',$equipment->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:red;float:right;padding:5px;')) }}
-						@endif
-						@if($role=='Chief Admin'||$role=='Maintenance Eng.')
-
+					@endif
+					@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'update'))	
 						 <a data-toggle="modal" data-target="#editEquipmentReviewForm{{$equipment->id}}" href='' style='color:green;float:right;padding:5px;'>
 							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 						</a>
@@ -1902,14 +1910,8 @@
 
 </div>
 {{--End Aircraft Equipment Review Information--}}
-<a class="btn btn-primary hidden-print"id='printOption'href="javascript:void();" onclick=" myFunction(); return true;">Print/Save</a>
-</section>
-
-<script>
-function myFunction() {
-    window.print();
-}
-</script>
+@include('common')
+@yield('print')
 
 </section>
  

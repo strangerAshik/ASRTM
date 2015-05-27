@@ -7,7 +7,7 @@
                       
 						
 	<div class="row">
-						
+			@if('true'==CommonFunction::hasPermission('sc_new_inspection',Auth::user()->emp_id(),'access'))			
 			<div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
 				<!-- small box -->
 			<div class="small-box bg-aqua " >
@@ -19,7 +19,9 @@
 					More info <i class="fa fa-arrow-circle-right"></i>
 				</a>
 			</div>
-			</div><!-- ./col -->			
+			</div><!-- ./col -->
+			@endif		
+			@if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'access'))	
 			<div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
 				<!-- small box -->
 			<div class="small-box bg-red  " >
@@ -32,6 +34,8 @@
 				</a>
 			</div>
 			</div><!-- ./col -->
+			@endif
+			@if('true'==CommonFunction::hasPermission('sc_safety_concerns_list',Auth::user()->emp_id(),'access'))
 			<div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
 				<!-- small box -->
 				<div class="small-box bg-green " >
@@ -45,6 +49,8 @@
 					</a>
 				</div>
 			</div><!-- ./col -->
+			@endif
+			@if('true'==CommonFunction::hasPermission('sc_report',Auth::user()->emp_id(),'access'))
 			<div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
 				<!-- small box -->
 				<div class="small-box bg-blue " >
@@ -58,6 +64,7 @@
 					</a>
 				</div>
 			</div><!-- ./col -->
+			@endif
 						
 					
 	</div>

@@ -36,17 +36,17 @@
 											<tr>
 												<td>{{$docType->	doc_type}}</td>
 												<td> 
-										@if($role=='Chief Admin'||$role=='Director')
+									@if('true'==CommonFunction::hasPermission('e_library',Auth::user()->emp_id(),'update'))
 										 <a data-toggle="modal" data-target="#updateSupportingDocsType{{$docType->id}}" href='' style='color:green;float:right;padding:5px;'>
 											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 										 </a>
 									 @endif
 									 </td>
-									  <td> @if($role=='Chief Admin')
+									  <td> @if('true'==CommonFunction::hasPermission('e_library',Auth::user()->emp_id(),'sof_delete'))
 										{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('lib_suporting_docs_type', $docType->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 									 @endif</td>
 									 	
-									 <td> @if($role=='Chief Admin'||$role=='Director')
+									 <td> @if('true'==CommonFunction::hasPermission('e_library',Auth::user()->emp_id(),'par_delete'))
 										{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('lib_suporting_docs_type',$docType->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 									 @endif</td>
 											</tr>

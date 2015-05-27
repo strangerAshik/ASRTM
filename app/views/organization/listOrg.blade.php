@@ -45,7 +45,10 @@
 											@foreach($infos as $info)
 											@if($info->active=='Yes')
 											<tr>
-											 <td>{{$info->org_name}}</td><td>{{$info->org_number}}</td><td>{{$info->active}}</td><td>{{$info->updated_at}}</td><td>{{$info->row_updator}}</td><td>{{ HTML::linkAction('organizationController@singleOrganization', ' Details',array('orgNum'=>$info->org_number ), array('class' => '','target'=>'_blank')) }}</td>	
+											 <td>{{$info->org_name}}</td><td>{{$info->org_number}}</td><td>{{$info->active}}</td>
+											 <td>{{$num=OrgCommonFunction::lastUpdateDate($info->org_number)}}</td>
+											 <td>{{$updater=OrgCommonFunction::lastUpdator($info->org_number)}}</td>
+											 <td>{{ HTML::linkAction('organizationController@singleOrganization', ' Details',array('orgNum'=>$info->org_number ), array('class' => '','target'=>'_blank')) }}</td>	
 											</tr>
 											@endif
 											@endforeach
@@ -57,7 +60,10 @@
 										@foreach($infos as $info)
 											@if($info->active=='No')
 											<tr>
-											  <td>{{$info->org_name}}</td><td>{{$info->org_number}}</td><td>{{$info->active}}</td><td>{{$info->updated_at}}</td><td>{{$info->row_updator}}</td><td>{{ HTML::linkAction('organizationController@singleOrganization', ' Details',array('orgNum'=>$info->org_number ), array('class' => '','target'=>'_blank')) }}</td>	
+											  <td>{{$info->org_name}}</td><td>{{$info->org_number}}</td><td>{{$info->active}}</td>
+											  <td>{{$num=OrgCommonFunction::lastUpdateDate($info->org_number)}}</td>
+											 <td>{{$updater=OrgCommonFunction::lastUpdator($info->org_number)}}</td>
+											  <td>{{ HTML::linkAction('organizationController@singleOrganization', ' Details',array('orgNum'=>$info->org_number ), array('class' => '','target'=>'_blank')) }}</td>	
 											</tr>
 											@endif
 											@endforeach
@@ -69,7 +75,10 @@
 											@foreach($infos as $info)
 											
 											<tr>
-											 <td>{{$info->org_name}}</td><td>{{$info->org_number}}</td><td>{{$info->active}}</td><td>{{$info->updated_at}}</td><td>{{$info->row_updator}}</td><td>{{ HTML::linkAction('organizationController@singleOrganization', ' Details',array('orgNum'=>$info->org_number ), array('class' => '','target'=>'_blank')) }}</td>	
+											 <td>{{$info->org_name}}</td><td>{{$info->org_number}}</td><td>{{$info->active}}</td>
+											 <td>{{$num=OrgCommonFunction::lastUpdateDate($info->org_number)}}</td>
+											 <td>{{$updater=OrgCommonFunction::lastUpdator($info->org_number)}}</td>
+											 <td>{{ HTML::linkAction('organizationController@singleOrganization', ' Details',array('orgNum'=>$info->org_number ), array('class' => '','target'=>'_blank')) }}</td>	
 											</tr>
 											
 											@endforeach

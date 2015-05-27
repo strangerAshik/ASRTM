@@ -54,6 +54,7 @@ class AircraftController extends \BaseController {
 			DB::table('aircraft_primary_info')
             ->where('id','=',$id)
             ->update(array(
+				'assigned_inspector' => Input::get('assigned_inspector'),
 				'serial_number' => Input::get('serial_number'),
 				'registration_no' => Input::get('registration_no'),
 				'aircraft_operator' => Input::get('aircraft_operator'),
@@ -769,6 +770,10 @@ class AircraftController extends \BaseController {
 	$equipmentData=DB::table('aircraft_equipment_review_info')->where('aircraft_MM', '=',$mm)->where('aircraft_MSN', '=',$msn)->where('soft_delete', '=','0')->get();
 	$organizations =DB::table('users')->lists('organization');
 	
+	$select=array(''=>'--Select--');
+	$inspectors=DB::table('users')->where('role','=','Inspector')->lists('name','name');
+	$inspectors=array_merge($select,$inspectors);
+	
 		return View::make('aircraft/aircraft-single')
 		->with('PageName','Aircraft Info.')
 		->with('personnel', parent::getPersonnelInfo())
@@ -787,6 +792,7 @@ class AircraftController extends \BaseController {
 		->with('insurerData',$insurerData)
 		->with('equipmentData',$equipmentData)
 		->with('organizations',$organizations)
+		->with('inspectors',$inspectors)
 		->with('ND',0)
 		
 		;
@@ -795,7 +801,7 @@ class AircraftController extends \BaseController {
 	public function addNewAircraft(){
 		$organizations =DB::table('users')->lists('organization');
 		$select=array(''=>'--Select--');
-		$inspectors=DB::table('users')->where('role','=','Inspector')->lists('role','role');
+		$inspectors=DB::table('users')->where('role','=','Inspector')->lists('name','name');
 		$inspectors=array_merge($select,$inspectors);
 		return View::make('aircraft/new_aircraft')
 		->with('PageName','Aircraft')
@@ -806,7 +812,10 @@ class AircraftController extends \BaseController {
 		->with('inspectors',$inspectors);
 	}
 	public function aircraftList(){
-		$aircrafts=DB::table('aircraft_primary_info')->where('soft_delete','<>','1')->get();
+		$aircrafts=DB::table('aircraft_primary_info')
+					->where('soft_delete','<>','1')
+					->orderBy('aircraft_operator')
+					->get();
 		return View::make('aircraft.index')
 		->with('PageName','Aircraft List')
 		->with('aircrafts',$aircrafts);

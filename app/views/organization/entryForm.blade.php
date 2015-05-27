@@ -24,7 +24,12 @@
                                            
 											{{Form::label('org_name', 'Organization Name', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
-											{{Form::text('org_name','', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+											<select id="org_name" name='org_name' class="demo-default" placeholder="Select  Org...">
+												<option value="">Select  Org...</option>
+												@foreach($organizations as $organization)
+												<option value="{{$organization}}">{{$organization}}</option>
+												@endforeach
+											</select>
 											</div>
 											
                     </div>
@@ -55,6 +60,13 @@
         </div>
     </div>
 </div>
+<script>
+	$(document).ready(function(){
+	$('#org_name').selectize();
+	//$('#organizations').selectize({ create: true, sortField: {field: 'text',direction: 'asc'}});
+		
+	});
+</script>
 @stop
 
 @if($PageName=='Single Organization')

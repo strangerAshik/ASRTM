@@ -13,7 +13,9 @@ class SafetyConcernsController extends \BaseController {
 		
 		$id = Auth::user()->emp_id();
 	
-		
+		$select=array(''=>'--Select--');
+		$inspectors=DB::table('users')->where('role','=','Inspector')->lists('name','name');
+		$inspectors=array_merge($select,$inspectors);
 		
 		return View::make('safetyConcerns/new-safety-issue')
 		->with('PageName','New Safety Concern')
@@ -21,6 +23,7 @@ class SafetyConcernsController extends \BaseController {
 		->with('toDay',date("d F Y"))
 		->with('months',parent::months())
 		->with('years',parent::years_from())
+		->with('inspectors',$inspectors)
 		
 		;
 	}
@@ -117,15 +120,33 @@ class SafetyConcernsController extends \BaseController {
 		return Redirect::to('safety/issuedList')->with('message', 'Successfully Update!!');
 	}
 	public function newInspection(){
+		$select=array(''=>'--Select--');
+		$inspectors=DB::table('users')->where('role','=','Inspector')->lists('name','name');
+		$inspectors=array_merge($select,$inspectors);
+		
+		$organizations=DB::table('users')->orderBy('organization')->lists('organization','organization');
+		$organizations=array_merge($select,$organizations);
+
 		return View::make('safetyConcerns.new-inspection')
 		->with('PageName','Issue Inspection')
 		->with('dates',parent::dates())
 		->with('toDay',date("d F Y"))
 		->with('months',parent::months())
-		->with('years',parent::years_from());
+		->with('years',parent::years_from())
+		->with('inspectors',$inspectors)
+		->with('organizations',$organizations)
+		;
 		
 	}
 	public function singleInspection($ins_num){
+		$select=array(''=>'--Select--');
+
+		$inspectors=DB::table('users')->where('role','=','Inspector')->lists('name','name');
+		
+
+		$airMSMs=DB::table('aircraft_primary_info')->lists('aircraft_MSN');
+		
+
 		$ins_primary_infos=DB::table('sc_primary_inspection')
 		->where('inspection_number','=',$ins_num)
 		->get();
@@ -139,13 +160,18 @@ class SafetyConcernsController extends \BaseController {
 		->with('toDay',date("d F Y"))
 		->with('months',parent::months())
 		->with('years',parent::years_from())
-		->with('safety_concerns',$safety_concerns)
-		
-		->with('ins_primary_infos',$ins_primary_infos);
+		->with('safety_concerns',$safety_concerns)		
+		->with('ins_primary_infos',$ins_primary_infos)
+		->with('inspectors',$inspectors)
+		->with('airMSMs',$airMSMs)
+		;
 		
 	}
 	public function singlesafetyConcern($sc_num){
-		$safetyConcernDatas=DB::table('sc_safety_concern')
+		$airMSMs=DB::table('aircraft_primary_info')->lists('aircraft_MSN');
+		$designations=DB::table('users')->where('organization','CAAB')->lists('role');
+		$inspectors=DB::table('users')->where('role','=','Inspector')->lists('name','name');
+		 $safetyConcernDatas=DB::table('sc_safety_concern')
 		->where('safety_issue_number','=',$sc_num)
 		->where('soft_delete','<>','1')
 		->get();
@@ -185,7 +211,11 @@ class SafetyConcernsController extends \BaseController {
 		->with('forwardings',$forwardings)
 		->with('legalOpinions',$legalOpinions)
 		->with('lastAssignedPerson',$lastAssignedPerson)
-		->with('correctiveActions',$correctiveActions);
+		->with('correctiveActions',$correctiveActions)
+		->with('inspectors',$inspectors)
+		->with('airMSMs',$airMSMs)
+		->with('designations',$designations)
+		;
 	}
 	public function followUp($sc_num){
 		$folloUpInfos=DB::table('sc_follow_up')->where('safety_issue_number','=',$sc_num)->get();

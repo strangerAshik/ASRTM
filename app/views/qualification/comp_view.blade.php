@@ -130,7 +130,7 @@
 						
 				</div
 				<!--Edit Personal-->
-					<!--Edit content start--->
+					<!--Edit content start-->
 	@if($personnel!=null)
 	<div class="modal fade" id="{{$person->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -271,8 +271,7 @@
 														</div>
 													</div>
 										</div>
-                                        <div class="form-group required">
-                                           
+                                        <div class="form-group required">                                       
                                             
 											 {{ Form::label('image', 'Upload New Photo: ',array('class'=>'control-label col-xs-4')) }}
 											 <div class="col-xs-6">

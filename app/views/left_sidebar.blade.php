@@ -12,8 +12,13 @@
 				   <div class="user-panel">
 				
                         <div class="pull-left image">
-						
-							{{HTML::image('img/PersonnelPhoto/'.Employee::profilePic($emp_id),'User',array('class'=>'img-circle'))}}						 
+						  @if(Auth::user()->photo())
+                            {{HTML::image('files/userPhoto/'.Auth::user()->photo(),'User',array('class'=>'img-circle'))}}
+                          @elseif(Employee::profilePic($emp_id))
+							{{HTML::image('img/PersonnelPhoto/'.Employee::profilePic($emp_id),'User',array('class'=>'img-circle'))}}
+                          @else
+                            {{HTML::image('img/PersonnelPhoto/'.'anonymous.png','User',array('class'=>'img-circle'))}}
+                          @endif						 
 						
                         </div>
                         <div class="pull-left info">
@@ -25,17 +30,6 @@
                     </div>
 					@endif
 					
-                    <!-- search form -->
-                    <!--<form action="#" method="get" class="sidebar-form">
-                        <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
-                            <span class="input-group-btn">
-                                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </form>-->
-                    <!-- /.search form -->
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
 					@if(Auth::check())
                         <li class="active">
@@ -43,10 +37,9 @@
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
-						@endif
+					@endif
 						
-                        @if(Auth::check())
-                      @if($role=='Chief Admin'||$role=='Employee'||$role=='Director'||$role=='Inspector')
+                    @if('true'==CommonFunction::hasPermission('surveillance_inspection_audit',Auth::user()->emp_id(),'access'))
                         <li class="treeview">
                             <a href="#">
                                 <i class="glyphicon glyphicon-screenshot"></i> <span>SIA</span>
@@ -60,9 +53,8 @@
                             </ul>
                         </li>
                         @endif
-                        @endif
-						@if(Auth::check())
-                      @if($role=='Chief Admin'||$role=='Employee'||$role=='Director'||$role=='Inspector')
+                       
+						@if('true'==CommonFunction::hasPermission('employee',Auth::user()->emp_id(),'access'))
                         <li class="treeview">
                             <a href="#">
                                 <i class="glyphicon glyphicon-user"></i> <span>Employee</span>
@@ -70,7 +62,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="{{URL::to('qualification/main');}}"><i class="fa fa-angle-double-right"></i>Main</a></li>  
-								@if($role=='Chief Admin')
+								@if('true'==CommonFunction::hasPermission('emp_admin_list',Auth::user()->emp_id(),'access'))
 								<li><a href="{{URL::to('qualification/employees');}}"><i class="fa fa-angle-double-right"></i>Employees List</a></li> 
 							    @endif
 								<li><a href="{{URL::to('qualification/personnel');}}"><i class="fa fa-angle-double-right"></i>Personal Info. </a></li>
@@ -86,12 +78,10 @@
                                 <li><a href="{{URL::to('qualification/other')}}"><i class="fa fa-angle-double-right"></i>Others</a></li>
                                 <li><a href="{{URL::to('qualification/comp_view')}}"><i class="fa fa-angle-double-right"></i>Comprehensive View </a></li>
                             </ul>
-                        </li>
-						@endif
+                        </li>						
 						@endif
 						
-						@if(Auth::check())
-						@if($role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('safety_concern',Auth::user()->emp_id(),'access'))
 						<li class="treeview">
                             <a href="#">
                                 <i class="glyphicon glyphicon-warning-sign"></i> <span>Safety Concerns</span>
@@ -99,16 +89,21 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="{{URL::to('safety/main');}}"><i class="fa fa-angle-double-right"></i>Main</a></li>
-								<li><a href="{{URL::to('safety/newInspection');}}"><i class="fa fa-angle-double-right"></i>New Inspection</a></li>
+								@if('true'==CommonFunction::hasPermission('sc_new_inspection',Auth::user()->emp_id(),'access')) 
+                                <li><a href="{{URL::to('safety/newInspection');}}"><i class="fa fa-angle-double-right"></i>New Inspection</a></li>
+                                @endif
+                                @if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'access')) 
 								<li><a href="{{URL::to('safety/newSafetyConcern');}}"><i class="fa fa-angle-double-right"></i>New Safety Concern </a></li>
+                                @endif
+                                @if('true'==CommonFunction::hasPermission('sc_safety_concerns_list',Auth::user()->emp_id(),'access'))
                                 <li><a href="{{URL::to('safety/issuedList');}}"><i class="fa fa-angle-double-right"></i>Safety Concerns List </a></li>
+                                @endif
                             </ul>
                         </li>
 						@endif
-						@endif
+						
 
-                        @if(Auth::check())
-                        @if($role=='Chief Admin')
+                        @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'access'))
                         <li class="treeview">
                             <a href="#">
                                 <i class="glyphicon glyphicon-briefcase"></i> <span>Organizations</span>
@@ -116,15 +111,21 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="{{URL::to('organization/main');}}"><i class="fa fa-angle-double-right"></i>Main</a></li>
+                                @if('true'==CommonFunction::hasPermission('org_add_new',Auth::user()->emp_id(),'access'))
                                 <li><a href="{{URL::to('organization/newOrganization');}}"><i class="fa fa-angle-double-right"></i>Add Organization</a></li>
+                                @endif
+                                @if('true'==CommonFunction::hasPermission('org_admin_list',Auth::user()->emp_id(),'access'))
                                 <li><a href="{{URL::to('organization/organizationList');}}"><i class="fa fa-angle-double-right"></i>Organizations List </a></li>
+                                @endif
+                                @if('true'==CommonFunction::hasPermission('org_my_org',Auth::user()->emp_id(),'access'))
+                                <li><a href="{{URL::to('organization/myOrganization');}}"><i class="fa fa-angle-double-right"></i>My Organization</a></li>
+                                @endif
                             </ul>
                         </li>
                         @endif
-                        @endif
+                        
 
-						@if(Auth::check())
-						@if($role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('admin_tracking',Auth::user()->emp_id(),'access'))
 						<li class="treeview">
                             <a href="#">
                                 <i class="glyphicon glyphicon-eye-open"></i> <span>Admin Tracking </span>
@@ -137,9 +138,7 @@
                             </ul>
                         </li>
 						@endif
-						@endif
-						@if(Auth::check())
-						@if( $role=='Chief Admin')
+						@if('true'==CommonFunction::hasPermission('document_control',Auth::user()->emp_id(),'access'))
 						<li class="treeview">
                             <a href="#">
                                 <i class="glyphicon glyphicon-tags"></i> <span>Document Control</span>
@@ -152,12 +151,7 @@
                             </ul>
                         </li>
 						@endif	
-						@endif	
-						
-						
-						
-						@if(Auth::check())
-						@if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector'||$role=='Maintenance Eng.')
+						@if('true'==CommonFunction::hasPermission('aircraft',Auth::user()->emp_id(),'access'))
 						<li class="treeview">
                             <a href="#">
                                 <i class="glyphicon glyphicon-plane"></i> <span> Aircraft </span>
@@ -165,18 +159,18 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="{{URL::to('aircraft/main');}}"><i class="fa fa-angle-double-right"></i>Main</a></li>	
-								@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								 @if('true'==CommonFunction::hasPermission('aircraft_add_new_aircraft',Auth::user()->emp_id(),'access'))
                                 <li><a href="{{URL::to('aircraft/new_aircraft');}}"><i class="fa fa-angle-double-right"></i>Add New Aircraft</a></li>							
 							    @endif
-								@if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector'||$role=='Maintenance Eng.')
+								@if('true'==CommonFunction::hasPermission('airaft_list',Auth::user()->emp_id(),'access'))
                                 <li><a href="{{URL::to('aircraft/aircraftList');}}"><i class="fa fa-angle-double-right"></i>Aircraft List</a></li>	
 								@endif
                             </ul>
                         </li>						
 						@endif
-						@endif
+						
 					
-			<li class="treeview">
+			             <li class="treeview">
                             <a href="#">
                                 <i class="glyphicon  glyphicon-book"></i> <span>Library</span>
                                 <i class="fa fa-angle-left pull-right"></i>
@@ -184,7 +178,9 @@
                             <ul class="treeview-menu">
                               @if(Auth::check())
 								  <li><a href="{{URL::to('library/main');}}"><i class="fa fa-angle-double-right"></i>Main</a></li>
+                            @if('true'==CommonFunction::hasPermission('e_library',Auth::user()->emp_id(),'entry'))
 								<li><a href="{{URL::to('library/newSupportingDocuments');}}"><i class="fa fa-angle-double-right"></i>Add Supporting Doc</a></li>
+                            @endif
                                 <li><a href="{{URL::to('library/privateView');}}"><i class="fa fa-angle-double-right"></i>Private  SD List View</a></li>
 								 <li><a href="{{URL::to('library/publicView');}}"><i class="fa fa-angle-double-right"></i>Public SD List View</a></li>
 								@else                               

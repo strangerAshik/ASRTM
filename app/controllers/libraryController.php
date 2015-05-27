@@ -1,7 +1,7 @@
 <?php
 
 class LibraryController extends \BaseController {
-	
+	 
 	public function main()
 	{
 		return View::make('library.supportingDocuments.main')

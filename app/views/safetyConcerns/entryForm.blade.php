@@ -14,7 +14,7 @@
                 <!-- The form is placed inside the body of modal -->
                
 				{{Form::open(array('url' => 'safety/saveSafetyConcern', 'method' => 'post',  'class'=>'form-horizontal','data-toggle'=>'validator', 'role'=>'form','files'=>true))}}
-					@if($PageName=='Single Inspection')
+					@if($PageName=='Single Inspection') 
 						@foreach($ins_primary_infos as $info)
 						{{Form::hidden('inspection_number',$info->inspection_number)}}
 						@endforeach
@@ -43,12 +43,7 @@
                                         
 											{{Form::label('type_of_issue', 'Type Of Issue', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
-											{{--<select id="type_of_issue" name="type_of_issue" class="demo-default" placeholder="Select Type Of Issue">
-												<option value="">Select Type Of Issue</option>
-												@foreach($roles as $role)
-												<option value="{{$role}}">{{$role}}</option>
-												@endforeach 
-											</select> --}}
+											
 											{{Form::select('type_of_issue', array(
 											'' => '--Select Type Of Issue--', 
 										'Non-Conformance: State Law' => 'Non-Conformance: State Law',
@@ -86,9 +81,9 @@
 											<div class="col-xs-6">
 											<select required id="assigned_inspector" name='assigned_inspector'class="demo-default" >
 												<option value="">Select Assigned Inspector</option>
-												{{--@foreach($roles as $role)
-												<option value="{{$role}}">{{$role}}</option>
-												@endforeach --}}
+												@foreach($inspectors as $inspector)
+												<option value="{{$inspector}}">{{$inspector}}</option>
+												@endforeach 
 											</select>
 											</div>
 											
@@ -190,34 +185,6 @@
 											</div>
 											
                     </div>
-					<!--
-					<div class="form-group ">
-                                           
-											{{Form::label('resived_date', 'Revised Date', array('class' => 'col-xs-4 control-label'))}}
-											<div class="row">
-														<div class="col-xs-2">
-														{{Form::select('resived_date', $dates,'0',array('class'=>'form-control'))}}
-														</div>
-														<div class="col-xs-3">
-														{{Form::select('resived_month',$months,'0',array('class'=>'form-control'))}}
-											
-															
-														</div>
-														<div class="col-xs-2">
-															{{Form::select('resived_year',$years,'0',array('class'=>'form-control'))}}
-														</div>
-													</div>
-											
-                    </div>
-					<div class="form-group ">
-                                        
-											{{Form::label('revised_time', 'Revised Time', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-6">
-											{{Form::text('revised_time','', array('class' => 'form-control','placeholder'=>''))}}
-											</div>
-											
-                    </div>
-					-->
 					
 					<div class="form-group required">
                                         
@@ -225,10 +192,10 @@
 											<div class="col-xs-6">
 											<select id="provided_to" name='provided_to' class="demo-default" placeholder="SelectProvided To">
 												<option value="">Select Provided To</option>
-												<option selected="selected" value="{{Auth::User()->getName()}}">Select Provided To</option>
-												{{--@foreach($roles as $role)
-												<option value="{{$role}}">{{$role}}</option>
-												@endforeach --}}
+												<option selected="selected" value="{{Auth::User()->getName()}}">{{Auth::User()->getName()}}</option>
+												@foreach($inspectors as $inspector)
+												<option value="{{$inspector}}">{{$inspector}}</option>
+												@endforeach  
 											</select>
 											</div>
 											
@@ -265,7 +232,7 @@
                                         
 											{{Form::label('regulation_issue', 'Regulation Issue', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
-											{{Form::textarea('regulation_issue','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1','required'=>''))}}
+											{{Form::textarea('regulation_issue','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 											</div>
 											
                     </div>
@@ -273,7 +240,7 @@
                                         
 											{{Form::label('public_practise', 'Public Practise', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
-											{{Form::textarea('public_practise','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1','required'=>''))}}
+											{{Form::textarea('public_practise','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 											</div>
 											
                     </div>
@@ -281,7 +248,7 @@
                                         
 											{{Form::label('regulation', 'Regulation', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
-											{{Form::textarea('regulation','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1','required'=>''))}}
+											{{Form::textarea('regulation','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 											</div>
 											
                     </div>
@@ -325,9 +292,9 @@
 											<div class="col-xs-6">
 											<select id="aircraft_msn" name='aircraft_msn' class="demo-default" placeholder="Select Aircraft MSN">
 												<option value="">Select Aircraft MSN</option>
-												{{--@foreach($roles as $role)
-												<option value="{{$role}}">{{$role}}</option>
-												@endforeach --}}
+												@foreach($airMSMs as $airMSM)
+												<option value="{{$airMSM}}">{{$airMSM}}</option>
+												@endforeach
 											</select>
 											</div>
 											
@@ -366,9 +333,9 @@
 											<div class="col-xs-6">
 											<select id="final_regulation_inspector" name='final_regulation_inspector' class="demo-default" placeholder="Select Final Regulation Inspector">
 												<option value="">Select Final Regulation Inspector</option>
-												{{--@foreach($roles as $role)
-												<option value="{{$role}}">{{$role}}</option>
-												@endforeach --}}
+												@foreach($inspectors as $inspector)
+												<option value="{{$inspector}}">{{$inspector}}</option>
+												@endforeach 
 											</select>
 											</div>
 											
@@ -399,7 +366,7 @@
                                         
 											{{Form::label('actual_finding', 'Actual Finding', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
-										{{Form::textarea('actual_finding','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1','required'=>''))}}
+										{{Form::textarea('actual_finding','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 											</div>
 											
                     </div>
@@ -408,7 +375,7 @@
                                         
 											{{Form::label('safety_concern', 'Safety Concern', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
-											{{Form::textarea('safety_concern','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1','required'=>''))}}
+											{{Form::textarea('safety_concern','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 											</div>
 											
                     </div>
@@ -417,7 +384,7 @@
                                         
 											{{Form::label('risk_statement', 'Risk Statement', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
-											{{Form::textarea('risk_statement','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1','required'=>''))}}
+											{{Form::textarea('risk_statement','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 											</div>
 											
                     </div>
@@ -447,6 +414,7 @@ $('#final_regulation_method').selectize({ create: true, sortField: {field: 'text
 	</script>
 	
 @stop
+@if($PageName=='Single Safety concern')	
 @section('correctiveIssue')
 <div class="modal fade" id="correctiveIssue" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -586,11 +554,9 @@ $('#').selectize();
 											<div class="col-xs-6">
 											<select require id='forwarding_to' name='forwarding_to' class="demo-default" placeholder="Select  Inspector">
 												<option value="">Select  Inspector</option>
-												<option value="Ashik">Ashik</option>
-												<option value="Roman">Roman</option>
-												{{--@foreach($roles as $role)
-												<option value="{{$role}}">{{$role}}</option>
-												@endforeach --}}
+												@foreach($inspectors as $inspector)
+												<option value="{{$inspector}}">{{$inspector}}</option>
+												@endforeach 
 											</select>
 											</div>
 											
@@ -601,7 +567,9 @@ $('#').selectize();
 											<div class="col-xs-6">
 											<select required id='designation' name='designation' class="demo-default" placeholder="Select  Designation">
 												<option value="">Select  Designation</option>
-												<option value="Director">Director</option>
+												@foreach($designations as $designation)
+												<option value="{{$designation}}">{{$designation}}</option>
+												@endforeach 
 												
 												
 											</select>
@@ -771,4 +739,5 @@ $(document).ready(function(){
 
 });
 </script>
+@endif
 @stop

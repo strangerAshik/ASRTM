@@ -38,4 +38,12 @@ class CommonFunction extends \Eloquent {
 		//End Multiple selection update
 	   
    }
+   static function hasPermission($moduleName,$empId,$colName){
+   	return DB::table('module_user_permission')
+   	->where('user_id',$empId)
+   	->where('module_name',$moduleName)
+   	->pluck($colName);
+
+   }
+
 }

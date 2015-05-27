@@ -5,50 +5,62 @@
 <span style='display:none'>
 {{$role=Auth::User()->Role()}}
 </span>
+@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'entry'))	
 @include('organization.menu')
 @yield('orgMenuDetails')
+@endif
+
 <div class="row" >
                         
-		  @foreach($orgPrimary as $primary)
-                        <div class="col-md-12">
+		 
+                 <div class="col-md-12">
                             <!-- general form elements -->
                             <div class="box box-primary ">
 							 <div class="box-header col-md-6">
 									<h3 class="box-title"> Organization Primary Information</h3>
+							  </div>							
+							  <div class='col-md-6'>
+							  
 							  </div>
-							  <div class='col-md-6 hidden-print'>
-							  @if($role=='Chief Admin'||$role=='Director')
+					  @foreach($orgPrimary as $primary)
+					<div class="box-body">
+					
+                    <table class="table table-bordered">
+                        <tbody>
+							 
+							<tr>
+							<th colspan='2'>
+								 <span class='hidden-print'>
+							  @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_primary',$primary->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 							  @endif
-							  @if($role=='Chief Admin')
+							  @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_primary',$primary->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 							   @endif
 									
 									
-								@if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+							@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
                                   
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_primary',$primary->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:green;float:right;padding:5px;')) }}
 								
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_primary',$primary->id), array('class' => 'glyphicon glyphicon-ok','style'=>'color:red;float:right;padding:5px;')) }}
 								@endif
-								@if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+							@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_primary',$primary->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_primary',$primary->id), array('class' => 'glyphicon glyphicon-bell','style'=>'color:red;float:right;padding:5px;')) }}
 								@endif
-								@if($role=='Chief Admin'||$role=='Director'||$role=='Maintenance Eng.')
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 									 <a data-toggle="modal" data-target="#orgPrimaryUpdate{{$primary->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 									</a>
 								@endif
 							     
-							  </div>
-                <!-- /.box-header -->
+							  </span>
+							  </th>
+							  </tr>
 				
-					<div class="box-body">
-					
-                    <table class="table table-bordered">
-                        <tbody>
+				
                            @if($primary->approve=='0')
 						<tr>
 							<th  colspan='2'> {{AircraftPrimaryInfo::notApproved($primary)}}</th>	
@@ -80,13 +92,16 @@
                         
                         </tbody>
                     </table>
-					
-                </div>
+
+				</div>
+				@endforeach	
+               	</div>
                 <!-- /.box-body -->
                                
-                            </div><!-- /.box -->
+                            </div>
 						</div>
-		@endforeach
+
+	
 <!-- Business Name-->
 <div class="row" >
                         
@@ -116,24 +131,26 @@
 						 <tr>
 							<th colspan='2'>Business Name #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                   @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_business_name',$name->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+									@endif
+									@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_business_name',$name->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
                                   @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								  @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_business_name',$name->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_business_name',$name->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_business_name',$name->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_business_name',$name->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 
 									 <a data-toggle="modal" data-target="#orgbusinessNameUpdate{{$name->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
@@ -244,24 +261,26 @@
 						 <tr>
 							<th colspan='2'>Certificate #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                  @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_certificates',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))		
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_certificates',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
                                   @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								 @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_certificates',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_certificates',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))		
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_certificates',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_certificates',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 
 									 <a data-toggle="modal" data-target="#orgCertificateUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
@@ -389,29 +408,30 @@
 						 <tr>
 							<th colspan='2'>Base Location #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_base_location',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))		
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_base_location',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
-								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_base_location',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_base_location',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))		
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_base_location',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_base_location',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 
 									 <a data-toggle="modal" data-target="#orgBaseLocationUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -572,24 +592,27 @@
 						 <tr>
 							<th colspan='2'>Management Contact #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_management_contacts',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
+
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_management_contacts',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
                                   @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								 @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_management_contacts',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_management_contacts',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								 @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))		
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_management_contacts',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_management_contacts',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								 @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 
 									 <a data-toggle="modal" data-target="#orgManagementContactsUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
@@ -783,24 +806,24 @@
 						 <tr>
 							<th colspan='2'>Management Contact #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_caa_contacts',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))		
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_caa_contacts',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
-								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+                                @endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_caa_contacts',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_caa_contacts',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))		
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_caa_contacts',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_caa_contacts',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								 @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 
 									 <a data-toggle="modal" data-target="#orgCAAContactsUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
@@ -991,29 +1014,30 @@
                         <tr>
 							<th colspan='2'>Exemptions Divination #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
-
+                                 @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_exemptions_divinations',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))		
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_exemptions_divinations',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+                                @endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_exemptions_divinations',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
-									
+										
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_exemptions_divinations',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))		
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_exemptions_divinations',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_exemptions_divinations',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 
 									 <a data-toggle="modal" data-target="#orgExemptionsDivinationUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -1139,29 +1163,29 @@
 						 <tr>
 							<th colspan='2'>Aircraft Listing #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_aircraft_listings',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif	
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_aircraft_listings',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
-								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_aircraft_listings',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_aircraft_listings',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))		
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_aircraft_listings',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_aircraft_listings',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 
 									 <a data-toggle="modal" data-target="#orgAircraftListingUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -1306,29 +1330,31 @@
 						 <tr>
 							<th colspan='2'>Policy Manuel Approval #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_policy_menual_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))		
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_policy_menual_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
                                   @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_policy_menual_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_policy_menual_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))		
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_policy_menual_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_policy_menual_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 
 									 <a data-toggle="modal" data-target="#orgPolicyMenualApprovalUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -1447,24 +1473,26 @@
 						 <tr>
 							<th colspan='2'>Complexity Review #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_complexity_reviews',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))		
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_complexity_reviews',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+                                @endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_complexity_reviews',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_complexity_reviews',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))		
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_complexity_reviews',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_complexity_reviews',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 
 									 <a data-toggle="modal" data-target="#orgComplexityReviewUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
@@ -1634,29 +1662,31 @@
 						 <tr>
 							<th colspan='2'>Aerial Work Approval #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_aerial_work_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))		
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_aerial_work_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
                                   @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_aerial_work_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_aerial_work_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_aerial_work_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_aerial_work_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 
 									 <a data-toggle="modal" data-target="#orgAerialWorkApprovalUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -1781,29 +1811,31 @@
 						 <tr>
 							<th colspan='2'>Non-Certificated Operation #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_non_certificated_operations',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))		
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_non_certificated_operations',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
                                   @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_non_certificated_operations',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_non_certificated_operations',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))		
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_non_certificated_operations',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_non_certificated_operations',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 
 									 <a data-toggle="modal" data-target="#orgNonCertificatedOperationsUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -1939,24 +1971,26 @@
 						 <tr>
 							<th colspan='2'>Flight Operation Approval #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))	
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_flight_operation_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))		
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_flight_operation_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
                                   @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))	
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_flight_operation_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_flight_operation_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))		
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_flight_operation_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_flight_operation_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))	
 
 									 <a data-toggle="modal" data-target="#orgFlightOperationsApprovalsUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
@@ -2096,29 +2130,29 @@
 						 <tr>
 							<th colspan='2'>Fleet Operation Approval #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_fleet_operation_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_fleet_operation_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
-								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_fleet_operation_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_fleet_operation_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_fleet_operation_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_fleet_operation_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))
 
 									 <a data-toggle="modal" data-target="#orgFleetOperationsApprovalUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -2260,24 +2294,26 @@
 						 <tr>
 							<th colspan='2'>Fleet Maintanance Approval #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_fleet_maintanance_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_fleet_maintanance_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
                                   @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_fleet_maintanance_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_fleet_maintanance_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_fleet_maintanance_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_fleet_maintanance_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))
 
 									 <a data-toggle="modal" data-target="#orgFleetMaintananceApprovalUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
@@ -2423,29 +2459,31 @@
 						 <tr>
 							<th colspan='2'>Airport Authorization #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_airport_auth',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_airport_auth',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
                                   @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_airport_auth',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_airport_auth',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_airport_auth',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_airport_auth',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))
 
 									 <a data-toggle="modal" data-target="#orgAirportAuthUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -2581,29 +2619,28 @@
 						 <tr>
 							<th colspan='2'>Leasing Arrangment #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_leasing_arrangment',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_leasing_arrangment',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
-								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_leasing_arrangment',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_leasing_arrangment',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_leasing_arrangment',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_leasing_arrangment',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
-
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))
 									 <a data-toggle="modal" data-target="#orgLeasingArrangmentUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -2729,29 +2766,27 @@
 						 <tr>
 							<th colspan='2'>Contracted Service #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
-
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_contracted_services',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_contracted_services',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
-								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
-
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_contracted_services',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_contracted_services',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_contracted_services',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_contracted_services',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))
 
 									 <a data-toggle="modal" data-target="#orgContractedServicesUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -2882,29 +2917,28 @@
 						 <tr>
 							<th colspan='2'>AMO Approval #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
-
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_amo_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_amo_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
-								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_amo_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_amo_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_amo_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_amo_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))
 
 									 <a data-toggle="modal" data-target="#orgAmoApprovalsUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -3042,29 +3076,30 @@
 						 <tr>
 							<th colspan='2'>ATO Approval #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_ato_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_ato_approvals',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+                                @endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_ato_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_ato_approvals',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_ato_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_ato_approvals',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
-
-									 <a data-toggle="modal" data-target="#orgAtoApprovalsUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))
+								<a data-toggle="modal" data-target="#orgAtoApprovalsUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -3191,29 +3226,29 @@
 						 <tr>
 							<th colspan='2'>AOC Approval #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_aoc_approvals_areas',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_aoc_approvals_areas',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
-								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_aoc_approvals_areas',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_aoc_approvals_areas',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_aoc_approvals_areas',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_aoc_approvals_areas',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))
 
 									 <a data-toggle="modal" data-target="#orgAocApprovalsAreasUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -3338,29 +3373,29 @@
 						 <tr>
 							<th colspan='2'>AOC Approval Routes #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_aoc_approval_routes',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_aoc_approval_routes',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
-								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_aoc_approval_routes',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_aoc_approval_routes',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_aoc_approval_routes',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_aoc_approval_routes',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))
 
 									 <a data-toggle="modal" data-target="#orgAocApprovalsRoutesUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -3484,29 +3519,29 @@
 						 <tr>
 							<th colspan='2'>AOC Maintenance Arrangement #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_aoc_maintenance_arrangement',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif	
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_aoc_maintenance_arrangement',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
-								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_aoc_maintenance_arrangement',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_aoc_maintenance_arrangement',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_aoc_maintenance_arrangement',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_aoc_maintenance_arrangement',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))
 
 									 <a data-toggle="modal" data-target="#orgAocMaintenanceArrangementUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -3630,29 +3665,32 @@
 						 <tr>
 							<th colspan='2'>AOC Training Arrangement #{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_aoc_training_arrangement',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))
 									
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_aoc_training_arrangement',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
 									
 								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+                                @endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_aoc_training_arrangement',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_aoc_training_arrangement',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_aoc_training_arrangement',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_aoc_training_arrangement',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))
 
 									 <a data-toggle="modal" data-target="#orgAocTrainingArrangementUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
 									</a>
-									@endif
+								@endif
 								</span>
 								
 							</th>
@@ -3768,24 +3806,24 @@
 						 <tr>
 							<th colspan='2'>Approval Simulator#{{++$num}}  
 								 <span class='hidden-print'>
-                                   @if($role=='Chief Admin'||$role=='Director')
+                                @if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'par_delete'))
 
 									{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('org_approval_simulators',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'sof_delete'))	
 									{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('org_approval_simulators',$item->id), array('class' => 'glyphicon glyphicon-trash hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
-								
-                                  @endif
-								  @if($role=='Chief Admin'||$role=='Director'||$role=='Deputy Director'||$role=='Inspector')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'approve'))
 
 									{{ HTML::linkAction('AircraftController@approve', '',array('org_approval_simulators',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									
 									{{ HTML::linkAction('AircraftController@notApprove', '',array('org_approval_simulators',$item->id), array('class' => 'glyphicon glyphicon-ok hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'worning'))	
 									{{ HTML::linkAction('AircraftController@removeWarning', '',array('org_approval_simulators',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:green;float:right;padding:5px;')) }}
 									{{ HTML::linkAction('AircraftController@warning', '',array('org_approval_simulators',$item->id), array('class' => 'glyphicon glyphicon-bell hidden-print','style'=>'color:red;float:right;padding:5px;')) }}
-									@endif
-									@if($role=='Chief Admin'||$role=='Maintenance Eng.')
+								@endif
+								@if('true'==CommonFunction::hasPermission('organization',Auth::user()->emp_id(),'update'))
 
 									 <a data-toggle="modal" data-target="#orgApprovalSimulatorsUpdate{{$item->id}}" href='' style='color:green;float:right;padding:5px;'>
 										<span class="glyphicon glyphicon-pencil hidden-print" aria-hidden="true"></span>
@@ -3879,6 +3917,8 @@
 					
 </div>
 <!--End org_approval_simulators-->
+@include('common')
+@yield('print')
 
 <!-- Including form -->
 @include('organization.entryForm')

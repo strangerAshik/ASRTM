@@ -44,12 +44,10 @@
 											{{Form::label('lead_inspector', 'Lead Inspector', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
 											<select id='lead_inspector' name='lead_inspector' class="demo-default" placeholder="Select Lead Inspector">
-												<option value="">Select Lead Inspector</option>
-												<option value="Ashik">Ashik</option>
-												<option value="Roman">Roman</option>
-												{{--@foreach($roles as $role)
-												<option value="{{$role}}">{{$role}}</option>
-												@endforeach --}}
+												<option value="">Select Lead Inspector</option>									
+												@foreach($inspectors as $inspector)
+												<option value="{{$inspector}}">{{$inspector}}</option>
+												@endforeach 
 											</select>
 											</div>
 											
@@ -61,9 +59,9 @@
 											
 											<select id="team_members"  multiple name="team_members[]" class="demo-default" >
 												<option value="">Select Team Members...</option>
-												<option value="AL">Alabama</option>
-												<option value="AK">Alaska</option>
-												<option value="AZ">Arizona</option>
+												@foreach($inspectors as $inspector)
+												<option value="{{$inspector}}">{{$inspector}}</option>
+												@endforeach 
 											</select>
 											</div>
 											
@@ -74,8 +72,8 @@
 											<div class="col-xs-6">
 											<select id='type_of_inspection' name='type_of_inspection' class="demo-default" placeholder="Select Lead Inspector">
 												<option  value="">Select Lead Inspector</option>
-												<option value="Ashik">Ashik</option>
-												<option value="Roman">Roman</option>
+												<option value="RAMP Inspection">RAMP Inspection</option>
+												<option value="Other">Other</option>
 												{{--@foreach($roles as $role)
 												<option value="{{$role}}">{{$role}}</option>
 												@endforeach --}}
@@ -89,11 +87,9 @@
 											<div class="col-xs-6">
 											<select id="against_organization" name='against_organization' class="demo-default" placeholder="Against Organization">
 												<option value="">Against Organization</option>
-												<option value="Ashik">Ashik</option>
-												<option value="Roman">Roman</option>
-												{{--@foreach($roles as $role)
-												<option value="{{$role}}">{{$role}}</option>
-												@endforeach --}}
+												@foreach($organizations as $organization)
+												<option value="{{$organization}}">{{$organization}}</option>
+												@endforeach 
 											</select>
 											</div>
 											

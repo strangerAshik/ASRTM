@@ -21,6 +21,7 @@ Route::get('/secret', function()
  
     
 });
+Route::get('permission','SettingsController@permission');
 Route::get('roleInit', function()
 {
 //ROll define   
@@ -179,10 +180,16 @@ Route::group(array('before'=>'auth'),function(){
 	Route::get('settings','SettingsController@index');
 	Route::get('logout','SettingsController@logout');
 	Route::get('viewUsers','SettingsController@viewUsers');
+	Route::get('viewModule','SettingsController@viewModule');
+	Route::post('saveModule','SettingsController@saveModule');
+	Route::post('updateModule','SettingsController@updateModule');
 	Route::post('newUser/save','SettingsController@saveUser');
 	Route::post('newUser/update','SettingsController@update');
+	Route::post('newModulePermissionupdate','SettingsController@newModulePermissionupdate');
 	Route::post('user/delete','SettingsController@delete');
 	Route::post('changePassword','SettingsController@changePassword');
+	Route::get('myProfile','SettingsController@myProfile');
+	Route::post('updateMyProfile','SettingsController@updateMyProfile');
 });
 Route::group(array('prefix' => 'aircraft','before'=>'auth'),function(){
 	Route::get('main','AircraftController@main');
@@ -346,6 +353,7 @@ Route::get('libraryPublicView','PublicController@SDpublicView');
 Route::group(array('prefix'=>'organization','before'=>'auth'),function(){
 	Route::get('main','organizationController@main');
 	Route::get('organizationList','organizationController@organizationList');
+	Route::get('myOrganization','organizationController@myOrganization');
 	Route::get('newOrganization','organizationController@newOrganization');
 	Route::get('singleOrganization/{orgNum}','organizationController@singleOrganization');
 	

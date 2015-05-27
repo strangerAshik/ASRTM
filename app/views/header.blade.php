@@ -41,7 +41,13 @@
 							
                                 <li class="user-header bg-light-blue">
                                    
-									{{HTML::Image('img/PersonnelPhoto/'.Employee::profilePic($emp_id),'User image',array('class'=>'img-circle'))}}
+									@if(Auth::user()->photo())
+                                        {{HTML::image('files/userPhoto/'.Auth::user()->photo(),'User',array('class'=>'img-circle'))}}
+                                    @elseif(Employee::profilePic($emp_id))
+                                        {{HTML::image('img/PersonnelPhoto/'.Employee::profilePic($emp_id),'User',array('class'=>'img-circle'))}}
+                                    @else
+                                        {{HTML::image('img/PersonnelPhoto/anonymous.png','User',array('class'=>'img-circle'))}}
+                                    @endif
                                    <!-- <p>
                                         Jane Doe - Web Developer
                                         <small>Member since Nov. 2012</small>

@@ -15,7 +15,7 @@ class OrganizationDatabase extends Migration {
 		Schema::create('org_primary',function($table){
 			$table->increments('id');
 			
-			$table->string('org_number');
+			$table->string('org_number')->unique();
 			$table->string('org_name');
 			$table->string('active');
 

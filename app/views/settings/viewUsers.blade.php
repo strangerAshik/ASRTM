@@ -28,6 +28,7 @@
 												<th>Email</th>
 												<th>Role</th>
 												<th>Organization</th>
+												<th>Update New Module Permission</th>
 												<th>Update</th>
 												<th>Delete</th>
 											</tr>
@@ -42,6 +43,11 @@
 												<td class='text-centre'>{{$user->role}}</td>
 												<td class='text-centre'>{{$user->organization}}</td>
 												
+												<td class='text-centre'>
+													<a data-toggle="modal" data-target="#updatePermission{{$user->id}}" href='' style='color:green;float:right;padding:5px;'>
+                                      			    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                  				   </a>
+												</td>
 												<td class='text-centre'>
 													<a data-toggle="modal" data-target="#updateUser{{$user->id}}" href='' style='color:green;float:right;padding:5px;'>
                                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -62,13 +68,14 @@
                             </div>    
       </div>    
 	<!-- update User-->
+
 @foreach($users as $user)
 <div class="modal fade" id="updateUser{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Add User</h4>
+                <h4 class="modal-title">Update User</h4>
             </div>
 
             <div class="modal-body">
@@ -78,6 +85,7 @@
 					
 					@if (Auth::check())						
 							   {{Form::hidden('id',$user->id)}}							
+							   {{Form::hidden('old_organization',$user->organization)}}							
 					@endif
 					<div class="form-group required">
                                         
@@ -127,6 +135,80 @@
 											</div>
 											
                     </div>
+                    <div style="display:none">
+                   
+                    </div>
+
+                    @if($modules)
+                     @foreach ($modules as $module) 
+                     @if($module->user_id==$user->emp_id)
+                    <div class='form-group'>
+                    {{Form::label('module', $module->module_name, array('class' => 'col-xs-4 control-label'))}}
+                    <div class="col-xs-8">                    
+                   
+                    @if($module->access=='true')       
+                    {{Form::hidden($module->module_name.'_'.'access','false')}}             
+                    {{Form::checkbox($module->module_name.'_'.'access', 'true',true)}}Access</br>
+                    @else
+                    {{Form::hidden($module->module_name.'_'.'access','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'access', 'true',false)}}Access</br>
+					@endif
+                    					
+					@if( $module->entry=='true')
+					{{Form::hidden($module->module_name.'_'.'entry','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'entry', 'true',true)}}Entry</br>
+                    @else
+                    {{Form::hidden($module->module_name.'_'.'entry','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'entry', 'true',false)}}Entry</br>
+					@endif
+
+					@if( $module->update=='true')
+					{{Form::hidden($module->module_name.'_'.'update','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'update', 'true',true)}}Update</br>
+                    @else
+                    {{Form::hidden($module->module_name.'_'.'update','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'update', 'true',false)}}Update</br>
+					@endif
+					
+					@if( $module->approve=='true')
+					{{Form::hidden($module->module_name.'_'.'approve','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'approve', 'true',true)}}Approve</br>
+                    @else
+                    {{Form::hidden($module->module_name.'_'.'approve','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'approve', 'true',false)}}Approve</br>
+					@endif
+
+					@if( $module->worning=='true')
+					{{Form::hidden($module->module_name.'_'.'worning','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'worning', 'true',true)}}Worning</br>
+                    @else
+                    {{Form::hidden($module->module_name.'_'.'worning','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'worning', 'true',false)}}Worning</br>
+					@endif
+
+					@if( $module->sof_delete=='true')
+					{{Form::hidden($module->module_name.'_'.'sof_delete','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'sof_delete', 'true',true)}}S.Delete</br>
+                    @else
+                    {{Form::hidden($module->module_name.'_'.'sof_delete','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'sof_delete', 'true',false)}}S.Delete</br>
+					@endif
+					@if( $module->par_delete=='true')
+					{{Form::hidden($module->module_name.'_'.'par_delete','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'par_delete', 'true',true)}}P.Delete</br>
+                    @else
+                    {{Form::hidden($module->module_name.'_'.'par_delete','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'par_delete', 'true',false)}}P.Delete</br>
+					@endif
+
+                    </div>
+                    </div>
+                    @endif
+                    @endforeach
+                   @else
+
+                   @endif
+
 					<div class="form-group required">
                                         
 											{{Form::label('password', 'New Password', array('class' => 'col-xs-4 control-label'))}}
@@ -161,11 +243,8 @@ $(document).ready(function(){
 $('#organizations{{$user->id}}').selectize({ create: true, sortField: {field: 'text',direction: 'asc'}});
 	
 });
+
 </script>
-@endforeach
-   <!-- End update User-->    
-<!-- delete -->
-@foreach($users as $user)
 <div class="modal fade" id="delete{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -196,8 +275,76 @@ $('#organizations{{$user->id}}').selectize({ create: true, sortField: {field: 't
         </div>
     </div>
 	</div>
+	<div style="display:none">{{$no=0}}</div> 
+<div class="modal fade" id="updatePermission{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Update New Module Permission</h4>
+            </div>
+
+            <div class="modal-body">
+                <!-- The form is placed inside the body of modal -->
+               
+				{{Form::open(array('url' => 'newModulePermissionupdate', 'method' => 'post',  'class'=>'form-horizontal','data-toggle'=>'validator', 'role'=>'form'))}}
+					
+					@if (Auth::check())						
+							   {{Form::hidden('id',$user->emp_id)}}							
+							  
+					@endif
+					
+					<div class="form-group required">
+                                        
+											{{Form::label('modules', 'Module', array('class' => 'col-xs-4 control-label'))}}
+											
+											<div class="col-xs-6">											
+											<select id="module_name{{$user->id}}" name='module_name' class="demo-default" placeholder="Select  Module...">
+												
+												@foreach($moduleNames as $module)
+												<option value="{{$module}}">{{++$no.' '.$module}}</option>
+												@endforeach
+											</select>										
+											</div>
+											
+                    </div>					
+					<div class='form-group'>
+                    {{Form::label('module','Permission', array('class' => 'col-xs-4 control-label'))}}
+                    <div class="col-xs-8">                    
+                    {{Form::hidden('access', 'false')}}
+                    {{Form::checkbox('access', 'true', false)}}Access</br>
+                    {{Form::hidden('entry', 'false')}}
+                    {{Form::checkbox('entry', 'true', false)}}Entry</br>
+                    {{Form::hidden('update', 'false')}}
+                    {{Form::checkbox('update', 'true', false)}}Edit</br>
+                    {{Form::hidden('approve', 'false')}}
+                    {{Form::checkbox('approve', 'true', false)}}Approve</br>
+                    {{Form::hidden('worning', 'false')}}
+                    {{Form::checkbox('worning', 'true', false)}}Worning</br>
+                    {{Form::hidden('sof_delete', 'false')}}
+                    {{Form::checkbox('sof_delete', 'true', false)}}S.D</br>
+                    {{Form::hidden('par_delete', 'false')}}
+                    {{Form::checkbox('par_delete', 'true', false)}}P.D</br>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                       
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
+                       
+                    </div>
+					{{Form::close()}}
+            </div>
+        </div>
+    </div>
+	</div>
+	<script>
+$(document).ready(function(){
+$('module_name{{$user->id}}').selectize();
+});
+</script>
 @endforeach
-   <!-- End delete User-->                        
+   <!-- End update User-->  
+                     
 </section>
 
 @stop

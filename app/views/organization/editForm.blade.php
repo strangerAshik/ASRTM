@@ -12,7 +12,10 @@
             <div class="modal-body"> 
                               
 				{{Form::open(array('url'=>'organization/updateOrgPrimary','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-				  	{{Form::hidden('id',$item->id)}}				  	
+
+				  	{{Form::hidden('id',$item->id)}}			  	
+				  			  	
+
 					<div class="form-group required">
                                            
 											{{Form::label('org_number', 'Organization Number', array('class' => 'col-xs-4 control-label'))}}
@@ -25,7 +28,12 @@
                                            
 											{{Form::label('org_name', 'Organization Name', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
-											{{Form::text('org_name',$item->org_name, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+											<select id="org_name" name='org_name' class="demo-default" placeholder="Select  Operator...">
+												<option value="{{$item->org_name}}">{{$item->org_name}}</option>
+												@foreach($organizations as $organization)
+												<option value="{{$organization}}">{{$organization}}</option>
+												@endforeach
+											</select>
 											</div>
 											
                     </div>
@@ -56,6 +64,11 @@
     </div>
 </div>
 @endforeach
+<script>
+$(document).ready(function(){
+$('#org_name').selectize();	
+});
+</script>
 @stop
 
 
@@ -74,7 +87,8 @@
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgbusinessName','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
 					  
-						{{Form::hidden('id',$item->id)}}
+							{{Form::hidden('id',$item->id)}}			  	
+				  			{{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -161,7 +175,8 @@
 					{{Form::open(array('url'=>'organization/updateOrgCertificate','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
 					 
 						  
-						 {{Form::hidden('id',$item->id)}}
+						 {{Form::hidden('id',$item->id)}}			  	
+				  		 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">                                           
 							{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}									
 	                        <div class="col-xs-6">
@@ -300,7 +315,8 @@
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgBaseLocation','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
 					 
-						  {{Form::hidden('id',$item->id)}}
+						  {{Form::hidden('id',$item->id)}}			  	
+				  		  {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -465,7 +481,8 @@
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgManagementContact','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
 					
-					 {{Form::hidden('id',$item->id)}}						
+					 	{{Form::hidden('id',$item->id)}}			  	
+				  		{{Form::hidden('org_number',$item->org_number)}}						
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -671,7 +688,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgCAAContact','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 
+						 {{Form::hidden('id',$item->id)}}			  	
+					  	 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -877,7 +896,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgExemptionsDivination','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 	 
+					 	 {{Form::hidden('id',$item->id)}}			  	
+					  	 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -1007,7 +1028,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgAircraftListing','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+
+					{{Form::hidden('id',$item->id)}}			  	
+					{{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -1218,7 +1241,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgPolicyMenualApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 
+					 {{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -1343,7 +1368,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgComplexityReview','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 
+					 {{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -1535,7 +1562,10 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgAerialWorkApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					
+					 {{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
+
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -1667,7 +1697,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgNonCertificatedOperation','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 
+					 	 {{Form::hidden('id',$item->id)}}			  	
+					  	 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -1816,7 +1848,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgFlightOperationsApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 	
+					 	{{Form::hidden('id',$item->id)}}			  	
+					  	{{Form::hidden('org_number',$item->org_number)}}	
 						  
 						<div class="form-group required">
 	                                           
@@ -1959,7 +1993,8 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgFleetOperationApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+						 {{Form::hidden('id',$item->id)}}			  	
+					  	 {{Form::hidden('org_number',$item->org_number)}}	
 						  
 						<div class="form-group required">
 	                                           
@@ -2117,7 +2152,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgFleetMaintananceApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 
+					 {{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -2272,7 +2309,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgAirportAuth','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					
+					 {{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -2420,7 +2459,8 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgLeasingArrangment','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					{{Form::hidden('id',$item->id)}}			  	
+					{{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -2554,7 +2594,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgContractedService','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 
+					 {{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -2697,7 +2739,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgAmoApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+
+					 {{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -2858,7 +2902,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgAtoApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 
+					 {{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -3001,7 +3047,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgAocApprovalArea','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					
+					{{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -3145,7 +3193,8 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgAocApprovalRoute','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 {{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -3291,7 +3340,8 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgAocMaintenanceArrangement','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 {{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -3438,7 +3488,8 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgAocTrainingArrangement','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 {{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}
@@ -3567,7 +3618,9 @@
 	            <div class="modal-body">
 	                              
 					{{Form::open(array('url'=>'organization/updateOrgApprovalSimulator','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
-					 {{Form::hidden('id',$item->id)}}
+					 
+					 {{Form::hidden('id',$item->id)}}			  	
+					 {{Form::hidden('org_number',$item->org_number)}}	
 						<div class="form-group required">
 	                                           
 												{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}

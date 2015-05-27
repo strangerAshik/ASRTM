@@ -11,7 +11,7 @@ aircraft landing page,
                       
 						
 						<div class="row">
-						
+						@if('true'==CommonFunction::hasPermission('airaft_list',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
                             <!-- small box -->
 						<div class="small-box bg-aqua " >
@@ -24,6 +24,8 @@ aircraft landing page,
 							</a>
 						</div>
                         </div><!-- ./col -->
+                        @endif
+                        @if('true'==CommonFunction::hasPermission('aircraft_add_new_aircraft',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-green " >
@@ -37,6 +39,8 @@ aircraft landing page,
 							</a>
                             </div>
                         </div><!-- ./col -->
+                        @endif
+                        @if('true'==CommonFunction::hasPermission('aircraft_report',Auth::user()->emp_id(),'access'))
                         <div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-yellow " >
@@ -50,6 +54,7 @@ aircraft landing page,
                                 </a>
                             </div>
                         </div><!-- ./col -->
+                        @endif
                        
                     </div>
 	</div>

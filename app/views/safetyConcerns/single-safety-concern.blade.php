@@ -13,7 +13,9 @@
 				
 	@foreach($safetyConcernDatas as $sc)
 	@include('safetyConcerns.menu')
+	@if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'entry'))
 	@yield('menuSingleSafetyConcern')	
+	@endif
 	@endforeach
 	<div class="row" >
                         <!-- left column -->
@@ -101,7 +103,8 @@
 									Remaining Day('s)
 								</th>
                                 <td>
-								@foreach($safetyConcernDatas as $sc)								{{CommonFunction::dDays($sc->target_date,$sc->target_month,$sc->target_year)}} day('s)
+								@foreach($safetyConcernDatas as $sc)
+								{{CommonFunction::dDays($sc->target_date,$sc->target_month,$sc->target_year)}} days
 								@endforeach
 								</td>
                             </tr>
@@ -139,8 +142,17 @@
                         <tbody>
 						    <tr>                
 								<td colspan='2'>
-								@include('safetyConcerns.options')
-								@yield('scInfos')
+									@if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'par_delete'))
+										{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('sc_safety_concern',$sc->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
+									@endif
+									@if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'sof_delete'))
+										{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('sc_safety_concern',$sc->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
+								    @endif
+									@if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'update'))
+										 <a data-toggle="modal" data-target="#editIssueSafety{{$sc->id}}" href='' style='color:green;float:right;padding:5px;'>
+											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+										</a>
+									@endif
 								</td>
 						    </tr>                
 							<tr>
@@ -202,14 +214,7 @@
                                 <th>Corrective Priority</th>
                                 <td>{{$sc->corrective_priority}}</td>
                             </tr>
-                            <tr>
-                                <th>Revised Date</th>
-                                <td>{{$sc->resived_date.' '.$sc->resived_month.' '.$sc->resived_year}}</td>
-                            </tr>
-                            <tr>
-                                <th>Revised Time</th>
-                                <td>{{$sc->revised_time}}</td>
-                            </tr>
+                            
                             <tr>
                                 <th>Provided To</th>
                                 <td>{{$sc->provided_to}}</td>
@@ -332,15 +337,16 @@
                         <tbody>
 						    <tr>               
 								<th colspan='2' style='color:#72C2E6'>Corrective Action #{{++$num}}
-									 @if($role=='Chief Admin'||$role=='Director')
+
+									 @if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'par_delete'))
 										{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('sc_corrective_action',$action->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 									 @endif
-									 @if($role=='Chief Admin')
+									 @if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'sof_delete'))
 										{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('sc_corrective_action', $action->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 									 @endif
 										
 									
-									 @if($role=='Chief Admin'||$role=='Director')
+									 @if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'update'))
 										 <a data-toggle="modal" data-target="#editCorrectiveIssue{{$action->id}}" href='' style='color:green;float:right;padding:5px;'>
 											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 										</a>
@@ -423,15 +429,13 @@
                         <tbody>
 						    <tr>               
 								<th colspan='2' style='color:#72C2E6'>Approval Info. #{{++$num}}
-									 @if($role=='Chief Admin'||$role=='Director')
+									 @if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'par_delete'))
 										{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('sc_approval_info',$info->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 									 @endif
-									 @if($role=='Chief Admin')
+									 @if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'sof_delete'))
 										{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('sc_approval_info',$info->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 									 @endif
-										
-									
-									 @if($role=='Chief Admin'||$role=='Director')
+									@if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'update'))
 										 <a data-toggle="modal" data-target="#editapprovalInfos{{$info->id}}" href='' style='color:green;float:right;padding:5px;'>
 											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 										</a>
@@ -502,15 +506,13 @@
                         <tbody>
 						    <tr>               
 								<th colspan='2' style='color:#72C2E6'>Legal Opinion #{{++$num}}
-									 @if($role=='Chief Admin'||$role=='Director')
+									 @if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'par_delete'))
 										{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('sc_legal_openion',$opinion->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 									 @endif
-									 @if($role=='Chief Admin')
+									 @if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'sof_delete'))
 										{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('sc_legal_openion',$opinion->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 									 @endif
-										
-									
-									 @if($role=='Chief Admin'||$role=='Director')
+									@if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'update'))
 										 <a data-toggle="modal" data-target="#updatelegalOpenion{{$opinion->id}}" href='' style='color:green;float:right;padding:5px;'>
 											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 										</a>
@@ -575,7 +577,10 @@
 						                 
 							
 							<tr>
-                                <th>Date</th><th>Name</th><th>Designation</th><th>Forwarding Note</th><th>Edit</th><th>P. Delete</th><th>S. Delete</th>
+                                <th>Date</th><th>Name</th><th>Designation</th><th>Forwarding Note</th>
+								@if('true'==CommonFunction::hasPermission('safety_concern',Auth::user()->emp_id(),'update'))
+                                <th>Edit</th><th>P. Delete</th><th>S. Delete</th>
+                                @endif
                                 
                             </tr>
 							
@@ -594,6 +599,7 @@
 								<td>{{$forwarding->forwarding_to}}</td>
 								<td>{{$forwarding->forwarding_to}}</td>
 								<td>{{$forwarding->forwarding_note}}</td>
+								@if('true'==CommonFunction::hasPermission('safety_concern',Auth::user()->emp_id(),'update'))
 								<td>
 								<a data-toggle="modal" data-target="#editForwardings{{$forwarding->id}}" href='' style='color:green;float:right;padding:5px;'>
 											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
@@ -603,6 +609,7 @@
 								<td>
 								{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('sc_forwarding',$forwarding->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 								</td>
+								@endif
                                 
                             </tr>
 							

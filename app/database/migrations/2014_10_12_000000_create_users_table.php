@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration {
 			$table->string('pass_change',10);
 			$table->string('role', 60);
 			$table->string('organization', 60);
+			$table->string('photo');
 			$table->softDeletes();
 			$table->rememberToken();
 			$table->timestamps();

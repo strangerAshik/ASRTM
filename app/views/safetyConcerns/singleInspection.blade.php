@@ -27,15 +27,13 @@
 							@foreach($ins_primary_infos as $info)
                             <tr>               
 								<th colspan='2' style='color:#72C2E6'>
-									 @if($role=='Chief Admin'||$role=='Director')
+									  @if('true'==CommonFunction::hasPermission('sc_new_inspection',Auth::user()->emp_id(),'par_delete'))
 										{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('sc_primary_inspection',$info->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
 									 @endif
-									 @if($role=='Chief Admin')
+									 @if('true'==CommonFunction::hasPermission('sc_new_inspection',Auth::user()->emp_id(),'sof_delete'))
 										{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('sc_primary_inspection', $info->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-									 @endif
-										
-									
-									 @if($role=='Chief Admin'||$role=='Director')
+									 @endif								
+									 @if('true'==CommonFunction::hasPermission('sc_new_inspection',Auth::user()->emp_id(),'update'))
 										 <a data-toggle="modal" data-target="#inspectionInfo{{$info->id}}" href='' style='color:green;float:right;padding:5px;'>
 											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 										</a>
@@ -159,14 +157,7 @@ margin: 9px 10px 0 0;' href="{{URL::to('safety/singlesafetyConcern/'.$sc->safety
                                 <th>Corrective Priority</th>
                                 <td>{{$sc->corrective_priority}}</td>
                             </tr>
-                            <tr>
-                                <th>Revised Date</th>
-                                <td>{{$sc->resived_date.' '.$sc->resived_month.' '.$sc->resived_year}}</td>
-                            </tr>
-                            <tr>
-                                <th>Revised Time</th>
-                                <td>{{$sc->revised_time}}</td>
-                            </tr>
+                            
                             <tr>
                                 <th>Provided To</th>
                                 <td>{{$sc->provided_to}}</td>

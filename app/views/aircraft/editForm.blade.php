@@ -16,6 +16,13 @@
 					{{Form::hidden('id',$primary->id)}}
 					<div class="form-group required">
                                            
+											{{Form::label('assigned_inspector', 'Assigned Inspector ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::select('assigned_inspector', $inspectors,$primary->assigned_inspector,array('class'=>'form-control'))}}
+											</div>
+											
+                    </div><div class="form-group required">
+                                           
 											{{Form::label('serial_number', 'Serial Number', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
 											{{Form::text('serial_number',$primary->serial_number, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
@@ -177,9 +184,7 @@
 </div>
 <script>
 $(document).ready(function(){
-$('#organizations').selectize();
-
-	
+$('#organizations').selectize();	
 });
 </script>
 @stop

@@ -12,7 +12,7 @@ Library Main page,
                       
 						
 						<div class="row">
-						
+					@if('true'==CommonFunction::hasPermission('e_library',Auth::user()->emp_id(),'entry'))	
                         <div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
                             <!-- small box -->
 						<div class="small-box bg-aqua " >
@@ -25,6 +25,7 @@ Library Main page,
 							</a>
 						</div>
                         </div><!-- ./col -->
+                    @endif
 						
                         <div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
                             <!-- small box -->
@@ -39,6 +40,7 @@ Library Main page,
 							</a>
                             </div>
                         </div><!-- ./col -->
+                        @if('true'==CommonFunction::hasPermission('e_library',Auth::user()->emp_id(),'entry'))
                         <div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
                             <!-- small box -->
                             <div class="small-box bg-yellow " >
@@ -52,6 +54,7 @@ Library Main page,
                                 </a>
                             </div>
                         </div><!-- ./col -->
+                        @endif
                        
                     </div>
 	</div>
