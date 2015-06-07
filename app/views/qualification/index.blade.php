@@ -43,7 +43,7 @@
 												<td class='text-centre'>{{$emp->role}}</td>
 												
 												<td class='text-centre'>
-												<a href="comp_view/{{$emp->emp_id}}">view Details</a>
+												<a target="b_link" href="comp_view/{{$emp->emp_id}}">view Details</a>
 												</td>
 												
 											</tr>

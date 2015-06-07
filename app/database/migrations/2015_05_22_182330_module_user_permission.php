@@ -26,6 +26,7 @@ class ModuleUserPermission extends Migration {
 			$table->string('worning');
 			$table->string('sof_delete');
 			$table->string('par_delete');
+			$table->string('report');
 
 			$table->string('row_creator');
 			$table->string('row_updator');

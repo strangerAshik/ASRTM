@@ -9,18 +9,6 @@
                     <h3 class="box-title">Language</h3>
                 </div>
                 <!-- /.box-header -->
-                <!--<div class="box-body">
-					<table class="table table-bordered">
-						 <th >Mother Language</th><td>Bangle</td><th >
-                                    <a href='' style='color:red;float:right;padding:5px;'>
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </a>
-                                    <a href='' style='color:green;float:right;padding:5px;'>
-                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                    </a>
-                                </th>
-					</table>
-					</div>-->
 					<div class="box-body">
 					@foreach($infos as $info)
                     <table class="table table-bordered">
@@ -131,7 +119,7 @@
             </div>
         </div>
     </div>
-	<!-----------------Start Update Pop up----------------------------->
+	<!--Start Update Pop up-->
 	@foreach($infos as $info)
 	 <div class="modal fade" id="{{'lang'.$info->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -198,7 +186,7 @@
     </div>
 	</section>
 	@endforeach
-	<!-----------------End Update Pop up----------------------------->
+	<!---End Update Pop up-->
  <script>
 $(document).ready(function(){
   

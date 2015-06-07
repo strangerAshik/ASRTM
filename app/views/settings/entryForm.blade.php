@@ -115,7 +115,7 @@
                                     
                                             
                     </div>
-                {{$num=0;}}
+                <div style="display: none">  {{$num=0;}}</div>
                     @foreach ($modules as $module) 
                     <div class='form-group'>
                     {{Form::label('module',++$num.' ) '.$module, array('class' => 'col-xs-4 control-label'))}}
@@ -134,6 +134,8 @@
                     {{Form::checkbox($module.'_'.'sof_delete', 'true', false)}}S.D</br>
                     {{Form::hidden($module.'_'.'par_delete', 'false')}}
                     {{Form::checkbox($module.'_'.'par_delete', 'true', false)}}P.D</br>
+                    {{Form::hidden($module.'_'.'report', 'false')}}
+                    {{Form::checkbox($module.'_'.'report', 'true', false)}}Report</br>
                     </div>
                     </div>
                     @endforeach

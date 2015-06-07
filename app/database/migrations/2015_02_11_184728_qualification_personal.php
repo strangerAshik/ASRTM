@@ -15,7 +15,7 @@ class QualificationPersonal extends Migration {
 		Schema::create('qualification_personal',function($table){
 			//personal info
 			$table->increments('id');
-			$table->integer('emp_id');
+			$table->string('emp_id');
 			$table->string('title');
 			$table->string('first_name');
 			$table->string('middle_name');

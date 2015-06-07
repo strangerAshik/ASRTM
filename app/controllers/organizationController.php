@@ -1040,7 +1040,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 	}
 	public function updateOrgFlightOperationsApproval(){
 		$id=Input::get('id');
-		 DB::table('org_flight_operation_Approvals')
+		 DB::table('org_flight_operation_approvals')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),

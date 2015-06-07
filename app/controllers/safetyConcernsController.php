@@ -11,20 +11,22 @@ class SafetyConcernsController extends \BaseController {
 	}
 	public function newSafetyConcern(){
 		
-		$id = Auth::user()->emp_id();
+		//$id = Auth::user()->emp_id();
 	
 		$select=array(''=>'--Select--');
 		$inspectors=DB::table('users')->where('role','=','Inspector')->lists('name','name');
-		$inspectors=array_merge($select,$inspectors);
+		//$inspectors=array_merge($select,$inspectors);
 		
-		return View::make('safetyConcerns/new-safety-issue')
+		$airMSMs=DB::table('aircraft_primary_info')->lists('aircraft_MSN');
+		
+		return View::make('safetyConcerns/newSafetyIssue')
 		->with('PageName','New Safety Concern')
 		->with('dates',parent::dates())
 		->with('toDay',date("d F Y"))
 		->with('months',parent::months())
 		->with('years',parent::years_from())
 		->with('inspectors',$inspectors)
-		
+		->with('airMSMs',$airMSMs)
 		;
 	}
 	public function issuedList(){
@@ -137,6 +139,7 @@ class SafetyConcernsController extends \BaseController {
 		->with('organizations',$organizations)
 		;
 		
+
 	}
 	public function singleInspection($ins_num){
 		$select=array(''=>'--Select--');

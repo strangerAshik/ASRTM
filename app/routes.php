@@ -474,5 +474,70 @@ Route::group(array('prefix'=>'doc','before'=>'auth'),function(){
 	
 	
 });
+Route::group(array('prefix'=>'pel','before'=>'auth'),function(){
+	
+	Route::get('main','PelController@main');
+
+	Route::get('personalInfo','PelController@personalInfo');
+	Route::post('savePersonalInfo','PelController@savePersonalInfo');
+	Route::post('updatePesonalInfo','PelController@updatePesonalInfo');
+	
+	Route::get('accademicQali','PelController@accademicQali');
+	Route::post('saveAccademic','PelController@saveAccademic');
+	Route::post('updateAccademic','PelController@updateAccademic');
+	Route::post('saveAccaThesis','PelController@saveAccaThesis');
+	Route::post('updateAccaThesis','PelController@updateAccaThesis');
+
+	Route::get('languageProficiency','PelController@languageProficiency');
+	Route::post('saveLanguageProfeciency','PelController@saveLanguageProfeciency');
+	Route::post('updateLanguageProfeciency','PelController@updateLanguageProfeciency');
+
+	Route::get('designeeRecords','PelController@designeeRecords');
+	Route::post('saveDesigneeRecord','PelController@saveDesigneeRecord');
+	Route::post('updateDesigneeRecord','PelController@updateDesigneeRecord');
+
+	Route::get('medicalCertificate','PelController@medicalCertificate');
+	Route::post('saveMedicalCertification','PelController@saveMedicalCertification');
+	Route::post('updateMedicalCertification','PelController@updateMedicalCertification');
+
+	Route::get('licenseHistory','PelController@licenseHistory');
+	Route::post('saveLicenseHistory','PelController@saveLicenseHistory');
+	Route::post('updateLicenseHistory','PelController@updateLicenseHistory');
+	
+	Route::get('logbookReview','PelController@logbookReview');
+	Route::post('saveLogbookReview','PelController@saveLogbookReview');
+	Route::post('updateLogbookReview','PelController@updateLogbookReview');
+	
+	Route::get('licenseInfoMain','PelController@licenseInfoMain');
+
+	Route::get('simulator','PelController@simulator');
+	Route::post('saveSimulator','PelController@saveSimulator');
+	Route::post('updateSimulator','PelController@updateSimulator');
+
+	Route::get('general','PelController@general');
+	Route::post('saveGeneral','PelController@saveGeneral');
+	Route::post('updateGeneral','PelController@updateGeneral');
+
+	Route::get('trainingDetails','PelController@trainingDetails');
+	Route::post('saveTrainingDetails','PelController@saveTrainingDetails');
+	Route::post('updateTrainingDetails','PelController@updateTrainingDetails');
+
+	Route::get('ameLogDetails','PelController@ameLogDetails');
+	Route::post('saveAmeDetails','PelController@saveAmeDetails');
+	Route::post('updateAmeDetails','PelController@updateAmeDetails');
+
+	Route::get('flyingDetails','PelController@flyingDetails');
+	Route::post('saveFlyingDetails','PelController@saveFlyingDetails');
+	Route::post('updateFlyingDetails','PelController@updateFlyingDetails');
+
+	Route::get('compView/{emp_id}','PelController@compView');
+	Route::get('pelList','PelController@pelList');
+
+	
+	
+	
+	
+	
+});
 
 

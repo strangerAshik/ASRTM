@@ -1,5 +1,5 @@
 @section('menuNewInspection')
-
+ 
 <p class="text-center">
     <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#inspectionInfo">Add Inspection Primary Info.</button>
 	

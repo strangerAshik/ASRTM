@@ -9,6 +9,11 @@
 	   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 	   <link href="//code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet" type="text/css" />
 	   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+     
+       <!--Time Picker-->
+       {{ HTML::style('css/timepicker/bootstrap-timepicker.min.css') }}
+       <script src="{{URL::asset('js/plugins/timepicker/bootstrap-timepicker.min.js')}}" type="text/javascript"></script>
+        <!--End Time Picker-->
 		  
 	 <!--End On-Line--->
 	   <!--off Line

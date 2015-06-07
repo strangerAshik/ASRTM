@@ -200,6 +200,13 @@
                     {{Form::hidden($module->module_name.'_'.'par_delete','false')}}
                     {{Form::checkbox($module->module_name.'_'.'par_delete', 'true',false)}}P.Delete</br>
 					@endif
+					@if( $module->report=='true')
+					{{Form::hidden($module->module_name.'_'.'report','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'report', 'true',true)}}Report</br>
+                    @else
+                    {{Form::hidden($module->module_name.'_'.'report','false')}}
+                    {{Form::checkbox($module->module_name.'_'.'report', 'true',false)}}Report</br>
+					@endif
 
                     </div>
                     </div>

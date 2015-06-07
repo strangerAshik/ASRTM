@@ -93,7 +93,7 @@
                                 <div class="icon">
                                     <i class="icon ion-key"></i>
                                 </div>
-                                <a class="small-box-footer" href="#">
+                                <a class="small-box-footer" href="{{'pel/main'}}">
                                     More info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>

@@ -535,7 +535,7 @@ class SettingsController extends \BaseController {
 	}
 	public function index()
 	{
-		$modules =DB::table('module_names')->lists('module_name');
+		$modules =DB::table('module_names')->orderBy('module_name')->lists('module_name');
 		return View::make('settings/index')
 		->with('PageName','Settings')
 		->with('dates',parent::dates())
@@ -599,7 +599,7 @@ class SettingsController extends \BaseController {
 	{
 		
 		$users = DB::table('users')->orderBy('emp_id')->get();
-		$modules=DB::table('module_user_permission')->get();	
+		$modules=DB::table('module_user_permission')->orderBy('module_name')->get();	
 		
 		$select['']='Select Module';
 		$moduleNames =DB::table('module_names')->orderBy('module_name')->lists('module_name');
@@ -649,7 +649,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('aircraft_approve'),
 							'worning'=>Input::get('aircraft_worning'),
 							'sof_delete'=>Input::get('aircraft_sof_delete'),
-							'par_delete'=>Input::get('aircraft_par_delete')
+							'par_delete'=>Input::get('aircraft_par_delete'),
+							'report'=>Input::get('aircraft_report')
 						),
 					array(
 							'user_id'=>$userId,
@@ -660,7 +661,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('organization_approve'),
 							'worning'=>Input::get('organization_worning'),
 							'sof_delete'=>Input::get('organization_sof_delete'),
-							'par_delete'=>Input::get('organization_par_delete')
+							'par_delete'=>Input::get('organization_par_delete'),
+							'report'=>Input::get('organization_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -671,7 +673,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('surveillance_inspection_audit_approve'),
 							'worning'=>Input::get('surveillance_inspection_audit_worning'),
 							'sof_delete'=>Input::get('surveillance_inspection_audit_sof_delete'),
-							'par_delete'=>Input::get('surveillance_inspection_audit_par_delete')
+							'par_delete'=>Input::get('surveillance_inspection_audit_par_delete'),
+							'report'=>Input::get('surveillance_inspection_audit_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -682,7 +685,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('safety_concern_approve'),
 							'worning'=>Input::get('safety_concern_worning'),
 							'sof_delete'=>Input::get('safety_concern_sof_delete'),
-							'par_delete'=>Input::get('safety_concern_par_delete')
+							'par_delete'=>Input::get('safety_concern_par_delete'),
+							'report'=>Input::get('safety_concern_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -693,7 +697,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('personnel_licensing_approve'),
 							'worning'=>Input::get('personnel_licensing_worning'),
 							'sof_delete'=>Input::get('personnel_licensing_sof_delete'),
-							'par_delete'=>Input::get('personnel_licensing_par_delete')
+							'par_delete'=>Input::get('personnel_licensing_par_delete'),
+							'report'=>Input::get('personnel_licensing_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -704,7 +709,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('admin_tracking_approve'),
 							'worning'=>Input::get('admin_tracking_worning'),
 							'sof_delete'=>Input::get('admin_tracking_sof_delete'),
-							'par_delete'=>Input::get('admin_tracking_par_delete')
+							'par_delete'=>Input::get('admin_tracking_par_delete'),
+							'report'=>Input::get('admin_tracking_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -715,7 +721,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('document_control_approve'),
 							'worning'=>Input::get('document_control_worning'),
 							'sof_delete'=>Input::get('document_control_sof_delete'),
-							'par_delete'=>Input::get('document_control_par_delete')
+							'par_delete'=>Input::get('document_control_par_delete'),
+							'report'=>Input::get('document_control_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -726,7 +733,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('employee_approve'),
 							'worning'=>Input::get('employee_worning'),
 							'sof_delete'=>Input::get('employee_sof_delete'),
-							'par_delete'=>Input::get('employee_par_delete')
+							'par_delete'=>Input::get('employee_par_delete'),
+							'report'=>Input::get('employee_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -737,7 +745,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('emp_admin_list_approve'),
 							'worning'=>Input::get('emp_admin_list_worning'),
 							'sof_delete'=>Input::get('emp_admin_list_sof_delete'),
-							'par_delete'=>Input::get('emp_admin_list_par_delete')
+							'par_delete'=>Input::get('emp_admin_list_par_delete'),
+							'report'=>Input::get('emp_admin_list_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -748,7 +757,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('ans_aga_aerodrome_inspection_approve'),
 							'worning'=>Input::get('ans_aga_aerodrome_inspection_worning'),
 							'sof_delete'=>Input::get('ans_aga_aerodrome_inspection_sof_delete'),
-							'par_delete'=>Input::get('ans_aga_aerodrome_inspection_par_delete')
+							'par_delete'=>Input::get('ans_aga_aerodrome_inspection_par_delete'),
+							'report'=>Input::get('ans_aga_aerodrome_inspection_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -759,7 +769,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('report_approve'),
 							'worning'=>Input::get('report_worning'),
 							'sof_delete'=>Input::get('report_sof_delete'),
-							'par_delete'=>Input::get('report_par_delete')
+							'par_delete'=>Input::get('report_par_delete'),
+							'report'=>Input::get('report_report')
 						),
 					array(
 							'user_id'=>$userId,
@@ -770,7 +781,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('wild_life_strike_approve'),
 							'worning'=>Input::get('wild_life_strike_worning'),
 							'sof_delete'=>Input::get('wild_life_strike_sof_delete'),
-							'par_delete'=>Input::get('wild_life_strike_par_delete')
+							'par_delete'=>Input::get('wild_life_strike_par_delete'),
+							'report'=>Input::get('wild_life_strike_report')
 						),
 					array(
 							'user_id'=>$userId,
@@ -781,7 +793,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('accident_&_incident_investigation_approve'),
 							'worning'=>Input::get('accident_&_incident_investigation_worning'),
 							'sof_delete'=>Input::get('accident_&_incident_investigation_sof_delete'),
-							'par_delete'=>Input::get('accident_&_incident_investigation_par_delete')
+							'par_delete'=>Input::get('accident_&_incident_investigation_par_delete'),
+							'report'=>Input::get('accident_&_incident_investigation_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -792,7 +805,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('e_library_approve'),
 							'worning'=>Input::get('e_library_worning'),
 							'sof_delete'=>Input::get('e_library_sof_delete'),
-							'par_delete'=>Input::get('e_library_par_delete')
+							'par_delete'=>Input::get('e_library_par_delete'),
+							'report'=>Input::get('e_library_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -803,7 +817,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('volunteer_reporting_approve'),
 							'worning'=>Input::get('volunteer_reporting_worning'),
 							'sof_delete'=>Input::get('volunteer_reporting_sof_delete'),
-							'par_delete'=>Input::get('volunteer_reporting_par_delete')
+							'par_delete'=>Input::get('volunteer_reporting_par_delete'),
+							'report'=>Input::get('volunteer_reporting_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -814,7 +829,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('notifications_approve'),
 							'worning'=>Input::get('notifications_worning'),
 							'sof_delete'=>Input::get('notifications_sof_delete'),
-							'par_delete'=>Input::get('notifications_par_delete')
+							'par_delete'=>Input::get('notifications_par_delete'),
+							'report'=>Input::get('notifications_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -825,7 +841,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('settings_approve'),
 							'worning'=>Input::get('settings_worning'),
 							'sof_delete'=>Input::get('settings_sof_delete'),
-							'par_delete'=>Input::get('settings_par_delete')
+							'par_delete'=>Input::get('settings_par_delete'),
+							'report'=>Input::get('settings_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -836,7 +853,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('add_user_approve'),
 							'worning'=>Input::get('add_user_worning'),
 							'sof_delete'=>Input::get('add_user_sof_delete'),
-							'par_delete'=>Input::get('add_user_par_delete')
+							'par_delete'=>Input::get('add_user_par_delete'),
+							'report'=>Input::get('add_user_report')
 						),
 					array(
 							'user_id'=>$userId,
@@ -847,7 +865,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('all_user_approve'),
 							'worning'=>Input::get('all_user_worning'),
 							'sof_delete'=>Input::get('all_user_sof_delete'),
-							'par_delete'=>Input::get('all_user_par_delete')
+							'par_delete'=>Input::get('all_user_par_delete'),
+							'report'=>Input::get('all_user_report')
 						),
 					array(
 							'user_id'=>$userId,
@@ -858,7 +877,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('module_approve'),
 							'worning'=>Input::get('module_worning'),
 							'sof_delete'=>Input::get('module_sof_delete'),
-							'par_delete'=>Input::get('module_par_delete')
+							'par_delete'=>Input::get('module_par_delete'),
+							'report'=>Input::get('module_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -869,7 +889,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('sc_new_inspection_approve'),
 							'worning'=>Input::get('sc_new_inspection_worning'),
 							'sof_delete'=>Input::get('sc_new_inspection_sof_delete'),
-							'par_delete'=>Input::get('sc_new_inspection_par_delete')
+							'par_delete'=>Input::get('sc_new_inspection_par_delete'),
+							'report'=>Input::get('sc_new_inspection_report'),
 							),
 					array(
 							'user_id'=>$userId,
@@ -880,7 +901,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('sc_issue_safety_concern_approve'),
 							'worning'=>Input::get('sc_issue_safety_concern_worning'),
 							'sof_delete'=>Input::get('sc_issue_safety_concern_sof_delete'),
-							'par_delete'=>Input::get('sc_issue_safety_concern_par_delete')
+							'par_delete'=>Input::get('sc_issue_safety_concern_par_delete'),
+							'report'=>Input::get('sc_issue_safety_concern_report'),
 							),
 					array(
 							'user_id'=>$userId,
@@ -891,7 +913,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('sc_safety_concerns_list_approve'),
 							'worning'=>Input::get('sc_safety_concerns_list_worning'),
 							'sof_delete'=>Input::get('sc_safety_concerns_list_sof_delete'),
-							'par_delete'=>Input::get('sc_safety_concerns_list_par_delete')
+							'par_delete'=>Input::get('sc_safety_concerns_list_par_delete'),
+							'report'=>Input::get('sc_safety_concerns_list_report'),
 						),
 					array(
 							'user_id'=>$userId,
@@ -902,7 +925,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('sc_report_approve'),
 							'worning'=>Input::get('sc_report_worning'),
 							'sof_delete'=>Input::get('sc_report_sof_delete'),
-							'par_delete'=>Input::get('sc_report_par_delete')
+							'par_delete'=>Input::get('sc_report_par_delete'),
+							'report'=>Input::get('sc_report_report'),
 							),
 					array(
 							'user_id'=>$userId,
@@ -913,7 +937,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('aircraft_add_new_aircraft_approve'),
 							'worning'=>Input::get('aircraft_add_new_aircraft_worning'),
 							'sof_delete'=>Input::get('aircraft_add_new_aircraft_sof_delete'),
-							'par_delete'=>Input::get('aircraft_add_new_aircraft_par_delete')
+							'par_delete'=>Input::get('aircraft_add_new_aircraft_par_delete'),
+							'report'=>Input::get('aircraft_add_new_aircraft_report'),
 							),
 					array(
 							'user_id'=>$userId,
@@ -924,7 +949,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('airaft_list_approve'),
 							'worning'=>Input::get('airaft_list_worning'),
 							'sof_delete'=>Input::get('airaft_list_sof_delete'),
-							'par_delete'=>Input::get('airaft_list_par_delete')
+							'par_delete'=>Input::get('airaft_list_par_delete'),
+							'report'=>Input::get('airaft_list_report'),
 							),
 					array(
 							'user_id'=>$userId,
@@ -935,7 +961,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('aircraft_report_approve'),
 							'worning'=>Input::get('aircraft_report_worning'),
 							'sof_delete'=>Input::get('aircraft_report_sof_delete'),
-							'par_delete'=>Input::get('aircraft_report_par_delete')
+							'par_delete'=>Input::get('aircraft_report_par_delete'),
+							'report'=>Input::get('aircraft_report_report'),
 							),
 					array(
 							'user_id'=>$userId,
@@ -946,7 +973,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('airaft_admin_list_approve'),
 							'worning'=>Input::get('airaft_admin_list_worning'),
 							'sof_delete'=>Input::get('airaft_admin_list_sof_delete'),
-							'par_delete'=>Input::get('airaft_admin_list_par_delete')
+							'par_delete'=>Input::get('airaft_admin_list_par_delete'),
+							'report'=>Input::get('airaft_admin_list_report'),
 							),
 					array(
 							'user_id'=>$userId,
@@ -957,7 +985,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('org_add_new_approve'),
 							'worning'=>Input::get('org_add_new_worning'),
 							'sof_delete'=>Input::get('org_add_new_sof_delete'),
-							'par_delete'=>Input::get('org_add_new_par_delete')
+							'par_delete'=>Input::get('org_add_new_par_delete'),
+							'report'=>Input::get('org_add_new_report'),
 							),
 					array(
 							'user_id'=>$userId,
@@ -968,7 +997,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('org_admin_list_approve'),
 							'worning'=>Input::get('org_admin_list_worning'),
 							'sof_delete'=>Input::get('org_admin_list_sof_delete'),
-							'par_delete'=>Input::get('org_admin_list_par_delete')
+							'par_delete'=>Input::get('org_admin_list_par_delete'),
+							'report'=>Input::get('org_admin_list_report'),
 							),
 					array(
 							'user_id'=>$userId,
@@ -979,7 +1009,8 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('org_my_org_approve'),
 							'worning'=>Input::get('org_my_org_worning'),
 							'sof_delete'=>Input::get('org_my_org_sof_delete'),
-							'par_delete'=>Input::get('org_my_org_par_delete')
+							'par_delete'=>Input::get('org_my_org_par_delete'),
+							'report'=>Input::get('org_my_org_report'),
 							),
 					array(
 							'user_id'=>$userId,
@@ -990,8 +1021,84 @@ class SettingsController extends \BaseController {
 							'approve'=>Input::get('org_report_approve'),
 							'worning'=>Input::get('org_report_worning'),
 							'sof_delete'=>Input::get('org_report_sof_delete'),
-							'par_delete'=>Input::get('org_report_par_delete')
+							'par_delete'=>Input::get('org_report_par_delete'),
+							'report'=>Input::get('org_report_report'),
+							
 							),
+					/*Pel Start*/
+					array(
+							'user_id'=>$userId,
+							'module_name'=>'pel_simulator',
+							'access'=>Input::get('pel_simulator_access'),
+							'entry'=>Input::get('pel_simulator_entry'),
+							'update'=>Input::get('pel_simulator_update'),
+							'approve'=>Input::get('pel_simulator_approve'),
+							'worning'=>Input::get('pel_simulator_worning'),
+							'sof_delete'=>Input::get('pel_simulator_sof_delete'),
+							'par_delete'=>Input::get('pel_simulator_par_delete'),
+							'report'=>Input::get('pel_simulator_report'),
+							),
+					array(
+							'user_id'=>$userId,
+							'module_name'=>'pel_list',
+							'access'=>Input::get('pel_list_access'),
+							'entry'=>Input::get('pel_list_entry'),
+							'update'=>Input::get('pel_list_update'),
+							'approve'=>Input::get('pel_list_approve'),
+							'worning'=>Input::get('pel_list_worning'),
+							'sof_delete'=>Input::get('pel_list_sof_delete'),
+							'par_delete'=>Input::get('pel_list_par_delete'),
+							'report'=>Input::get('pel_list_report'),
+							),
+					array(
+							'user_id'=>$userId,
+							'module_name'=>'pel_flying_details',
+							'access'=>Input::get('pel_flying_details_access'),
+							'entry'=>Input::get('pel_flying_details_entry'),
+							'update'=>Input::get('pel_flying_details_update'),
+							'approve'=>Input::get('pel_flying_details_approve'),
+							'worning'=>Input::get('pel_flying_details_worning'),
+							'sof_delete'=>Input::get('pel_flying_details_sof_delete'),
+							'par_delete'=>Input::get('pel_flying_details_par_delete'),
+							'report'=>Input::get('pel_flying_details_report'),
+							),
+					array(
+							'user_id'=>$userId,
+							'module_name'=>'pel_flying_details',
+							'access'=>Input::get('pel_flying_details_access'),
+							'entry'=>Input::get('pel_flying_details_entry'),
+							'update'=>Input::get('pel_flying_details_update'),
+							'approve'=>Input::get('pel_flying_details_approve'),
+							'worning'=>Input::get('pel_flying_details_worning'),
+							'sof_delete'=>Input::get('pel_flying_details_sof_delete'),
+							'par_delete'=>Input::get('pel_flying_details_par_delete'),
+							'report'=>Input::get('pel_flying_details_report'),
+							),
+					array(
+							'user_id'=>$userId,
+							'module_name'=>'pel_atc_log_details',
+							'access'=>Input::get('pel_atc_log_details_access'),
+							'entry'=>Input::get('pel_atc_log_details_entry'),
+							'update'=>Input::get('pel_atc_log_details_update'),
+							'approve'=>Input::get('pel_atc_log_details_approve'),
+							'worning'=>Input::get('pel_atc_log_details_worning'),
+							'sof_delete'=>Input::get('pel_atc_log_details_sof_delete'),
+							'par_delete'=>Input::get('pel_atc_log_details_par_delete'),
+							'report'=>Input::get('pel_atc_log_details_report'),
+							),
+					array(
+							'user_id'=>$userId,
+							'module_name'=>'pel_ame_log_details',
+							'access'=>Input::get('pel_ame_log_details_access'),
+							'entry'=>Input::get('pel_ame_log_details_entry'),
+							'update'=>Input::get('pel_ame_log_details_update'),
+							'approve'=>Input::get('pel_ame_log_details_approve'),
+							'worning'=>Input::get('pel_ame_log_details_worning'),
+							'sof_delete'=>Input::get('pel_ame_log_details_sof_delete'),
+							'par_delete'=>Input::get('pel_ame_log_details_par_delete'),
+							'report'=>Input::get('pel_ame_log_details_report'),
+							),
+					/*PEL End*/
 					
 					
 				));
@@ -1072,7 +1179,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('aircraft_approve'),
 					'worning'=>Input::get('aircraft_worning'),
 					'sof_delete'=>Input::get('aircraft_sof_delete'),
-					'par_delete'=>Input::get('aircraft_par_delete')
+					'par_delete'=>Input::get('aircraft_par_delete'),
+					'report'=>Input::get('aircraft_report'),
 					));	
 			//organization module update
 			DB::table('module_user_permission')
@@ -1085,7 +1193,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('organization_approve'),
 					'worning'=>Input::get('organization_worning'),
 					'sof_delete'=>Input::get('organization_sof_delete'),
-					'par_delete'=>Input::get('organization_par_delete')						
+					'par_delete'=>Input::get('organization_par_delete')	,					
+					'report'=>Input::get('organization_report')	,					
 					));	
 			//surveillance_inspection_audit module update
 			DB::table('module_user_permission')
@@ -1098,7 +1207,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('surveillance_inspection_audit_approve'),
 					'worning'=>Input::get('surveillance_inspection_audit_worning'),
 					'sof_delete'=>Input::get('surveillance_inspection_audit_sof_delete'),
-					'par_delete'=>Input::get('surveillance_inspection_audit_par_delete')
+					'par_delete'=>Input::get('surveillance_inspection_audit_par_delete'),
+					'report'=>Input::get('surveillance_inspection_audit_report'),
 				
 					));	
 			//safety_concern module update
@@ -1112,7 +1222,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('safety_concern_approve'),
 					'worning'=>Input::get('safety_concern_worning'),
 					'sof_delete'=>Input::get('safety_concern_sof_delete'),
-					'par_delete'=>Input::get('safety_concern_par_delete')
+					'par_delete'=>Input::get('safety_concern_par_delete'),
+					'report'=>Input::get('safety_concern_report'),
 					));						
 			//personnel_licensing module update
 			DB::table('module_user_permission')
@@ -1125,7 +1236,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('personnel_licensing_approve'),
 					'worning'=>Input::get('personnel_licensing_worning'),
 					'sof_delete'=>Input::get('personnel_licensing_sof_delete'),
-					'par_delete'=>Input::get('personnel_licensing_par_delete')
+					'par_delete'=>Input::get('personnel_licensing_par_delete'),
+					'report'=>Input::get('personnel_licensing_report'),
 				
 					));			
 			
@@ -1140,7 +1252,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('admin_tracking_approve'),
 					'worning'=>Input::get('admin_tracking_worning'),
 					'sof_delete'=>Input::get('admin_tracking_sof_delete'),
-					'par_delete'=>Input::get('admin_tracking_par_delete')
+					'par_delete'=>Input::get('admin_tracking_par_delete'),
+					'report'=>Input::get('admin_tracking_report'),
 						
 					));			
 			
@@ -1155,7 +1268,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('document_control_approve'),
 					'worning'=>Input::get('document_control_worning'),
 					'sof_delete'=>Input::get('document_control_sof_delete'),
-					'par_delete'=>Input::get('document_control_par_delete')
+					'par_delete'=>Input::get('document_control_par_delete'),
+					'report'=>Input::get('document_control_report'),
 				
 					));			
 			
@@ -1170,7 +1284,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('employee_approve'),
 					'worning'=>Input::get('employee_worning'),
 					'sof_delete'=>Input::get('employee_sof_delete'),
-					'par_delete'=>Input::get('employee_par_delete')
+					'par_delete'=>Input::get('employee_par_delete'),
+					'report'=>Input::get('employee_report'),
 					));			
 			
 			
@@ -1185,7 +1300,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('emp_admin_list_approve'),
 					'worning'=>Input::get('emp_admin_list_worning'),
 					'sof_delete'=>Input::get('emp_admin_list_sof_delete'),
-					'par_delete'=>Input::get('emp_admin_list_par_delete')
+					'par_delete'=>Input::get('emp_admin_list_par_delete'),
+					'report'=>Input::get('emp_admin_list_report'),
 					));			
 			
 			
@@ -1200,7 +1316,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('ans_aga_aerodrome_inspection_approve'),
 					'worning'=>Input::get('ans_aga_aerodrome_inspection_worning'),
 					'sof_delete'=>Input::get('ans_aga_aerodrome_inspection_sof_delete'),
-					'par_delete'=>Input::get('ans_aga_aerodrome_inspection_par_delete')
+					'par_delete'=>Input::get('ans_aga_aerodrome_inspection_par_delete'),
+					'report'=>Input::get('ans_aga_aerodrome_inspection_report'),
 					));			
 			
 			//report module update
@@ -1214,7 +1331,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('report_approve'),
 					'worning'=>Input::get('report_worning'),
 					'sof_delete'=>Input::get('report_sof_delete'),
-					'par_delete'=>Input::get('report_par_delete')
+					'par_delete'=>Input::get('report_par_delete'),
+					'report'=>Input::get('report_report'),
 					));			
 			
 			//wild_life_strike module update
@@ -1228,7 +1346,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('wild_life_strike_approve'),
 					'worning'=>Input::get('wild_life_strike_worning'),
 					'sof_delete'=>Input::get('wild_life_strike_sof_delete'),
-					'par_delete'=>Input::get('wild_life_strike_par_delete')				
+					'par_delete'=>Input::get('wild_life_strike_par_delete')	,			
+					'report'=>Input::get('wild_life_strike_report')	,			
 			));			
 			
 			//accident_&_incident_investigation module update
@@ -1242,7 +1361,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('accident_&_incident_investigation_approve'),
 					'worning'=>Input::get('accident_&_incident_investigation_worning'),
 					'sof_delete'=>Input::get('accident_&_incident_investigation_sof_delete'),
-					'par_delete'=>Input::get('accident_&_incident_investigation_par_delete')
+					'par_delete'=>Input::get('accident_&_incident_investigation_par_delete'),
+					'report'=>Input::get('accident_&_incident_investigation_report'),
 				
 					));
 			
@@ -1257,7 +1377,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('e_library_approve'),
 					'worning'=>Input::get('e_library_worning'),
 					'sof_delete'=>Input::get('e_library_sof_delete'),
-					'par_delete'=>Input::get('e_library_par_delete')
+					'par_delete'=>Input::get('e_library_par_delete'),
+					'report'=>Input::get('e_library_report'),
 					));
 			//notifications module update
 			DB::table('module_user_permission')
@@ -1270,7 +1391,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('notifications_approve'),
 					'worning'=>Input::get('notifications_worning'),
 					'sof_delete'=>Input::get('notifications_sof_delete'),
-					'par_delete'=>Input::get('notifications_par_delete')
+					'par_delete'=>Input::get('notifications_par_delete'),
+					'report'=>Input::get('notifications_report'),
 					));
 			//volunteer_reporting module update
 			DB::table('module_user_permission')
@@ -1283,7 +1405,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('volunteer_reporting_approve'),
 					'worning'=>Input::get('volunteer_reporting_worning'),
 					'sof_delete'=>Input::get('volunteer_reporting_sof_delete'),
-					'par_delete'=>Input::get('volunteer_reporting_par_delete')				
+					'par_delete'=>Input::get('volunteer_reporting_par_delete')	,			
+					'report'=>Input::get('volunteer_reporting_report')	,			
 					));
 			//settings module update
 			DB::table('module_user_permission')
@@ -1297,7 +1420,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('settings_approve'),
 					'worning'=>Input::get('settings_worning'),
 					'sof_delete'=>Input::get('settings_sof_delete'),
-					'par_delete'=>Input::get('settings_par_delete')
+					'par_delete'=>Input::get('settings_par_delete'),
+					'report'=>Input::get('settings_report'),
 					)
 				);
 			//add_user module update
@@ -1312,7 +1436,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('add_user_approve'),
 					'worning'=>Input::get('add_user_worning'),
 					'sof_delete'=>Input::get('add_user_sof_delete'),
-					'par_delete'=>Input::get('add_user_par_delete')
+					'par_delete'=>Input::get('add_user_par_delete'),
+					'report'=>Input::get('add_user_report'),
 					)
 				);
 			//all_user module update
@@ -1327,7 +1452,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('all_user_approve'),
 					'worning'=>Input::get('all_user_worning'),
 					'sof_delete'=>Input::get('all_user_sof_delete'),
-					'par_delete'=>Input::get('all_user_par_delete')
+					'par_delete'=>Input::get('all_user_par_delete'),
+					'report'=>Input::get('all_user_report'),
 					)
 				);
 			//module module update
@@ -1342,7 +1468,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('module_approve'),
 					'worning'=>Input::get('module_worning'),
 					'sof_delete'=>Input::get('module_sof_delete'),
-					'par_delete'=>Input::get('module_par_delete')
+					'par_delete'=>Input::get('module_par_delete'),
+					'report'=>Input::get('module_report'),
 					)
 				);
 
@@ -1358,7 +1485,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('sc_new_inspection_approve'),
 					'worning'=>Input::get('sc_new_inspection_worning'),
 					'sof_delete'=>Input::get('sc_new_inspection_sof_delete'),
-					'par_delete'=>Input::get('sc_new_inspection_par_delete')
+					'par_delete'=>Input::get('sc_new_inspection_par_delete'),
+					'report'=>Input::get('sc_new_inspection_report'),
 					)
 				);
 			
@@ -1374,7 +1502,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('sc_issue_safety_concern_approve'),
 					'worning'=>Input::get('sc_issue_safety_concern_worning'),
 					'sof_delete'=>Input::get('sc_issue_safety_concern_sof_delete'),
-					'par_delete'=>Input::get('sc_issue_safety_concern_par_delete')
+					'par_delete'=>Input::get('sc_issue_safety_concern_par_delete'),
+					'report'=>Input::get('sc_issue_safety_concern_report'),
 					)
 				);
 			//sc_safety_concerns_list module update
@@ -1389,7 +1518,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('sc_safety_concerns_list_approve'),
 					'worning'=>Input::get('sc_safety_concerns_list_worning'),
 					'sof_delete'=>Input::get('sc_safety_concerns_list_sof_delete'),
-					'par_delete'=>Input::get('sc_safety_concerns_list_par_delete')
+					'par_delete'=>Input::get('sc_safety_concerns_list_par_delete'),
+					'report'=>Input::get('sc_safety_concerns_list_report'),
 					)
 				);
 			//sc_report module update
@@ -1404,7 +1534,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('sc_report_approve'),
 					'worning'=>Input::get('sc_report_worning'),
 					'sof_delete'=>Input::get('sc_report_sof_delete'),
-					'par_delete'=>Input::get('sc_report_par_delete')
+					'par_delete'=>Input::get('sc_report_par_delete'),
+					'report'=>Input::get('sc_report_report'),
 					)
 				);
 			//aircraft_add_new_aircraft module update
@@ -1419,7 +1550,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('aircraft_add_new_aircraft_approve'),
 					'worning'=>Input::get('aircraft_add_new_aircraft_worning'),
 					'sof_delete'=>Input::get('aircraft_add_new_aircraft_sof_delete'),
-					'par_delete'=>Input::get('aircraft_add_new_aircraft_par_delete')
+					'par_delete'=>Input::get('aircraft_add_new_aircraft_par_delete'),
+					'report'=>Input::get('aircraft_add_new_aircraft_report')
 					)
 				);
 			//airaft_list module update
@@ -1434,7 +1566,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('airaft_list_approve'),
 					'worning'=>Input::get('airaft_list_worning'),
 					'sof_delete'=>Input::get('airaft_list_sof_delete'),
-					'par_delete'=>Input::get('airaft_list_par_delete')
+					'par_delete'=>Input::get('airaft_list_par_delete'),
+					'report'=>Input::get('airaft_list_report'),
 					)
 				);
 			//aircraft_report module update
@@ -1449,7 +1582,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('aircraft_report_approve'),
 					'worning'=>Input::get('aircraft_report_worning'),
 					'sof_delete'=>Input::get('aircraft_report_sof_delete'),
-					'par_delete'=>Input::get('aircraft_report_par_delete')
+					'par_delete'=>Input::get('aircraft_report_par_delete'),
+					'report'=>Input::get('aircraft_report_report'),
 					)
 				);
 			//airaft_admin_list module update
@@ -1464,7 +1598,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('airaft_admin_list_approve'),
 					'worning'=>Input::get('airaft_admin_list_worning'),
 					'sof_delete'=>Input::get('airaft_admin_list_sof_delete'),
-					'par_delete'=>Input::get('airaft_admin_list_par_delete')
+					'par_delete'=>Input::get('airaft_admin_list_par_delete'),
+					'report'=>Input::get('airaft_admin_list_report'),
 					)
 				);
 			
@@ -1480,7 +1615,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('org_add_new_approve'),
 					'worning'=>Input::get('org_add_new_worning'),
 					'sof_delete'=>Input::get('org_add_new_sof_delete'),
-					'par_delete'=>Input::get('org_add_new_par_delete')
+					'par_delete'=>Input::get('org_add_new_par_delete'),
+					'report'=>Input::get('org_add_new_report'),
 					)
 				);
 			//org_admin_list module update
@@ -1495,7 +1631,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('org_admin_list_approve'),
 					'worning'=>Input::get('org_admin_list_worning'),
 					'sof_delete'=>Input::get('org_admin_list_sof_delete'),
-					'par_delete'=>Input::get('org_admin_list_par_delete')
+					'par_delete'=>Input::get('org_admin_list_par_delete'),
+					'report'=>Input::get('org_admin_list_report'),
 					)
 				);
 			//org_my_org module update
@@ -1510,7 +1647,8 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('org_my_org_approve'),
 					'worning'=>Input::get('org_my_org_worning'),
 					'sof_delete'=>Input::get('org_my_org_sof_delete'),
-					'par_delete'=>Input::get('org_my_org_par_delete')
+					'par_delete'=>Input::get('org_my_org_par_delete'),
+					'report'=>Input::get('org_my_org_report'),
 					)
 				);
 			//org_report module update
@@ -1525,10 +1663,90 @@ class SettingsController extends \BaseController {
 					'approve'=>Input::get('org_report_approve'),
 					'worning'=>Input::get('org_report_worning'),
 					'sof_delete'=>Input::get('org_report_sof_delete'),
-					'par_delete'=>Input::get('org_report_par_delete')
+					'par_delete'=>Input::get('org_report_par_delete'),
+					'report'=>Input::get('org_report_report'),					
 					)
 				);
+			/*Pel Start*/
 			
+			DB::table('module_user_permission')
+			->where('user_id',$empId)
+			->where('module_name','pel_simulator')
+			->update(
+				array(
+					'access'=>Input::get('pel_simulator_access'),
+					'entry'=>Input::get('pel_simulator_entry'),
+					'update'=>Input::get('pel_simulator_update'),
+					'approve'=>Input::get('pel_simulator_approve'),
+					'worning'=>Input::get('pel_simulator_worning'),
+					'sof_delete'=>Input::get('pel_simulator_sof_delete'),
+					'par_delete'=>Input::get('pel_simulator_par_delete'),
+					'report'=>Input::get('pel_simulator_report'),
+					)
+				);
+			DB::table('module_user_permission')
+			->where('user_id',$empId)
+			->where('module_name','pel_list')
+			->update(
+				array(
+					'access'=>Input::get('pel_list_access'),
+					'entry'=>Input::get('pel_list_entry'),
+					'update'=>Input::get('pel_list_update'),
+					'approve'=>Input::get('pel_list_approve'),
+					'worning'=>Input::get('pel_list_worning'),
+					'sof_delete'=>Input::get('pel_list_sof_delete'),
+					'par_delete'=>Input::get('pel_list_par_delete'),
+					'report'=>Input::get('pel_list_report'),
+					)
+				);
+			DB::table('module_user_permission')
+			->where('user_id',$empId)
+			->where('module_name','pel_flying_details')
+			->update(
+				array(
+					'access'=>Input::get('pel_flying_details_access'),
+					'entry'=>Input::get('pel_flying_details_entry'),
+					'update'=>Input::get('pel_flying_details_update'),
+					'approve'=>Input::get('pel_flying_details_approve'),
+					'worning'=>Input::get('pel_flying_details_worning'),
+					'sof_delete'=>Input::get('pel_flying_details_sof_delete'),
+					'par_delete'=>Input::get('pel_flying_details_par_delete'),
+					'report'=>Input::get('pel_flying_details_report'),
+					)
+				);
+			DB::table('module_user_permission')
+			->where('user_id',$empId)
+			->where('module_name','pel_atc_log_details')
+			->update(
+				array(
+					'access'=>Input::get('pel_atc_log_details_access'),
+					'entry'=>Input::get('pel_atc_log_details_entry'),
+					'update'=>Input::get('pel_atc_log_details_update'),
+					'approve'=>Input::get('pel_atc_log_details_approve'),
+					'worning'=>Input::get('pel_atc_log_details_worning'),
+					'sof_delete'=>Input::get('pel_atc_log_details_sof_delete'),
+					'par_delete'=>Input::get('pel_atc_log_details_par_delete'),
+					'report'=>Input::get('pel_atc_log_details_report'),
+					)
+				);
+			DB::table('module_user_permission')
+			->where('user_id',$empId)
+			->where('module_name','pel_ame_log_details')
+			->update(
+				array(
+					'access'=>Input::get('pel_ame_log_details_access'),
+					'entry'=>Input::get('pel_ame_log_details_entry'),
+					'update'=>Input::get('pel_ame_log_details_update'),
+					'approve'=>Input::get('pel_ame_log_details_approve'),
+					'worning'=>Input::get('pel_ame_log_details_worning'),
+					'sof_delete'=>Input::get('pel_ame_log_details_sof_delete'),
+					'par_delete'=>Input::get('pel_ame_log_details_par_delete'),
+					'report'=>Input::get('pel_ame_log_details_report'),
+					)
+				);
+					
+			
+					/*PEL End*/
 					
 			
 			return Redirect::to('viewUsers')->with('message','Updated!');

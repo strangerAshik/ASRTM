@@ -55,15 +55,15 @@
 					
                     <table class="table table-bordered">
                         <tbody>
-                           @if($primary->approve=='0')
-						<tr>
+                         @if($primary->approve=='0')
+						  <tr>
 							<th  colspan='2'> {{AircraftPrimaryInfo::notApproved($primary)}}</th>	
 						 </tr>
 						 @endif
 						 @if($primary->warning=='1')
-						 <tr  >
-						 <th colspan='2'>{{AircraftPrimaryInfo::warning($primary)}}	</th>
-						 </tr>  
+							 <tr  >
+							 <th colspan='2'>{{AircraftPrimaryInfo::warning($primary)}}	</th>
+							 </tr>  
 						 @endif
                             <tr>
                                 <td class="col-md-3">									

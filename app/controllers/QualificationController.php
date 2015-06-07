@@ -407,8 +407,7 @@ class QualificationController extends \BaseController {
 		'standard' => Input::get('standard'),
 		'grade_division' => Input::get('grade_division'),
 		'out_of' => Input::get('out_of',false),		
-		'created_at' => time(),
-		'updated_at' =>time()		
+			
 		));
 			
 		return Redirect::to('qualification/education')->with('message', 'Successfully Saved!!');

@@ -123,7 +123,30 @@
                             </ul>
                         </li>
                         @endif
-                        
+                        @if('true'==CommonFunction::hasPermission('employee',Auth::user()->emp_id(),'access'))
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-user"></i> <span>Personnel Licensing</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{URL::to('pel/main');}}"><i class="fa fa-angle-double-right"></i>Main</a></li>  
+                                @if('true'==CommonFunction::hasPermission('pel_list',Auth::user()->emp_id(),'access'))
+                                <li><a href="{{URL::to('pel/pelList');}}"><i class="fa fa-angle-double-right"></i>PEL List</a></li> 
+                                @endif
+                                <li><a href="{{URL::to('pel/personalInfo');}}"><i class="fa fa-angle-double-right"></i>Personal Info. </a></li>
+                                <li><a href="{{URL::to('pel/accademicQali')}}"><i class="fa fa-angle-double-right"></i>Academic Qualification</a></li>
+                                <li><a href="{{URL::to('pel/languageProficiency')}}"><i class="fa fa-angle-double-right"></i>Language Proficiency</a></li>
+                                <li><a href="{{URL::to('pel/designeeRecords')}}"><i class="fa fa-angle-double-right"></i>Designee Records</a></li>
+                                <li><a href="{{URL::to('pel/medicalCertificate')}}"><i class="fa fa-angle-double-right"></i>Medical Certification</a></li>
+                                <li><a href="{{URL::to('pel/licenseInfoMain')}}"><i class="fa fa-angle-double-right"></i>License Info.</a></li>
+                                <li><a href="{{URL::to('pel/licenseHistory')}}"><i class="fa fa-angle-double-right"></i>License History</a></li>
+                                <li><a href="{{URL::to('pel/logbookReview')}}"><i class="fa fa-angle-double-right"></i>Logbook Review</a></li>
+
+                                <li><a href="{{URL::to('pel/compView/'.Auth::user()->emp_id())}}"><i class="fa fa-angle-double-right"></i>Comprehensive View </a></li>
+                            </ul>
+                        </li>                       
+                        @endif
 
 						@if('true'==CommonFunction::hasPermission('admin_tracking',Auth::user()->emp_id(),'access'))
 						<li class="treeview">

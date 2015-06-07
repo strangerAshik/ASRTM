@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
- <section class="content" style="max-width:760px;margin:0 auto;">
+ <section class="content widthController">
  
  
                     <div class="row">
@@ -8,7 +8,7 @@
 							<div class="box box-primary">
                                 <div class="box-header">
                                     <h3 class="box-title">Academic Qualification  </h3>
-                                </div><!-- /.box-header -->
+                                </div><!--/.box-header -->
                                 <div class="box-body">
 								
 									
@@ -318,7 +318,7 @@
         </div>
     </div>
 	</div>
-	<!--------------Edit option For Academic Qualification-------------------->
+	<!--Edit option For Academic Qualification-->
 	
 	@foreach($accas as $acca)
 	<div class="modal fade" id="{{'acca'.$acca->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -342,9 +342,7 @@
 											{{Form::select('level', array('Null' => '--Select--', 'Post Doctorate or Equivalent' => 'Post Doctorate or Equivalent','Doctorate'=>'Doctorate','Masters or Equivalent'=>'Masters or Equivalent','Bachelors or Equivalent'=>'Bachelors or Equivalent','Diploma'=>'Diploma','H.S.C. or Equivalent'=>'H.S.C. or Equivalent','S.S.C. or Equivalent'=>'S.S.C. or Equivalent','Below S.S.C.'=>'Below S.S.C.'), $acca->level,array('class'=>'form-control','id'=>'category','required'=>''))}}
 											</div>
 											
-                    </div>
-					
-				
+                    </div>	
 					<div class="form-group required">
                                         
 											{{Form::label('', ' Name of degree', array('class' => 'col-xs-4 control-label'))}}
@@ -419,8 +417,8 @@
 	</div>
 	@endforeach
 
-	<!--------------End Edit option For Academic Qualification-------------------->
-	<!--------------Start Edit option For Thesis Qualification-------------------->
+	<!--End Edit option For Academic Qualification-->
+	<!-- Start Edit option For Thesis Qualification -->
 	@foreach($thesis as $thes)
 	<div class="modal fade" id="{{'thesis'.$thes->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
