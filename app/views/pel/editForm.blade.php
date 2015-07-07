@@ -1865,21 +1865,21 @@
 						</div> 
 
 						<div class="form-group ">
-							{{Form::label('off_block', 'Off Block', array('class' => 'control-label col-xs-4'))}}
+							{{Form::label('off_block', 'Off Block(Minute)', array('class' => 'control-label col-xs-4'))}}
 							<div class="col-xs-6">
 							{{Form::text('off_block',$info->off_block, array('class' => 'form-control','placeholder'=>''))}}
 							 </div>
 						</div> 
 
 						<div class="form-group ">
-							{{Form::label('on_block', 'On Block', array('class' => 'control-label col-xs-4'))}}
+							{{Form::label('on_block', 'On Block(Minute)', array('class' => 'control-label col-xs-4'))}}
 							<div class="col-xs-6">
 							{{Form::text('on_block',$info->on_block, array('class' => 'form-control','placeholder'=>''))}}
 							 </div>
 						</div> 
 
 						<div class="form-group ">
-							{{Form::label('flight', 'Flight', array('class' => 'control-label col-xs-4'))}}
+							{{Form::label('flight', 'Flight(Minute)', array('class' => 'control-label col-xs-4'))}}
 							<div class="col-xs-6">
 							{{Form::text('flight',$info->flight, array('class' => 'form-control','placeholder'=>''))}}
 							 </div>

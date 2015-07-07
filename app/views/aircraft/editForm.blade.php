@@ -29,6 +29,21 @@
 											</div>
 											
                     </div>
+
+					<div class="form-group required">
+                                           
+											{{Form::label('state_registration', 'State Of Registration', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											<select id="state_registration" name='state_registration' class="demo-default" placeholder="Select  State Of Registration...">
+												<?php $options=CommonFunction::stateOfReg();?>
+												<option value="{{$primary->state_registration}}">{{$primary->state_registration}}</option>
+												@foreach($options as $option)
+												<option value="{{$option}}">{{$option}}</option>
+												@endforeach
+											</select>
+											</div>
+											
+                    </div>
 					<div class="form-group required">
                                            
 											{{Form::label('registration_no', 'Registration No#', array('class' => 'col-xs-4 control-label'))}}
@@ -168,7 +183,6 @@
 											
                     </div>
 					
-					
 
                   
 					<div class="form-group">
@@ -185,6 +199,8 @@
 <script>
 $(document).ready(function(){
 $('#organizations').selectize();	
+$('#state_registration').selectize({ create: true, sortField: {field: 'text',direction: 'asc'}});	
+
 });
 </script>
 @stop
@@ -202,7 +218,7 @@ $('#organizations').selectize();
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/editTCI','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/editTCI','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 
 					{{Form::hidden('id',$tc->id)}}
 					<div class="form-group required">
@@ -213,12 +229,24 @@ $('#organizations').selectize();
 											</div>
 											
                     </div>
+
 					<div class="form-group ">
                                            
-											{{Form::label('tc_state_of_registration','State Of Registration', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-6">
-											{{Form::text('tc_state_of_registration',$tc->tc_state_of_registration, array('class' => 'form-control','placeholder'=>''))}}
-											</div>
+											{{Form::label('tc_type_approval_date', 'Type Approval Date', array('class' => 'col-xs-4 control-label'))}}
+											
+													<div class="row">
+														<div class="col-xs-2">
+											{{Form::select('tc_type_approval_date', $dates,CommonFunction::date($tc->tc_type_approval_date),array('class'=>'form-control'))}}
+														</div>
+														<div class="col-xs-3">
+														{{Form::select('tc_type_approval_month',$months,CommonFunction::month($tc->tc_type_approval_date),array('class'=>'form-control'))}}
+											
+															
+														</div>
+														<div class="col-xs-2">
+															{{Form::select('tc_type_approval_year',$years,CommonFunction::year($tc->tc_type_approval_date),array('class'=>'form-control'))}}
+														</div>
+													</div>
 											
                     </div>
 					<div class="form-group ">
@@ -236,6 +264,26 @@ $('#organizations').selectize();
 														</div>
 														<div class="col-xs-2">
 															{{Form::select('tc_validation_year',$years,$tc->tc_validation_year,array('class'=>'form-control'))}}
+														</div>
+													</div>
+											
+                    </div>
+
+					<div class="form-group ">
+                                           
+											{{Form::label('tc_type_acceptance_date', 'Type Acceptance Date', array('class' => 'col-xs-4 control-label'))}}
+											
+													<div class="row">
+														<div class="col-xs-2">
+														{{Form::select('tc_type_acceptance_date', $dates,CommonFunction::date($tc->tc_type_acceptance_date),array('class'=>'form-control'))}}
+														</div>
+														<div class="col-xs-3">
+														{{Form::select('tc_type_acceptance_month',$months,CommonFunction::month($tc->tc_type_acceptance_date),array('class'=>'form-control'))}}
+											
+															
+														</div>
+														<div class="col-xs-2">
+															{{Form::select('tc_type_acceptance_year',$years,CommonFunction::year($tc->tc_type_acceptance_date),array('class'=>'form-control'))}}
 														</div>
 													</div>
 											
@@ -282,25 +330,15 @@ $('#organizations').selectize();
 											</div>
 											
                     </div>
+
 					<div class="form-group ">
                                            
-											{{Form::label('tc_SOD_notified', 'SOD Notified ', array('class' => 'col-xs-4 control-label'))}}
-											<div class="row">
-														<div class="col-xs-2">
-														{{Form::select('tc_SOD_notified_date', $dates,$tc->tc_SOD_notified_date,array('class'=>'form-control'))}}
-														</div>
-														<div class="col-xs-3">
-														{{Form::select('tc_SOD_notified_month',$months,$tc->tc_SOD_notified_month,array('class'=>'form-control'))}}
-											
-															
-														</div>
-														<div class="col-xs-2">
-															{{Form::select('tc_SOD_notified_year',$years,$tc->tc_SOD_notified_year,array('class'=>'form-control'))}}
-														</div>
-													</div>
+											{{Form::label('tc_state_of_manufacturing', 'State Of Manufacturing ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('tc_state_of_manufacturing',$tc->tc_state_of_manufacturing, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+											</div>
 											
                     </div>
-					
 					<div class="form-group ">
                                            
 											{{Form::label('tc_power_plant_model', 'Power Plant Model ', array('class' => 'col-xs-4 control-label'))}}
@@ -335,7 +373,63 @@ $('#organizations').selectize();
 											</div>
 											
                     </div>
-					
+
+					<div class="form-group">
+                                           
+											{{Form::label('tcds_no', 'TCDS No', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('tcds_no',$tc->tcds_no, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+											</div>
+											
+                    </div>
+
+					<div class="form-group ">
+                                           
+											{{Form::label('tcds_revision_date', 'TCDS Revision Date', array('class' => 'col-xs-4 control-label'))}}
+											<div class="row">
+														<div class="col-xs-2">
+														{{Form::select('tcds_revision_date', $dates,CommonFunction::date($tc->tcds_revision_date),array('class'=>'form-control'))}}
+														</div>
+														<div class="col-xs-3">
+														{{Form::select('tcds_revision_month',$months,CommonFunction::month($tc->tcds_revision_date),array('class'=>'form-control'))}}
+											
+															
+														</div>
+														<div class="col-xs-2">
+															{{Form::select('tcds_revision_year',$years,CommonFunction::year($tc->tcds_revision_date),array('class'=>'form-control'))}}
+														</div>
+													</div>
+											
+                    </div>
+					<div class="form-group">
+                                           
+											{{Form::label('tcds_revision_no', 'TCDS Revision No', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('tcds_revision_no',$tc->tcds_revision_no, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+											</div>
+											
+                    </div>
+					<div class="form-group">
+                                           
+											{{Form::label('tdcs_link', 'TCDS Link', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('tdcs_link',$tc->tdcs_link, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+											</div>
+											
+                    </div>
+					{{Form::hidden('old_tc_upload',$tc->tc_upload)}}
+					<div class="form-group ">
+                        	{{ Form::label('file', 'Update File: ',array('class'=>'control-label col-xs-4')) }}
+							 <div class="col-xs-6">
+							@if($tc->tc_upload!='Null'){{HTML::link('files/air_tc_upload/'.$tc->tc_upload,'Document',array('target'=>'_blank'))}}
+							@else
+								{{HTML::link('#','No Document Provided')}}
+							@endif
+							 </div>
+							<div class="col-xs-6">
+							  {{ Form::file('tc_upload') }}
+							</div>
+                    </div>
 					
 					
 
@@ -365,7 +459,7 @@ $('#organizations').selectize();
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/editSTC','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/editSTC','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 				
 					{{Form::hidden('id',$stc->id)}}
 					
@@ -379,7 +473,7 @@ $('#organizations').selectize();
                     </div>
 					<div class="form-group ">
                                            
-											{{Form::label('validation_date', 'Validation date', array('class' => 'col-xs-4 control-label'))}}
+											{{Form::label('validation_date', 'Issuance date', array('class' => 'col-xs-4 control-label'))}}
 											
 													<div class="row">
 														<div class="col-xs-2">
@@ -396,45 +490,16 @@ $('#organizations').selectize();
 													</div>
 											
                     </div>
+
 					<div class="form-group ">
                                            
-											{{Form::label('STC_control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-6">
-											{{Form::text('stc_control_number',$stc->stc_control_number, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
-											</div>
-											
-                    </div>
-					
-					<div class="form-group ">
-                                           
-											{{Form::label('afm_revision', 'AFM Revision', array('class' => 'col-xs-4 control-label'))}}
+											{{Form::label('afm_revision', 'AFM Revision Title', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
 											{{Form::text('stc_afm_revision',$stc->stc_afm_revision, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 											</div>
 											
                     </div>
-					<div class="form-group ">
-                                           
-											{{Form::label('stc_state_of_design', 'State Of Design ', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-6">
-											{{Form::text('stc_state_of_design',$stc->stc_state_of_design, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
-											</div>
-											
-                    </div>
-					<div class="form-group ">
-                                           
-											{{Form::label('SOD_notified', 'SOD Notified ', array('class' => 'col-xs-4 control-label'))}}
-											 <div class="col-xs-6">
-										<div class="radio">
-									 
-									  <label> <label> {{ Form::radio('stc_SOD_notified', 'Yes',Input::old('stc_SOD_notified', $stc->stc_SOD_notified == 'Yes'),array()) }} &nbsp  Yes</label>
-									 <label> {{ Form::radio('stc_SOD_notified', 'No',Input::old('stc_SOD_notified', $stc->stc_SOD_notified == 'No'),array()) }} &nbsp  No</label>
-									</div>
-									
-								</div>
-											
-                    </div>
-					
+
 
 					<div class="form-group ">
                                            
@@ -444,7 +509,7 @@ $('#organizations').selectize();
 											</div>
 											
                     </div>
-					
+
 					<div class="form-group ">
                                            
 											{{Form::label('stc_AFM_approval_date', 'AFM Approval Date', array('class' => 'col-xs-4 control-label'))}}
@@ -464,6 +529,27 @@ $('#organizations').selectize();
 													</div>
 											
                     </div>
+
+					<div class="form-group ">
+                                           
+											{{Form::label('stc_state_of_design', 'State Of Design ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('stc_state_of_design',$stc->stc_state_of_design, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+											</div>
+											
+                    </div>
+
+					<div class="form-group ">
+                                           
+											{{Form::label('SOD_notified', 'SOD Notified ', array('class' => 'col-xs-4 control-label'))}}
+											 <div class="col-xs-6">
+										<div class="radio">
+									 
+									 <label> {{ Form::radio('stc_SOD_notified', 'Yes',Input::old('stc_SOD_notified', $stc->stc_SOD_notified == 'Yes'),array()) }} &nbsp  Yes</label>
+									 <label> {{ Form::radio('stc_SOD_notified', 'No',Input::old('stc_SOD_notified', $stc->stc_SOD_notified == 'No'),array()) }} &nbsp  No</label>
+									 </div>
+									 </div>
+					</div>
 					
 					<div class="form-group ">
                                            
@@ -473,6 +559,35 @@ $('#organizations').selectize();
 											</div>
 											
                     </div>
+					<div class="form-group ">
+                                           
+											{{Form::label('STC_control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('stc_control_number',$stc->stc_control_number, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+											</div>
+											
+                    </div>
+                    {{Form::hidden('old_stc_upload',$stc->stc_upload)}}
+                    <div class="form-group ">
+                        	{{ Form::label('file', 'Update File: ',array('class'=>'control-label col-xs-4')) }}
+							 <div class="col-xs-6">
+							@if($stc->stc_upload!='Null'){{HTML::link('files/air_stc_upload/'.$stc->stc_upload,'Document',array('target'=>'_blank'))}}
+							@else
+								{{HTML::link('#','No Document Provided')}}
+							@endif
+							 </div>
+							<div class="col-xs-6">
+							  {{ Form::file('stc_upload') }}
+							</div>
+                    </div>
+					
+									
+								</div>
+											
+                    </div>
+					
+					
+					
 					
 					<div class="form-group">
                        
@@ -500,7 +615,7 @@ $('#organizations').selectize();
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/editExemption','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/editExemption','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 					{{Form::hidden('id',$exemption->id)}}
 					<div class="form-group required">
                                            
@@ -556,6 +671,19 @@ $('#organizations').selectize();
 											
                     </div>
 					
+                    <div class="form-group ">
+                        	{{ Form::label('file', 'Update File: ',array('class'=>'control-label col-xs-4')) }}
+							 <div class="col-xs-6">
+							@if($exemption->exemption_upload!='Null'){{HTML::link('files/air_exemption_upload/'.$exemption->exemption_upload,'Document',array('target'=>'_blank'))}}
+							@else
+								{{HTML::link('#','No Document Provided')}}
+							@endif
+							 </div>
+							<div class="col-xs-6">
+							  {{ Form::file('exemption_upload') }}
+							</div>
+                    </div>
+                    {{Form::hidden('old_exemption_upload',$exemption->exemption_upload)}}
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
@@ -582,7 +710,7 @@ $('#organizations').selectize();
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/editRegistrationInfo','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/editRegistrationInfo','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 
 					{{Form::hidden('id',$registration->id)}}
 					<div class="form-group required">
@@ -708,6 +836,19 @@ $('#organizations').selectize();
 											</div>
 											
                     </div>
+					{{Form::hidden('old_registration_upload',$registration->registration_upload)}}
+                    <div class="form-group ">
+                        	{{ Form::label('file', 'Update File: ',array('class'=>'control-label col-xs-4')) }}
+							 <div class="col-xs-6">
+							@if($registration->registration_upload!='Null'){{HTML::link('files/air_registration_upload/'.$registration->registration_upload,'Document',array('target'=>'_blank'))}}
+							@else
+								{{HTML::link('#','No Document Provided')}}
+							@endif
+							 </div>
+							<div class="col-xs-6">
+							  {{ Form::file('registration_upload') }}
+							</div>
+                    </div>
 					
 					<div class="form-group">
                        
@@ -735,7 +876,7 @@ $('#organizations').selectize();
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/editAC','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/editAC','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 					{{Form::hidden('id',$airworthiness->id)}}
 					<div class="form-group required">
                                            
@@ -895,7 +1036,19 @@ $('#organizations').selectize();
 											</div>
 											
                     </div>
-					
+					 {{Form::hidden('old_ac_upload',$airworthiness->ac_upload)}}
+                    <div class="form-group ">
+                        	{{ Form::label('file', 'Update File: ',array('class'=>'control-label col-xs-4')) }}
+							 <div class="col-xs-6">
+							@if($airworthiness->ac_upload!='Null'){{HTML::link('files/air_ac_upload/'.$airworthiness->ac_upload,'Document',array('target'=>'_blank'))}}
+							@else
+								{{HTML::link('#','No Document Provided')}}
+							@endif
+							 </div>
+							<div class="col-xs-6">
+							  {{ Form::file('ac_upload') }}
+							</div>
+                    </div>
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
@@ -920,7 +1073,7 @@ $('#organizations').selectize();
             </div>
 
             <div class="modal-body">
-                <!-- The form is placed inside the body of modal -->{{Form::open(array('url'=>'aircraft/editApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+                <!-- The form is placed inside the body of modal -->{{Form::open(array('url'=>'aircraft/editApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 					{{Form::hidden('id',$approval->id)}}
 					
 					<div class="form-group required">
@@ -1026,7 +1179,19 @@ $('#organizations').selectize();
 											</div>
 											
                     </div>
-					
+					{{Form::hidden('old_approval_upload',$approval->approval_upload)}}
+                    <div class="form-group ">
+                        	{{ Form::label('file', 'Update File: ',array('class'=>'control-label col-xs-4')) }}
+							 <div class="col-xs-6">
+							@if($approval->approval_upload!='Null'){{HTML::link('files/air_approval_upload/'.$approval->approval_upload,'Document',array('target'=>'_blank'))}}
+							@else
+								{{HTML::link('#','No Document Provided')}}
+							@endif
+							 </div>
+							<div class="col-xs-6">
+							  {{ Form::file('approval_upload') }}
+							</div>
+                    </div>
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
@@ -1053,7 +1218,7 @@ $('#organizations').selectize();
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/editOwner','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/editOwner','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 						{{Form::hidden('id',$owner->id)}}
 					
 					<div class="form-group  required">
@@ -1167,7 +1332,19 @@ $('#organizations').selectize();
 											</div>
 											
                     </div>
-					
+					{{Form::hidden('old_owner_upload',$owner->owner_upload)}}
+                    <div class="form-group ">
+                        	{{ Form::label('file', 'Update File: ',array('class'=>'control-label col-xs-4')) }}
+							 <div class="col-xs-6">
+							@if($owner->owner_upload!='Null'){{HTML::link('files/air_owner_upload/'.$owner->owner_upload,'Document',array('target'=>'_blank'))}}
+							@else
+								{{HTML::link('#','No Document Provided')}}
+							@endif
+							 </div>
+							<div class="col-xs-6">
+							  {{ Form::file('owner_upload') }}
+							</div>
+                    </div>
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
@@ -1194,7 +1371,7 @@ $('#organizations').selectize();
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/editLessee','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/editLessee','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 					{{Form::hidden('id',$lessee->id)}}
 					<div class="form-group  required">
                                            
@@ -1297,7 +1474,19 @@ $('#organizations').selectize();
 											</div>
 											
                     </div>
-					
+                    {{Form::hidden('old_lesse_upload',$lessee->lesse_upload)}}
+					<div class="form-group ">
+                        	{{ Form::label('file', 'Update File: ',array('class'=>'control-label col-xs-4')) }}
+							 <div class="col-xs-6">
+							@if($lessee->lesse_upload!='Null'){{HTML::link('files/air_lesse_upload/'.$lessee->lesse_upload,'Document',array('target'=>'_blank'))}}
+							@else
+								{{HTML::link('#','No Document Provided')}}
+							@endif
+							 </div>
+							<div class="col-xs-6">
+							  {{ Form::file('lesse_upload') }}
+							</div>
+                    </div>
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
@@ -1324,7 +1513,7 @@ $('#organizations').selectize();
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/editInsurer','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/editInsurer','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 					{{Form::hidden('id',$insurer->id)}}
 					<div class="form-group  ">
                                            
@@ -1464,6 +1653,19 @@ $('#organizations').selectize();
 													</div>
 											
                     </div>
+                    {{Form::hidden('old_insurer_upload',$insurer->insurer_upload)}}
+					<div class="form-group ">
+                        	{{ Form::label('file', 'Update File: ',array('class'=>'control-label col-xs-4')) }}
+							 <div class="col-xs-6">
+							@if($insurer->insurer_upload!='Null'){{HTML::link('files/air_insurer_upload/'.$insurer->insurer_upload,'Document',array('target'=>'_blank'))}}
+							@else
+								{{HTML::link('#','No Document Provided')}}
+							@endif
+							 </div>
+							<div class="col-xs-6">
+							  {{ Form::file('insurer_upload') }}
+							</div>
+                    </div>
 					
 					<div class="form-group">
                        
@@ -1491,7 +1693,7 @@ $('#organizations').selectize();
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/editEquipmentReview','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/editEquipmentReview','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 					{{Form::hidden('id',$equipment->id)}}
 					<div class="form-group ">
                                            
@@ -1765,8 +1967,19 @@ $('#organizations').selectize();
 											{{Form::textarea('note',$equipment->note, array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 											</div>											
                     </div>
-					
-					
+					{{Form::hidden('old_equip_upload',$equipment->equip_upload)}}
+					<div class="form-group ">
+                        	{{ Form::label('file', 'Update File: ',array('class'=>'control-label col-xs-4')) }}
+							 <div class="col-xs-6">
+							@if($equipment->equip_upload!='Null'){{HTML::link('files/air_equip_upload/'.$equipment->equip_upload,'Document',array('target'=>'_blank'))}}
+							@else
+								{{HTML::link('#','No Document Provided')}}
+							@endif
+							 </div>
+							<div class="col-xs-6">
+							  {{ Form::file('equip_upload') }}
+							</div>
+                    </div>
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>

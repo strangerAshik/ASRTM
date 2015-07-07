@@ -37,9 +37,11 @@ class SafetyConcernDatabase extends Migration {
 			//$table->foreign('sc_inspection_number')->references('inspection_number')->on('sc_primary_inspection');
 			
 			$table->string('safety_issue_number');
+			$table->string('sia_number');
 			
 			
 			$table->string('safety_issue_title');
+			$table->string('type_of_concern');
 			$table->string('type_of_issue');
 			$table->string('poi_or_responsible');
 			$table->string('issue_finding_status');

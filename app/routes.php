@@ -11,6 +11,9 @@
 |
 */
 //Start Role Initialization 
+Route::get('layoutTable',function(){
+	return View::make('layoutTable');
+});
 Route::get('/secret', function()
 {
     $role = Auth::user()->Role();
@@ -180,6 +183,7 @@ Route::group(array('before'=>'auth'),function(){
 	Route::get('settings','SettingsController@index');
 	Route::get('logout','SettingsController@logout');
 	Route::get('viewUsers','SettingsController@viewUsers');
+	Route::get('singleUser/{emp_id}','SettingsController@singleUser');
 	Route::get('viewModule','SettingsController@viewModule');
 	Route::post('saveModule','SettingsController@saveModule');
 	Route::post('updateModule','SettingsController@updateModule');
@@ -190,6 +194,12 @@ Route::group(array('before'=>'auth'),function(){
 	Route::post('changePassword','SettingsController@changePassword');
 	Route::get('myProfile','SettingsController@myProfile');
 	Route::post('updateMyProfile','SettingsController@updateMyProfile');
+	Route::post('updateUserProfileAdmin','SettingsController@updateUserProfileAdmin');
+	Route::post('updateUserPermission','SettingsController@updateUserPermission');
+	Route::get('dropdownManagement','SettingsController@dropdownManagement');
+	Route::post('saveDropDownOption','SettingsController@saveDropDownOption');
+	Route::get('singleDropdown/{dropdown_names}/{core_module_names}','SettingsController@singleDropdown');
+	Route::post('updateOption','SettingsController@updateOption');
 });
 Route::group(array('prefix' => 'aircraft','before'=>'auth'),function(){
 	Route::get('main','AircraftController@main');
@@ -315,6 +325,7 @@ Route::group(array('prefix'=>'safety','before'=>'auth'),function(){
 	Route::get('followUp/{sc_num}','safetyConcernsController@followUp');
 	//view list
 	Route::get('issuedList','safetyConcernsController@issuedList');
+	Route::get('nonStandardIssuedList','safetyConcernsController@nonStandardIssuedList');
 	
 	//save entry 
 	//Route::post('safetyConcern/save','safetyConcernsController@save');
@@ -436,9 +447,28 @@ Route::group(array('prefix'=>'organization','before'=>'auth'),function(){
 	
 });
 /*Action Entry */
-Route::group(array('prefix'=>'action','before'=>'auth'),function(){
-	Route::get('main','actionController@main');
-	Route::get('newActionEnrty','actionController@newActionEnrty');
+Route::group(array('prefix'=>'surveillance','before'=>'auth'),function(){
+	Route::get('main','SurveillanceController@main');
+	Route::get('newActionEnrty','SurveillanceController@newActionEnrty');
+	Route::get('newProgram','SurveillanceController@newProgram');
+	Route::post('saveProgram','SurveillanceController@saveProgram');
+	//Route::get('programList/{from?}/{to?}','SurveillanceController@programList');
+	Route::get('programList','SurveillanceController@programList');
+	Route::get('programListDateToDate','SurveillanceController@programListDateToDate');
+	Route::get('singleSurveillance','SurveillanceController@singleSurveillance');
+	Route::post('saveAction','SurveillanceController@saveAction');
+	Route::get('surveillanceList','SurveillanceController@surveillanceList');
+	Route::get('actionListDateToDate','SurveillanceController@actionListDateToDate');
+	Route::get('todayTaskList','SurveillanceController@todayTaskList');
+	Route::get('inspectionCheckList','SurveillanceController@inspectionCheckList');
+	Route::get('checkList','SurveillanceController@checkList');
+	Route::get('report','SurveillanceController@report');
+	Route::get('singleProgram/{sia_number}','SurveillanceController@singleProgram');
+	Route::get('correctiveAction/{sia_number}','SurveillanceController@correctiveAction');
+	Route::get('followUp/{sia_number}','SurveillanceController@followUp');
+	Route::post('saveFollowUp','SurveillanceController@saveFollowUp');
+	Route::post('saveCorrectiveAction','SurveillanceController@saveCorrectiveAction');
+	Route::post('saveApprovalForm','SurveillanceController@saveApprovalForm');
 	
 });
 Route::group(array('prefix'=>'admin','before'=>'auth'),function(){
@@ -529,6 +559,8 @@ Route::group(array('prefix'=>'pel','before'=>'auth'),function(){
 	Route::get('flyingDetails','PelController@flyingDetails');
 	Route::post('saveFlyingDetails','PelController@saveFlyingDetails');
 	Route::post('updateFlyingDetails','PelController@updateFlyingDetails');
+
+	Route::get('atcLogDetails','PelController@atcLogDetails');
 
 	Route::get('compView/{emp_id}','PelController@compView');
 	Route::get('pelList','PelController@pelList');

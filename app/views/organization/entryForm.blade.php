@@ -33,6 +33,21 @@
 											</div>
 											
                     </div>
+                    <div class="form-group required">
+                                           
+											{{Form::label('org_type','Organization Type', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											<?php $options=CommonFunction::getOptions('org29_primaryOrg_type');?>
+											<select id="org_type" name='org_type' class="demo-default" placeholder="Select  Type...">
+												<option value="">Select Type...</option>
+												@foreach($options as $option)
+												<option value="{{$option}}">{{$option}}</option>
+												@endforeach
+											</select>
+											</div>
+											
+                    </div>
+                   
 					
 					
 					<div class="form-group required">
@@ -63,6 +78,7 @@
 <script>
 	$(document).ready(function(){
 	$('#org_name').selectize();
+	$('#org_type').selectize();
 	//$('#organizations').selectize({ create: true, sortField: {field: 'text',direction: 'asc'}});
 		
 	});
@@ -101,14 +117,7 @@
 										
 									</div>
 	                    </div>
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('org_business_name', 'Org Business Name', array('class' => 'col-xs-4 control-label'))}}
@@ -186,26 +195,13 @@
 								</div>
 							</div>
 	                    </div>
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
-
+						
 						<div class="form-group required">
 	                                           
 												{{Form::label('org_certificate_type', 'Certificate Type', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org1_certificate_certificate_type');?>
 												<div class="col-xs-6">
-	{{Form::select('org_certificate_type',array(''=>'--Select--','AOC1-Air Operator (Large Aircraft)'=>'AOC1-Air Operator (Large Aircraft)','AOC2-Air Operator (Commuter Aircraft)'=>'AOC2-Air Operator (Commuter Aircraft)','AOC3-Air Operator (Air Taxi Aircraft)'=>'AOC3-Air Operator (Air Taxi Aircraft)',
-	'AMO-Approved Maintenance Organization'=>'AMO-Approved Maintenance Organization',
-	'AEW-Approved Aerial Work Organization'=>'AEW-Approved Aerial Work Organization',
-	'ATO-Approved Training Organization'=>'ATO-Approved Training Organization',
-	'NON-Non-Certificated Organization'=>'NON-Non-Certificated Organization'
-
-	),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('org_certificate_type',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -349,20 +345,14 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 
 						<div class="form-group required">
 	                                           
 												{{Form::label('org_location_type', 'Location Type', array('class' => 'col-xs-4 control-label'))}}
+										<?php $options=CommonFunction::getOptions('org2_baseLocation_location_type');?>
 												<div class="col-xs-6">
-												{{Form::select('org_location_type',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('org_location_type',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -394,9 +384,10 @@
 	                    </div>
 	                    <div class="form-group required">
 	                                           
-												{{Form::label('org_lecation', 'Lecation', array('class' => 'col-xs-4 control-label'))}}
+												{{Form::label('org_lecation', 'Location', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org3_baseLocation_location');?>
 												<div class="col-xs-6">
-												{{Form::select('org_lecation',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('org_lecation',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -516,20 +507,14 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 
 						<div class="form-group required">
 	                                           
 												{{Form::label('management_position', 'Management Position', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org4_managementContact_management_position');?>
 												<div class="col-xs-6">
-												{{Form::select('management_position',array(''=>'--Select--','Accountable Manager-AAM'=>'Accountable Manager-AAM'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('management_position',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -588,8 +573,9 @@
 	                    <div class="form-group ">
 	                                           
 												{{Form::label('location', 'Location', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org5_managmentContanct_location');?>
 												<div class="col-xs-6">
-												{{Form::select('location',array(''=>'--Select--','Accountable Manager-AAM'=>'Accountable Manager-AAM'),'0', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::select('location',$options,'0', array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -725,20 +711,14 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 
 						<div class="form-group required">
 	                                           
 												{{Form::label('inspector_position', 'Inspector Position', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org6_caaContact_inspector_position');?>
 												<div class="col-xs-6">
-												{{Form::select('inspector_position',array(''=>'--Select--','Accountable Manager-AAM'=>'Accountable Manager-AAM'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('inspector_position',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -797,8 +777,10 @@
 	                    <div class="form-group ">
 	                                           
 												{{Form::label('location', 'Location', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org7_caaContanct_location');?>
 												<div class="col-xs-6">
-												{{Form::select('location',array(''=>'--Select--','Accountable Manager-AAM'=>'Accountable Manager-AAM'),'0', array('class' => 'form-control','placeholder'=>''))}}
+
+												{{Form::select('location',$options,'0', array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -953,19 +935,13 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group ">
 	                                           
 												{{Form::label('type', 'Type', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org8_exemptionsDivination_type');?>
 												<div class="col-xs-6">
-												{{Form::select('type',array(''=>'--Select--','Accountable Manager-AAM'=>'Accountable Manager-AAM'),'0', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::select('type',$options,'0', array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -1086,14 +1062,7 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('aircraft_mms', 'Aircraft MMS', array('class' => 'col-xs-4 control-label'))}}
@@ -1280,19 +1249,13 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('type_of_approval', 'Type Of Approval', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org9_menualApproval_type_of_approval');?>
 												<div class="col-xs-6">
-												{{Form::select('type_of_approval',array(''=>'--Select--','Accountable Manager-AAM'=>'Accountable Manager-AAM'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('type_of_approval',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -1385,19 +1348,13 @@
 												
 	                    </div>	
 	                   
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('purpose_of_review', 'Purpose Of Review', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org10_complexityReview_purpose_of_review');?>
 												<div class="col-xs-6">
-												{{Form::select('purpose_of_review',array(''=>'--Select--','Accountable Manager-AAM'=>'Accountable Manager-AAM'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('purpose_of_review',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -1594,19 +1551,14 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group ">
 	                                           
 												{{Form::label('type_of_approval', 'Type Of Approval', array('class' => 'col-xs-4 control-label'))}}
+
+												<?php $options=CommonFunction::getOptions('org11_aerialWorkApproval_type_of_approval');?>
 												<div class="col-xs-6">
-												{{Form::select('type_of_approval',array(''=>'--Select--','Accountable Manager-AAM'=>'Accountable Manager-AAM'),'0', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::select('type_of_approval',$options,'0', array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -1725,19 +1677,13 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group ">
 	                                           
 												{{Form::label('operations_type', 'Operations Type', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org11_nonCertificatedOperation_operations_type');?>
 												<div class="col-xs-6">
-												{{Form::select('operations_type',array(''=>'--Select--','Accountable Manager-AAM'=>'Accountable Manager-AAM'),'0', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::select('operations_type',$options,'0', array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -1872,19 +1818,13 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('type_of_approval', 'Type Of Approval', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org12_flightOperationsApproval_type_of_approval');?>
 												<div class="col-xs-6">
-												{{Form::select('type_of_approval',array(''=>'--Select--','Type Of Approval'=>'Type Of Approval'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('type_of_approval',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2012,19 +1952,13 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group ">
 	                                           
 												{{Form::label('type_of_approval', 'Type Of Approval', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org13_fleetOperationsApproval_type_of_approval');?>
 												<div class="col-xs-6">
-												{{Form::select('type_of_approval',array(''=>'--Select--','Accountable Manager-AAM'=>'Accountable Manager-AAM'),'0', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::select('type_of_approval',$options,'0', array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2167,19 +2101,13 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required ">
 	                                           
 												{{Form::label('type_of_approval', 'Type Of Approval', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org14_fleetMaintananceApproval_type_of_approval');?>
 												<div class="col-xs-6">
-												{{Form::select('type_of_approval',array(''=>'--Select--','Accountable Manager-AAM'=>'Accountable Manager-AAM'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('type_of_approval',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2321,27 +2249,22 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('location', 'Location', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org15_airportAuth_location');?>
 												<div class="col-xs-6">
-												{{Form::select('location',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('location',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
 	                    <div class="form-group required ">
 	                                           
 												{{Form::label('type_of_approval', 'Type Of Approval', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org15_airportAuth_type_of_approval');?>
 												<div class="col-xs-6">
-												{{Form::select('type_of_approval',array(''=>'--Select--','Accountable Manager-AAM'=>'Accountable Manager-AAM'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('type_of_approval',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2468,19 +2391,13 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('arrangement', 'Arrangement', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org16_leasingArrangment_arrangement');?>
 												<div class="col-xs-6">
-												{{Form::select('arrangement',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('arrangement',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2601,19 +2518,13 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('type_of_approval', 'Type Of Approval', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org17_contractedServices_type_of_approval');?>
 												<div class="col-xs-6">
-												{{Form::select('type_of_approval',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('type_of_approval',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2743,19 +2654,13 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('category_rating', 'Category Rating', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org18_amoApproval_category_rating');?>
 												<div class="col-xs-6">
-												{{Form::select('category_rating',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('category_rating',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2763,8 +2668,9 @@
 	                    <div class="form-group ">
 	                                           
 												{{Form::label('class_rating', 'Class Rating', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org19_amoApproval_class_rating');?>
 												<div class="col-xs-6">
-												{{Form::select('class_rating',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::select('class_rating',$options,'0', array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2903,19 +2809,13 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('ato_category', 'ATO Category', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org20_atoApproval_ato_category');?>
 												<div class="col-xs-6">
-												{{Form::select('ato_category',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('ato_category',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -2923,8 +2823,9 @@
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('ato_curriculums', 'ATO Curriculums', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org21_atoApproval_ato_curriculums');?>
 												<div class="col-xs-6">
-												{{Form::select('ato_curriculums',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('ato_curriculums',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3045,19 +2946,13 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('approved_areas_of_operation', 'Approved Areas Of Operation', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org22_aocApprovalArea_approved_areas_of_operation');?>
 												<div class="col-xs-6">
-												{{Form::select('approved_areas_of_operation',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('approved_areas_of_operation',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3189,19 +3084,13 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('origination_city', 'Origination City', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org23_aocApprovalRoute_origination_city');?>
 												<div class="col-xs-6">
-												{{Form::select('origination_city',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('origination_city',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3209,8 +3098,9 @@
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('destination_city', 'Destination City', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org24_aocApprovalRoute_destination_city');?>
 												<div class="col-xs-6">
-												{{Form::select('destination_city',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('destination_city',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3335,28 +3225,24 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
-	                                           
-												{{Form::label('type_of_approval', 'Type Of Approval', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('type_of_approval',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
+                                       
+										{{Form::label('type_of_approval', 'Type Of Approval', array('class' => 'col-xs-4 control-label'))}}
+
+										<?php $options=CommonFunction::getOptions('org25_aocMaintenanceArrangement_type_of_approval');?>
+										<div class="col-xs-6">
+										{{Form::select('type_of_approval',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+										</div>
 												
 	                    </div>
 	                   
 	                    <div class="form-group ">
 	                                           
 												{{Form::label('location', 'Location', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org26_aocMaintenanceArrangement_location');?>
 												<div class="col-xs-6">
-												{{Form::select('location',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>''))}}
+												{{Form::select('location',$options,'0', array('class' => 'form-control','placeholder'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3479,20 +3365,14 @@
 														</div>
 												
 	                    </div>	
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('location', 'Location', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org27_aocTrainingArrangement_location');?>
 												<div class="col-xs-6">
-												{{Form::select('location',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('location',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3589,14 +3469,7 @@
 												
 	                    </div>	
 	                    
-						<div class="form-group required">
-	                                           
-												{{Form::label('org_identifier', 'Org Identifier', array('class' => 'col-xs-4 control-label'))}}
-												<div class="col-xs-6">
-												{{Form::select('org_identifier',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-												</div>
-												
-	                    </div>
+						
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('aircraft_mms', 'Aircraft MMS', array('class' => 'col-xs-4 control-label'))}}
@@ -3617,8 +3490,9 @@
 	                    <div class="form-group required">
 	                                           
 												{{Form::label('location', 'Location', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org28_approvalSimulator_location');?>
 												<div class="col-xs-6">
-												{{Form::select('location',array(''=>'--Select--','1234'=>'1234'),'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
+												{{Form::select('location',$options,'0', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
 												</div>
 												
 	                    </div>
@@ -3671,4 +3545,146 @@
 	</div>
 	@stop	
 	<!-- End Approval Simulators -->
+	<!--AOC Approval General-->	
+	@section('orgAocApprovalGeneral')
+	<div class="modal fade" id="orgAocApprovalGeneral" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                <h4 class="modal-title">AOC Approval General</h4>
+	            </div>
+
+	            <div class="modal-body">
+	                              
+					{{Form::open(array('url'=>'organization/saveAocApprovalGeneral','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+					 
+						   @foreach($orgPrimary as $primary)
+						  	{{Form::hidden('org_number',$primary->org_number)}}
+						  	{{Form::hidden('org_name',$primary->org_name)}}
+						   @endforeach
+						 
+						<div class="form-group required">                                           
+							{{Form::label('active', 'Active', array('class' => 'col-xs-4 control-label'))}}									
+	                        <div class="col-xs-6">
+								<div class="radio">									 
+								  <label> <label> {{ Form::radio('active', 'Yes',true) }} &nbsp  Yes</label>
+								  <label> {{ Form::radio('active', 'No') }} &nbsp  No</label>
+								</div>
+							</div>
+	                    </div>
+						
+						                 	
+	                    <div class="form-group ">
+	                                           
+												{{Form::label('org_effective_date', 'Effective Date', array('class' => 'col-xs-4 control-label'))}}
+												
+														<div class="row">
+															<div class="col-xs-2">
+															{{Form::select('org_effective_date', $dates,'0',array('class'=>'form-control'))}}
+															</div>
+															<div class="col-xs-3">
+															{{Form::select('org_effective_month',$months,'0',array('class'=>'form-control'))}}
+												
+																
+															</div>
+															<div class="col-xs-2">
+																{{Form::select('org_effective_year',$years,'0',array('class'=>'form-control'))}}
+															</div>
+														</div>
+												
+	                    </div>
+
+	                   
+	                    <div class="form-group ">
+	                                           
+												{{Form::label('terminated_date', 'Date Of Terminated', array('class' => 'col-xs-4 control-label'))}}
+												
+														<div class="row">
+															<div class="col-xs-2">
+															{{Form::select('org_terminated_date', $dates,'0',array('class'=>'form-control'))}}
+															</div>
+															<div class="col-xs-3">
+															{{Form::select('org_terminated_month',$months,'0',array('class'=>'form-control'))}}
+												
+																
+															</div>
+															<div class="col-xs-2">
+																{{Form::select('org_terminated_year',$years_from,'0',array('class'=>'form-control'))}}
+															</div>
+														</div>
+												
+	                    </div>
+
+						<div class="form-group ">
+	                                           
+												{{Form::label('org_control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
+												<div class="col-xs-6">
+												{{Form::text('org_control_number','', array('class' => 'form-control','placeholder'=>''))}}
+												</div>
+												
+	                    </div>
+	                    <div class="form-group ">
+	                                           
+												{{Form::label('aircraft_mms', 'Aircraft MMS', array('class' => 'col-xs-4 control-label'))}}
+												<div class="col-xs-6">
+												{{Form::text('aircraft_mms','', array('class' => 'form-control','placeholder'=>''))}}
+												</div>
+												
+	                    </div>	
+
+	                    <div class="form-group ">
+	                                           
+												{{Form::label('limiting_factor', 'Limiting Factor', array('class' => 'col-xs-4 control-label'))}}
+												
+												<div class="col-xs-6">
+												{{Form::textarea('limiting_factor','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												</div>
+												
+	                    </div>	
+
+	                    <div class="form-group ">
+	                                           
+												{{Form::label('operation_type', 'Operation Type', array('class' => 'col-xs-4 control-label'))}}
+												<?php $options=CommonFunction::getOptions('org30_aocApprovalGeneral_operation_type');?>
+												<div class="col-xs-6">
+												{{Form::select('operation_type',$options,'0',array('class'=>'form-control'))}}
+												</div>
+												
+	                    </div>	
+	                    <div class="form-group ">
+	                                           
+												{{Form::label('method', 'Mathod', array('class' => 'col-xs-4 control-label'))}}
+												<div class="col-xs-6">
+												{{Form::textarea('method','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												</div>
+												
+	                    </div>	
+	                    <div class="form-group ">
+	                                           
+												{{Form::label('org_basis_note', 'Basis & Note', array('class' => 'col-xs-4 control-label'))}}
+												<div class="col-xs-6">
+												{{Form::textarea('org_basis_note','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+												</div>
+												
+	                    </div>	
+						
+						<div class="form-group">
+	                       
+	                            <button type="submit"  value='' class="btn btn-primary btn-lg btn-block">Save</button>
+	                       
+	                    </div>
+						
+						{{Form::close()}}
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	@stop
+	<!--End AOC Approval General-->	
+	<!--  Dropdown Add  -->
+	@section('orgDropdownEntry')
+	<!-- Move to Single Drop Down -->
+	@stop	
+	<!-- End Dropdown Add -->
 @endif

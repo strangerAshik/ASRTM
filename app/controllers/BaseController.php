@@ -54,6 +54,7 @@ class BaseController extends Controller {
 	}
    //fill upload 
    protected function fileUpload($field_name,$folder_name){
+   	
 	   if($file = Input::file($field_name)){
 		$destinationPath = 'files/'.$folder_name;
 		//$filename = $file->getClientOriginalName();

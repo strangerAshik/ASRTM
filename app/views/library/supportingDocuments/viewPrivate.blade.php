@@ -74,19 +74,17 @@
 												 <td>
 												Doc Status: {{$info->doc_status}}</br>
 												<span class='pule-left'>
-												 @if($role=='Chief Admin'||$role=='Director')
+												
 										{{ HTML::linkAction('AircraftController@permanentDelete', 'P.D',array('lib_suporting_docs',$info->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-									 @endif
-									 @if($role=='Chief Admin')
-										{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('lib_suporting_docs', $info->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
-									 @endif
-										
 									
-									 @if($role=='Chief Admin'||$role=='Director')
+										{{ HTML::linkAction('AircraftController@softDelete', 'S.D',array('lib_suporting_docs', $info->id), array('class' => 'glyphicon glyphicon-trash','style'=>'color:red;float:right;padding:5px;')) }}
+									
+									
+									
 										 <a data-toggle="modal" data-target="#updateSupportingDocs{{$info->id}}" href='' style='color:green;float:right;padding:5px;'>
 											<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 										</a>
-									 @endif
+									
 									 </span>
 												 </td>
 											 </tr>
@@ -260,7 +258,8 @@
 												@endif
 											</div>
 											
-                    </div><div class="form-group ">
+                    </div>
+                    <div class="form-group ">
                                            
 											{{Form::label('doc_upload', 'Update Document ', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">

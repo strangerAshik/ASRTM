@@ -22,7 +22,7 @@
 							<div class="icon">
 								<i class=" icon ion-social-buffer"></i>
 							</div>
-							<a class="small-box-footer" href="{{'action/main'}}">
+							<a class="small-box-footer" href="{{'surveillance/main'}}">
 								More info <i class="fa fa-arrow-circle-right"></i>
 							</a>
 						</div>

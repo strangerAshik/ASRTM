@@ -78,104 +78,11 @@
                             </div>
 </div>
 </section>
-@foreach($userInfos as $info)
-<div class="modal fade" id="profileView" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Update Profile</h4>
-            </div>
 
-            <div class="modal-body">
-                <!-- The form is placed inside the body of modal -->
-                
-				{{Form::open(array('url'=>'updateMyProfile','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>'true'))}}
-                    {{Form::hidden('id',$info->id)}}               
-                    {{Form::hidden('old_photo',$info->photo)}}                
-				
-					<div class="form-group">
-                                           
-											{{Form::label('emp_id','Employee Id', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-7">
-											{{Form::text('emp_id',$info->emp_id, array('class' => 'form-control','placeholder'=>'','required'=>'','disabled'=>'diabled'))}}
-											</div>
-											
-                    </div>
-					<div class="form-group">
-                                           
-											{{Form::label('name','Full Name', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-7">
-											{{Form::text('name',$info->name, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-											</div>
-											
-                    </div>
-					<div class="form-group">
-                                           
-											{{Form::label('role','Role', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-7">
-											{{Form::text('role',$info->role, array('class' => 'form-control','placeholder'=>'','required'=>'','disabled'=>'diabled'))}}
-											</div>
-											
-                    </div>
-					<div class="form-group">
-                                           
-											{{Form::label('organization','Organization', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-7">
-											{{Form::text('organization',$info->organization, array('class' => 'form-control','placeholder'=>'','required'=>'','disabled'=>'diabled'))}}
-											</div>
-											
-                    </div>
-					<div class="form-group">
-                                           
-											{{Form::label('email','Email', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-7">
-											{{Form::text('email',$info->email, array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-											</div>
-											
-                    </div>
-					
-                                           
-					<div class="form-group ">                                  
-                    
-					 {{ Form::label('image', 'Upload New Photo',array('class'=>'control-label col-xs-4')) }}
-					 <div class="col-xs-6">
-					 {{ HTML::image('files/userPhoto/'.$info->photo, 'User Photo', array('class' => 'img-thumbnail','width'=>'250','height'=>'250')) }}
-					 {{ Form::file('photo') }}
-					 
-					 <p class="help-block">Photo size : 300px250px</p>
-					 </div>
-                	</div>
-											
-                    
-					<!-- <div class="form-group">
-					                                           
-											{{Form::label('new_password','New Password', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-7">
-											{{Form::text('new_password','', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
-											</div>
-											
-					                    </div>
-					<div class="form-group">
-					                                           
-											{{Form::label('conform_password','Conform Password', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-7">
-											{{Form::text('conform_password','', array('class' => 'form-control','placeholder'=>'','required'=>''))}}  
-											</div>
-											
-					                    </div> -->
-					
-
-					<div class="form-group">                       
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>                       
-                    </div>
-					
-					{{Form::close()}}
-            </div>
-        </div>
-    </div>
-</div>
-@endforeach
 @include('settings.entryForm')
 @yield('changePass')
+
+@include('settings.editForm')
+@yield('updateUserInfos')
+
 @stop

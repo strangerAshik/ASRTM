@@ -201,6 +201,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
+		$org->org_type=Input::get('org_type');
 		$org->active=Input::get('active');
 
 		$org->row_creator=Auth::user()->getName();
@@ -224,6 +225,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 
 		'org_number' => Input::get('org_number'),		
 		'org_name' => Input::get('org_name'),
+		'org_type' => Input::get('org_type'),
 		'active' => Input::get('active'),
 
 		'row_updator' =>Auth::user()->getName(),
@@ -242,7 +244,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_business_name=Input::get('org_business_name');
 		
@@ -271,7 +273,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',Input::get('id'))
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 		'org_business_name' => Input::get('org_business_name'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
@@ -295,7 +297,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_certificate_type=Input::get('org_certificate_type');
 
@@ -333,7 +335,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_certificate_type' => Input::get('org_certificate_type'),
 
@@ -369,7 +371,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -404,7 +406,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -439,7 +441,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -479,7 +481,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -518,7 +520,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -558,7 +560,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -597,7 +599,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -631,7 +633,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -663,7 +665,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -701,7 +703,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -736,7 +738,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -769,7 +771,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -799,7 +801,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_review_date=Input::get('org_review_date');
 		$org->org_review_month=Input::get('org_review_month');
@@ -838,7 +840,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_review_date' => Input::get('org_review_date'),
 		'org_review_month' => Input::get('org_review_month'),
@@ -875,7 +877,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -908,7 +910,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -940,7 +942,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -975,7 +977,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -1010,7 +1012,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -1044,7 +1046,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -1077,7 +1079,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -1113,7 +1115,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -1149,7 +1151,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -1185,7 +1187,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -1220,7 +1222,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -1256,7 +1258,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -1290,7 +1292,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -1324,7 +1326,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -1356,7 +1358,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');
+		//$org->org_identifier=Input::get('org_identifier');
 		
 		$org->issued_date=Input::get('issued_date');
 		$org->issued_month=Input::get('issued_month');
@@ -1391,7 +1393,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'issued_date' => Input::get('issued_date'),
 		'issued_month' => Input::get('issued_month'),
@@ -1425,7 +1427,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');		
+		//$org->org_identifier=Input::get('org_identifier');		
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -1461,7 +1463,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -1497,7 +1499,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');		
+		//$org->org_identifier=Input::get('org_identifier');		
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -1531,7 +1533,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -1565,7 +1567,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');		
+		//$org->org_identifier=Input::get('org_identifier');		
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -1600,7 +1602,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -1634,7 +1636,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');		
+		//$org->org_identifier=Input::get('org_identifier');		
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -1669,7 +1671,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -1703,7 +1705,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');		
+		//$org->org_identifier=Input::get('org_identifier');		
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -1737,7 +1739,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -1771,7 +1773,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');		
+		//$org->org_identifier=Input::get('org_identifier');		
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -1804,7 +1806,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),
@@ -1837,7 +1839,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		$org->org_number=Input::get('org_number');
 		$org->org_name=Input::get('org_name');
 		$org->active=Input::get('active');
-		$org->org_identifier=Input::get('org_identifier');		
+		//$org->org_identifier=Input::get('org_identifier');		
 		
 		$org->org_effective_date=Input::get('org_effective_date');
 		$org->org_effective_month=Input::get('org_effective_month');
@@ -1868,7 +1870,7 @@ $org_approval_simulators=DB::table('org_approval_simulators')
 		->where('id',$id)
 		->update(array(
 		'active' => Input::get('active'),
-		'org_identifier' => Input::get('org_identifier'),
+		//'org_identifier' => Input::get('org_identifier'),
 
 		'org_effective_date' => Input::get('org_effective_date'),
 		'org_effective_month' => Input::get('org_effective_month'),

@@ -38,10 +38,33 @@ class SafetyConcernsController extends \BaseController {
                     ->get();*/
 		$displayQuery=DB::table('sc_safety_concern')
         ->leftJoin('sc_primary_inspection', 'sc_safety_concern.inspection_number', '=', 'sc_primary_inspection.inspection_number')
+        ->where('sc_safety_concern.type_of_concern', '=','Safety Concern')
         ->get();
 		//print_r($query);
-		return View::make('safetyConcerns/issuedListl')
+		return View::make('safetyConcerns/issuedList')
 		->with('PageName','Safety Concerns List')
+		->with('sl','0')
+		->with('dates',parent::dates())
+		->with('toDay',date("d F Y"))
+		->with('months',parent::months())
+		->with('year',parent::years_from())
+		->with('infos',$displayQuery)
+		->with('personnel',parent::getPersonnelInfo());
+	}
+	public function nonStandardIssuedList(){
+		
+		$id = Auth::user()->emp_id();
+		//query for getting list sorted by Corrective Status
+		/*$displayQuery=DB::table('sc_safety_concern')
+					->orderBy('id', 'desc')
+                    ->get();*/
+		$displayQuery=DB::table('sc_safety_concern')
+        ->leftJoin('sc_primary_inspection', 'sc_safety_concern.inspection_number', '=', 'sc_primary_inspection.inspection_number')
+        ->where('sc_safety_concern.type_of_concern', '=','Non-Standard Issue')
+        ->get();
+		//print_r($query);
+		return View::make('safetyConcerns/nonStandardIssuedList')
+		->with('PageName','Non Standard Issued List')
 		->with('sl','0')
 		->with('dates',parent::dates())
 		->with('toDay',date("d F Y"))
@@ -130,7 +153,7 @@ class SafetyConcernsController extends \BaseController {
 		$organizations=array_merge($select,$organizations);
 
 		return View::make('safetyConcerns.new-inspection')
-		->with('PageName','Issue Inspection')
+		->with('PageName','New Inspection')
 		->with('dates',parent::dates())
 		->with('toDay',date("d F Y"))
 		->with('months',parent::months())
@@ -146,7 +169,7 @@ class SafetyConcernsController extends \BaseController {
 
 		$inspectors=DB::table('users')->where('role','=','Inspector')->lists('name','name');
 		
-
+		$organizations=DB::table('users')->orderBy('organization')->lists('organization','organization');
 		$airMSMs=DB::table('aircraft_primary_info')->lists('aircraft_MSN');
 		
 
@@ -167,6 +190,7 @@ class SafetyConcernsController extends \BaseController {
 		->with('ins_primary_infos',$ins_primary_infos)
 		->with('inspectors',$inspectors)
 		->with('airMSMs',$airMSMs)
+		->with('organizations',$organizations)
 		;
 		
 	}
@@ -234,12 +258,20 @@ class SafetyConcernsController extends \BaseController {
 	
 	}
 	public function savePrimaryInspection(){
+		/*Multiple Selection*/
+		$team_members =Input::get('team_members');
+		$team_members= serialize($team_members);
+		/*End Multiple Selection*/
+		
+
 		$sc=new SCPrimaryInspection;		
 		
 		$sc->inspection_number=Input::get('inspection_number');
 		$sc->inspection_title=Input::get('inspection_title');
 		$sc->lead_inspector=Input::get('lead_inspector');
-		//$sc->team_members=Input::get('team_members');
+		
+		$sc->team_members=$team_members;
+		
 		$sc->type_of_inspection=Input::get('type_of_inspection');
 		$sc->against_organization=Input::get('against_organization');
 		
@@ -256,12 +288,17 @@ class SafetyConcernsController extends \BaseController {
 	}
 	public function updatePrimaryInspection(){
 		$id= Input::get('id');
+		/*Multiple Selection*/
+		$team_members =Input::get('team_members');
+		$team_members= serialize($team_members);
+		/*End Multiple Selection*/
+
 			$update=DB::table('sc_primary_inspection')
             ->where('id','=',$id)
             ->update(array(
 				'inspection_title' => Input::get('inspection_title'),
 				'lead_inspector' => Input::get('lead_inspector'),
-				//'team_members' => Input::get('team_members'),
+				'team_members' =>$team_members,
 				'type_of_inspection' => Input::get('type_of_inspection'),
 				'against_organization' => Input::get('against_organization'),
 				
@@ -281,8 +318,10 @@ class SafetyConcernsController extends \BaseController {
 		$sc->inspection_number=Input::get('inspection_number');
 		
 		$sc->safety_issue_number=Input::get('safety_issue_number');
+		$sc->sia_number=Input::get('sia_number');
 		
 		$sc->safety_issue_title=Input::get('safety_issue_title');
+		$sc->type_of_concern=Input::get('type_of_concern');
 		$sc->type_of_issue=Input::get('type_of_issue');
 		$sc->poi_or_responsible=Input::get('poi_or_responsible');
 		$sc->issue_finding_status=Input::get('issue_finding_status');
@@ -349,6 +388,8 @@ class SafetyConcernsController extends \BaseController {
             ->where('id','=',$id)
             ->update(array(
 				'safety_issue_title' => Input::get('safety_issue_title'),
+				'type_of_concern' => Input::get('type_of_concern'),
+				'sia_number' => Input::get('sia_number'),
 				'type_of_issue' => Input::get('type_of_issue'),
 				'poi_or_responsible' => Input::get('poi_or_responsible'),
 				'issue_finding_status' => Input::get('issue_finding_status'),

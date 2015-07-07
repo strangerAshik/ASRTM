@@ -1090,5 +1090,15 @@ public function compView($empId){
 			;
 }
 
+public function atcLogDetails(){
+	return View::make('pel.atcLogDetails')
+			->with('PageName','ATC Log Details')
+			->with('dates',parent::dates())
+			->with('months',parent::months())
+			->with('years',parent::years())
+			->with('atcLogs','')			
+			;
+}
+
 
 }

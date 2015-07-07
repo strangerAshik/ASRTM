@@ -16,7 +16,7 @@
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/saveTCI','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/saveTCI','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 
 					{{Form::hidden('aircraft_MM',$primary->aircraft_MM)}}
 					{{Form::hidden('aircraft_MSN',$primary->aircraft_MSN)}}
@@ -30,10 +30,21 @@
                     </div>
 					<div class="form-group ">
                                            
-											{{Form::label('tc_state_of_registration','State Of Registration', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-6">
-											{{Form::text('tc_state_of_registration','', array('class' => 'form-control','placeholder'=>''))}}
-											</div>
+											{{Form::label('tc_type_approval_date', 'Type Approval Date', array('class' => 'col-xs-4 control-label'))}}
+											
+													<div class="row">
+														<div class="col-xs-2">
+														{{Form::select('tc_type_approval_date', $dates,'0',array('class'=>'form-control'))}}
+														</div>
+														<div class="col-xs-3">
+														{{Form::select('tc_type_approval_month',$months,'0',array('class'=>'form-control'))}}
+											
+															
+														</div>
+														<div class="col-xs-2">
+															{{Form::select('tc_type_approval_year',$years,'0',array('class'=>'form-control'))}}
+														</div>
+													</div>
 											
                     </div>
 					<div class="form-group ">
@@ -51,6 +62,26 @@
 														</div>
 														<div class="col-xs-2">
 															{{Form::select('tc_validation_year',$years,'0',array('class'=>'form-control'))}}
+														</div>
+													</div>
+											
+                    </div>
+
+					<div class="form-group ">
+                                           
+											{{Form::label('tc_type_acceptance_date', 'Type Acceptance Date', array('class' => 'col-xs-4 control-label'))}}
+											
+													<div class="row">
+														<div class="col-xs-2">
+														{{Form::select('tc_type_acceptance_date', $dates,'0',array('class'=>'form-control'))}}
+														</div>
+														<div class="col-xs-3">
+														{{Form::select('tc_type_acceptance_month',$months,'0',array('class'=>'form-control'))}}
+											
+															
+														</div>
+														<div class="col-xs-2">
+															{{Form::select('tc_type_acceptance_year',$years,'0',array('class'=>'form-control'))}}
 														</div>
 													</div>
 											
@@ -99,22 +130,13 @@
                     </div>
 					<div class="form-group ">
                                            
-											{{Form::label('tc_SOD_notified', 'SOD Notified ', array('class' => 'col-xs-4 control-label'))}}
-											<div class="row">
-														<div class="col-xs-2">
-														{{Form::select('tc_SOD_notified_date', $dates,'0',array('class'=>'form-control'))}}
-														</div>
-														<div class="col-xs-3">
-														{{Form::select('tc_SOD_notified_month',$months,'0',array('class'=>'form-control'))}}
-											
-															
-														</div>
-														<div class="col-xs-2">
-															{{Form::select('tc_SOD_notified_year',$years,'0',array('class'=>'form-control'))}}
-														</div>
-													</div>
+											{{Form::label('tc_state_of_manufacturing', 'State Of Manufacturing ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('tc_state_of_manufacturing','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+											</div>
 											
                     </div>
+			
 					
 					<div class="form-group ">
                                            
@@ -150,9 +172,60 @@
 											</div>
 											
                     </div>
+					<div class="form-group">
+                                           
+											{{Form::label('tcds_no', 'TCDS No', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('tcds_no','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+											</div>
+											
+                    </div>
+
+					<div class="form-group ">
+                                           
+											{{Form::label('tcds_revision_date', 'TCDS Revision Date', array('class' => 'col-xs-4 control-label'))}}
+											<div class="row">
+														<div class="col-xs-2">
+														{{Form::select('tcds_revision_date', $dates,'0',array('class'=>'form-control'))}}
+														</div>
+														<div class="col-xs-3">
+														{{Form::select('tcds_revision_month',$months,'0',array('class'=>'form-control'))}}
+											
+															
+														</div>
+														<div class="col-xs-2">
+															{{Form::select('tcds_revision_year',$years,'0',array('class'=>'form-control'))}}
+														</div>
+													</div>
+											
+                    </div>
+					<div class="form-group">
+                                           
+											{{Form::label('tcds_revision_no', 'TCDS Revision No', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('tcds_revision_no','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+											</div>
+											
+                    </div>
+					<div class="form-group">
+                                           
+											{{Form::label('tdcs_link', 'TCDS Link', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('tdcs_link','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+											</div>
+											
+                    </div>
 					
 					
 					
+					<div class="form-group ">
+                                           
+											{{Form::label('tc_upload', 'Upload Document ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::file('tc_upload')}}
+											</div>
+											
+                    </div>
 
 					<div class="form-group">
                        
@@ -178,7 +251,7 @@
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/saveSTC','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/saveSTC','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 				
 					{{Form::hidden('aircraft_MM',$primary->aircraft_MM)}}
 					{{Form::hidden('aircraft_MSN',$primary->aircraft_MSN)}}
@@ -193,7 +266,7 @@
                     </div>
 					<div class="form-group ">
                                            
-											{{Form::label('validation_date', 'Validation date', array('class' => 'col-xs-4 control-label'))}}
+											{{Form::label('validation_date', 'Issuance date', array('class' => 'col-xs-4 control-label'))}}
 											
 													<div class="row">
 														<div class="col-xs-2">
@@ -210,47 +283,16 @@
 													</div>
 											
                     </div>
+
 					<div class="form-group ">
                                            
-											{{Form::label('STC_control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-6">
-											{{Form::text('stc_control_number','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
-											</div>
-											
-                    </div>
-					
-					<div class="form-group ">
-                                           
-											{{Form::label('afm_revision', 'AFM Revision', array('class' => 'col-xs-4 control-label'))}}
+											{{Form::label('afm_revision', 'AFM Revision Title', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
 											{{Form::text('stc_afm_revision','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
 											</div>
 											
                     </div>
-					<div class="form-group ">
-                                           
-											{{Form::label('stc_state_of_design', 'State Of Design ', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-6">
-											{{Form::text('stc_state_of_design','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
-											</div>
-											
-                    </div>
-					<div class="form-group ">
-                                           
-											{{Form::label('SOD_notified', 'SOD Notified ', array('class' => 'col-xs-4 control-label'))}}
-											 <div class="col-xs-6">
-										<div class="radio">
-									 
-									  <label> <label> {{ Form::radio('stc_SOD_notified', 'Yes',true) }} &nbsp  Yes</label>
-									 <label> {{ Form::radio('stc_SOD_notified', 'No') }} &nbsp  No</label>
-									</div>
-									
-								</div>
-											
-                    </div>
-					
-
-					<div class="form-group ">
+                    <div class="form-group ">
                                            
 											{{Form::label('stc_AFM_revision_number', 'AFM Revision Number', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
@@ -258,7 +300,7 @@
 											</div>
 											
                     </div>
-					
+
 					<div class="form-group ">
                                            
 											{{Form::label('stc_AFM_approval_date', 'AFM Approval Date', array('class' => 'col-xs-4 control-label'))}}
@@ -278,7 +320,29 @@
 													</div>
 											
                     </div>
-					
+
+					<div class="form-group ">
+                                           
+											{{Form::label('stc_state_of_design', 'State Of Design ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('stc_state_of_design','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+											</div>
+											
+                    </div>
+					<div class="form-group ">
+                                           
+											{{Form::label('SOD_notified', 'SOD Notified ', array('class' => 'col-xs-4 control-label'))}}
+								 <div class="col-xs-6">
+										<div class="radio">
+									 
+											  <label> <label> {{ Form::radio('stc_SOD_notified', 'Yes',true) }} &nbsp  Yes</label>
+											 <label> {{ Form::radio('stc_SOD_notified', 'No') }} &nbsp  No</label>
+										</div>
+									
+								</div>
+											
+                    </div>
+                    
 					<div class="form-group ">
                                            
 											{{Form::label('STC_purpose', 'Purpose', array('class' => 'col-xs-4 control-label'))}}
@@ -287,7 +351,22 @@
 											</div>
 											
                     </div>
-					
+					<div class="form-group ">
+                                           
+											{{Form::label('STC_control_number', 'Control Number', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('stc_control_number','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+											</div>
+											
+                    </div>
+					<div class="form-group ">
+                                           
+											{{Form::label('stc_upload', 'Upload Document ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::file('stc_upload')}}
+											</div>
+											
+                    </div>
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
@@ -313,7 +392,7 @@
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/saveExemption','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/saveExemption','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 
 					
 					{{Form::hidden('aircraft_MM',$primary->aircraft_MM)}}
@@ -371,6 +450,15 @@
 											</div>
 											
                     </div>
+
+					<div class="form-group ">
+                                           
+											{{Form::label('exemption_upload', 'Upload Document ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::file('exemption_upload')}}
+											</div>
+											
+                    </div>
 					
 					<div class="form-group">
                        
@@ -396,7 +484,7 @@
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/saveRegistrationInfo','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/saveRegistrationInfo','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 
 					
 					{{Form::hidden('aircraft_MM',$primary->aircraft_MM)}}
@@ -525,6 +613,14 @@
 											
                     </div>
 					
+					<div class="form-group ">
+                                           
+											{{Form::label('registration_upload', 'Upload Document ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::file('registration_upload')}}
+											</div>
+											
+                    </div>
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
@@ -549,7 +645,7 @@
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/saveAC','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/saveAC','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 					
 					{{Form::hidden('aircraft_MM',$primary->aircraft_MM)}}
 					{{Form::hidden('aircraft_MSN',$primary->aircraft_MSN)}}
@@ -713,6 +809,15 @@
 											</div>
 											
                     </div>
+
+					<div class="form-group ">
+                                           
+											{{Form::label('ac_upload', 'Upload Document ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::file('ac_upload')}}
+											</div>
+											
+                    </div>
 					
 					<div class="form-group">
                        
@@ -736,7 +841,7 @@
             </div>
 
             <div class="modal-body">
-                <!-- The form is placed inside the body of modal -->{{Form::open(array('url'=>'aircraft/saveApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+                <!-- The form is placed inside the body of modal -->{{Form::open(array('url'=>'aircraft/saveApproval','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 					
 					
 					{{Form::hidden('aircraft_MM',$primary->aircraft_MM)}}
@@ -845,7 +950,14 @@
 											</div>
 											
                     </div>
-					
+					<div class="form-group ">
+                                           
+											{{Form::label('approval_upload', 'Upload Document ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::file('approval_upload')}}
+											</div>
+											
+                    </div>
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
@@ -870,7 +982,7 @@
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/saveOwner','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/saveOwner','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 						
 						
 					{{Form::hidden('aircraft_MM',$primary->aircraft_MM)}}
@@ -993,6 +1105,15 @@
 											
                     </div>
 					
+					<div class="form-group ">
+                                           
+											{{Form::label('owner_upload', 'Upload Document ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::file('owner_upload')}}
+											</div>
+											
+                    </div>
+					
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
@@ -1017,7 +1138,7 @@
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/saveLessee','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/saveLessee','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 
 				
 					
@@ -1129,6 +1250,14 @@
 											
                     </div>
 					
+					<div class="form-group ">
+                                           
+											{{Form::label('lesse_upload', 'Upload Document ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::file('lesse_upload')}}
+											</div>
+											
+                    </div>
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
@@ -1153,7 +1282,7 @@
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/saveInsurer','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/saveInsurer','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 
 					
 					{{Form::hidden('aircraft_MM',$primary->aircraft_MM)}}
@@ -1301,6 +1430,14 @@
 											
                     </div>
 					
+					<div class="form-group ">
+                                           
+											{{Form::label('insurer_upload', 'Upload Document ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::file('insurer_upload')}}
+											</div>
+											
+                    </div>
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
@@ -1325,7 +1462,7 @@
             <div class="modal-body">
                 <!-- The form is placed inside the body of modal -->
                 
-				{{Form::open(array('url'=>'aircraft/saveEquipmentReview','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form'))}}
+				{{Form::open(array('url'=>'aircraft/saveEquipmentReview','method'=>'post','class'=>'form-horizontal','data-toggle'=>'validator','role'=>'form','files'=>true))}}
 
 					
 					{{Form::hidden('aircraft_MM',$primary->aircraft_MM)}}
@@ -1605,6 +1742,14 @@
                     </div>
 					
 					
+					<div class="form-group ">
+                                           
+											{{Form::label('equip_upload', 'Upload Document ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::file('equip_upload')}}
+											</div>
+											
+                    </div>
 					<div class="form-group">
                        
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>

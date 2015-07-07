@@ -85,6 +85,12 @@
                             </tr>
                             <tr>
                                 <td class="col-md-3">									
+									Organization Type
+								</td>
+                                <td>{{$primary->org_type}}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-3">									
 									Active
 								</td>
                                 <td>{{$primary->active}}</td>
@@ -176,12 +182,7 @@
 							</td>
 							<td>{{$name->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">					
-								Identifier
-							</td>
-							<td>{{$name->org_identifier}}  </td>
-						</tr>
+						
 						<tr>
 							<td class="col-md-3">					
 								Business Name
@@ -306,12 +307,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">					
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						<tr>
 							<td class="col-md-3">					
 								Certificate Type
@@ -452,12 +448,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">					
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">					
@@ -637,12 +628,6 @@
 								Active
 							</td>
 							<td>{{$item->active}}  </td>
-						</tr>
-						<tr>
-							<td class="col-md-3">					
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
 						</tr>
 						
 						<tr>
@@ -849,12 +834,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">					
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">					
@@ -1058,12 +1038,6 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">					
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
 						
 						<tr>
 							<td class="col-md-3">			
@@ -1206,12 +1180,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">					
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -1375,12 +1344,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">					
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -1518,12 +1482,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">					
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -1707,12 +1666,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">					
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -1856,12 +1810,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -2016,12 +1965,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -2173,12 +2117,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -2339,12 +2278,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -2504,12 +2438,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -2661,12 +2590,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -2807,12 +2731,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -2959,12 +2878,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -3120,12 +3034,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -3269,12 +3178,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -3416,12 +3320,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -3562,12 +3461,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -3711,12 +3605,6 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
 						
 						<tr>
 							<td class="col-md-3">			
@@ -3849,12 +3737,7 @@
 							</td>
 							<td>{{$item->active}}  </td>
 						</tr>
-						<tr>
-							<td class="col-md-3">	
-								Identifier
-							</td>
-							<td>{{$item->org_identifier}}  </td>
-						</tr>
+						
 						
 						<tr>
 							<td class="col-md-3">			
@@ -3946,6 +3829,7 @@
 @yield('orgAocMaintenanceArrangementForm')
 @yield('orgAocTrainingArrangementForm')
 @yield('orgApprovalSimulatorsForm')
+@yield('orgAocApprovalGeneral')
 <!-- End Including Form -->
 <!-- Update form -->
 @include('organization.editForm')

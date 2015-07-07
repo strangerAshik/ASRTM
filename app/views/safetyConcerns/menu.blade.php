@@ -5,14 +5,14 @@
 	
 </p>
 <p class="text-center">
-    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#issueSafety" disabled='disabled'>Add New Safety Concern</button>
+    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#issueSafety" disabled='disabled'>Add New Concern</button>
 	
 </p>
 
 @stop
 @section('menuIssueSafetyConcern')
 <p class="text-center">
-    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#issueSafety" >Add New Safety Concern</button>
+    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#issueSafety" >Add New Concern</button>
 	
 </p>
 @stop

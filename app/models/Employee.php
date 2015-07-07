@@ -23,6 +23,10 @@ class Employee extends \Eloquent {
 		$photo = DB::table('qualification_personal')->where('emp_id', $id)->pluck('photo');
 		return $photo;
 		}
+	static public function followUpPic($id){		
+		$photo = DB::table('users')->where('emp_id', $id)->pluck('photo');
+		return $photo;
+		}
 		
 	
 	

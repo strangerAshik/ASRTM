@@ -111,19 +111,19 @@
                             </tr>
                             <tr>
                                 <td>									
-									Off Block
+									Off Block (In Minute)
 								</td>
                                 <td>{{$info->off_block}}</td>
                             </tr>
                             <tr>
                                 <td>									
-									On Block
+									On Block (In Minute)
 								</td>
                                 <td>{{$info->on_block}}</td>
                             </tr>
                             <tr>
                                 <td>									
-									Flight
+									Flight (In Minute)
 								</td>
                                 <td>{{$info->flight}}</td>
                             </tr>

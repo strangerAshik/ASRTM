@@ -36,7 +36,7 @@ class LibraryController extends \BaseController {
 		
 		$doc_upload=parent::fileUpload('doc_upload','lib_supporting_docs');
 		//Multiple selection 
-		$doc_authors =Input::get('doc_authors');;
+		$doc_authors =Input::get('doc_authors');
 		$doc_authors= serialize($doc_authors);
 		$doc_tags =Input::get('doc_tags');;
 		$doc_tags= serialize($doc_tags);

@@ -128,7 +128,7 @@
                             <div class="box box-primary">
 							<div class="box-header">
 									<h3 class="box-title" style='color:#367FA9;font-weight:bold;'>
-									 Safety Concern Description
+									 {{$sc->type_of_concern}} Description
 									</h3>	
 						
 							

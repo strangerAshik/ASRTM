@@ -46,9 +46,9 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="{{URL::to('action/main');}}"><i class="fa fa-angle-double-right"></i>Main</a></li>
-                                 <li><a href="{{URL::to('action/newActionEnrty');}}"><i class="fa fa-angle-double-right"></i>New SIA Entry</a></li>  
-                                 <li><a href="{{--URL::to('action/newActionEnrty');--}}"><i class="fa fa-angle-double-right"></i>SIA List</a></li> 
+                                <li><a href="{{URL::to('surveillance/main');}}"><i class="fa fa-angle-double-right"></i>Main</a></li>
+                                 <li><a href="{{URL::to('surveillance/newActionEnrty');}}"><i class="fa fa-angle-double-right"></i>New SIA Entry</a></li>  
+                                 <li><a href="{{--URL::to('surveillance/newActionEnrty');--}}"><i class="fa fa-angle-double-right"></i>SIA List</a></li> 
                                
                             </ul>
                         </li>
@@ -93,10 +93,13 @@
                                 <li><a href="{{URL::to('safety/newInspection');}}"><i class="fa fa-angle-double-right"></i>New Inspection</a></li>
                                 @endif
                                 @if('true'==CommonFunction::hasPermission('sc_issue_safety_concern',Auth::user()->emp_id(),'access')) 
-								<li><a href="{{URL::to('safety/newSafetyConcern');}}"><i class="fa fa-angle-double-right"></i>New Safety Concern </a></li>
+								<li><a href="{{URL::to('safety/newSafetyConcern');}}"><i class="fa fa-angle-double-right"></i>New Concern </a></li>
                                 @endif
                                 @if('true'==CommonFunction::hasPermission('sc_safety_concerns_list',Auth::user()->emp_id(),'access'))
                                 <li><a href="{{URL::to('safety/issuedList');}}"><i class="fa fa-angle-double-right"></i>Safety Concerns List </a></li>
+                                @endif
+                                @if('true'==CommonFunction::hasPermission('sc_safety_concerns_list',Auth::user()->emp_id(),'access'))
+                                <li><a href="{{URL::to('safety/nonStandardIssuedList');}}"><i class="fa fa-angle-double-right"></i>Non Standard Issue List </a></li>
                                 @endif
                             </ul>
                         </li>

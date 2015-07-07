@@ -38,6 +38,9 @@ class CommonFunction extends \Eloquent {
 		//End Multiple selection update
 	   
    }
+   static function listsOfColumn($tableName,$columnName){
+    return DB::table($tableName)->orderBy($columnName)->lists($columnName,$columnName);
+   }
    static function hasPermission($moduleName,$empId,$colName){
    	return DB::table('module_user_permission')
    	->where('user_id',$empId)
@@ -45,5 +48,40 @@ class CommonFunction extends \Eloquent {
    	->pluck($colName);
 
    }
+   static function getOptions($dropdownName){
+    $tableName='dropdown_option_management';
+    $options='options';
+    $select=array(''=>'--Select--');
+    $options=DB::table($tableName)->where('dropdown_names',$dropdownName)
+          ->where('soft_delete','<>','1')
+          ->lists($options,$options);
+    $options=array_merge($select,$options);
+    return $options;
+   }
+   static function pelLicenseType($empId){
+  return  DB::table('pel_general_info')
+    ->where('emp_id',$empId)  
+    ->pluck('license_type');
+}
+static function getInspectorList(){
+  return DB::table('users')->where('role','Inspector')->lists('name');
+}
+static function inspectionHappend($sia_number){
+return DB::table('sia_action')->where('sia_number',$sia_number)->count();
+//  return 0;
+}
+static function stateOfReg(){
+  return DB::table('aircraft_primary_info')->lists('state_registration','state_registration');
+}
+static function date($strToTIme){
+  return date('d',strtotime($strToTIme));
+}
+
+static function month($strToTIme){
+  return date('F',strtotime($strToTIme));
+}
+static function year($strToTIme){
+  return date('Y',strtotime($strToTIme));
+}
 
 }

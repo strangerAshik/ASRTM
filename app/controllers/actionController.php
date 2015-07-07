@@ -10,14 +10,14 @@ class ActionController extends \BaseController {
 	 */
 	public function main()
 	{
-		return View::make('actionEntry.main')
+		return View::make('surveillance.main')
 		->with('PageName','Action Main');
 	}
 
 	
 	public function newActionEnrty()
 	{
-		return View::make('actionEntry.newActionEnrty')
+		return View::make('surveillance.newActionEnrty')
 		->with('PageName','New Action Entry')
 		->with('dates',parent::dates())
 		->with('toDay',date("d F Y"))

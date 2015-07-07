@@ -153,7 +153,7 @@
 				</p>
 
 				<p class="text-center col-md-4">
-				<button class="btn btn-primary btn-block"   data-toggle="modal" data-target="#">Add AOC Approvals(General)</button>
+				<button class="btn btn-primary btn-block"   data-toggle="modal" data-target="#orgAocApprovalGeneral">Add AOC Approvals(General)</button>
 				</p>
 
 				<p class="text-center col-md-4">

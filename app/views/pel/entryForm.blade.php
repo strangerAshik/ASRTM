@@ -1319,6 +1319,311 @@
  </div>
 @stop
 @endif
+
+@if($PageName=='ATC Log Details')
+@section('atcObservation')
+ <div class="modal fade" id="atcObservation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Observation Details</h4>
+                </div>
+				 <div class="modal-body">
+                    <!-- The form is placed inside the body of modal -->
+                   
+					
+					{{Form::open(array('url' => 'pel/saveAmeDetails', 'method' => 'post', 'files'=>true, 'class'=>'form-horizontal','data-toggle'=>'validator', 'role'=>'form'))}}
+
+					 <div class="box-body">
+					
+						
+	                    <div class="form-group ">
+		                       
+								{{Form::label('today', 'Date', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('radio_navigation_aids',date('d F Y'), array('class' => 'form-control','placeholder'=>'','disabled'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('radio_navigation_aids', 'Radio & Navigation Aids', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('radio_navigation_aids','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+						
+	                    <div class="form-group ">
+		                       
+								{{Form::label('take_over_time', 'Take Over Time', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('take_over_time','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('fire_fighting_vehicle', 'Fire Fighting Vehicle ( Number )', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('fire_fighting_vehicle','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('ambulance', 'Ambulance ( Number )', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('fire_fighting_vehicle','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('mtd', 'MTD', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('mtd','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('surface_wind', 'Surface Wind', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('surface_wind','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('visibility_range', 'Visibility Range', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('visibility_range','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('visibility_condition', 'Visibility Condition', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::select('visibility_condition', array(
+										'' => '--Select--',		
+										), '0',array('class'=>'form-control'))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('runway_usage', 'Runway Usage', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::select('runway_usage', array(
+										'' => '--Select--',		
+										), '0',array('class'=>'form-control'))}}
+								</div>
+							
+	                    </div>
+						
+	                  
+						            </div><!-- /.box-body -->
+
+                                   
+						<div class="form-group">
+               
+							<button type="submit" class="btn btn-lg btn-block btn-primary">Save</button>
+               
+						</div>
+	
+									
+					{{Form::close()}}
+				</div>
+			</div>
+		</div>
+ </div>
+@stop
+@endif
+@if($PageName=='ATC Log Details')
+@section('atcWatchHandover')
+ <div class="modal fade" id="atcWatchHandover" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Handover Details</h4>
+                </div>
+				 <div class="modal-body">
+                    <!-- The form is placed inside the body of modal -->
+                   
+					
+					{{Form::open(array('url' => 'pel/saveAmeDetails', 'method' => 'post', 'files'=>true, 'class'=>'form-horizontal','data-toggle'=>'validator', 'role'=>'form'))}}
+
+					 <div class="box-body">
+					
+						
+	                   <div class="form-group ">
+		                       
+								{{Form::label('hand_over_to', 'Hand Over To', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::select('hand_over_to', array(
+										'' => '--Select--',		
+										), '0',array('class'=>'form-control'))}}
+								</div>
+							
+	                    </div>
+						
+	                    <div class="form-group ">
+		                       
+								{{Form::label('hand_over_time', 'Hand Over Time( UTC )', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('hand_over_time','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('remark_of_sato', 'Remark Of SATO', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								
+								{{Form::textarea('remark_of_sato','', array('class' => 'form-control','placeholder'=>'','size'=>'4x1'))}}
+								</div>
+							
+	                    </div>
+	                    
+						
+	                  
+						            </div><!-- /.box-body -->
+
+                                   
+						<div class="form-group">
+               
+							<button type="submit" class="btn btn-lg btn-block btn-primary">Save</button>
+               
+						</div>
+	
+									
+					{{Form::close()}}
+				</div>
+			</div>
+		</div>
+ </div>
+@stop
+@endif
+
+@if($PageName=='ATC Log Details')
+@section('atcAircraftMovement')
+ <div class="modal fade" id="atcAircraftMovement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Add Aircraft Movement Details</h4>
+                </div>
+				 <div class="modal-body">
+                    <!-- The form is placed inside the body of modal -->
+                   
+					
+					{{Form::open(array('url' => 'pel/saveAmeDetails', 'method' => 'post', 'files'=>true, 'class'=>'form-horizontal','data-toggle'=>'validator', 'role'=>'form'))}}
+
+					 <div class="box-body">
+					
+						
+	                   
+						
+	                    <div class="form-group ">
+		                       
+								{{Form::label('call_sign', 'Call Sign', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('call_sign','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('aircraft_registration', 'Aircraft Registration', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('aircraft_registration','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('aircraft_mms', 'Aircraft MMS', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('aircraft_mms','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('departure_from', 'Departure From', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('departure_from','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('departure_to', 'Departure To', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('departure_to','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('departure_time', 'Departure Time', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('departure_time','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('arrival_time', 'Arrival Time', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('arrival_time','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('runway_designator', 'Runway Designator', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::select('runway_designator', array(
+										'' => '--Select--',		
+										), '0',array('class'=>'form-control'))}}
+								</div>
+							
+	                    </div>
+	                    <div class="form-group ">
+		                       
+								{{Form::label('remark', 'Remark', array('class' => 'control-label col-xs-4 '))}}
+								<div class="col-xs-6">
+								{{Form::text('remark','', array('class' => 'form-control','placeholder'=>''))}}
+								</div>
+							
+	                    </div>
+	                    
+						
+	                  
+						            </div><!-- /.box-body -->
+
+                                   
+						<div class="form-group">
+               
+							<button type="submit" class="btn btn-lg btn-block btn-primary">Save</button>
+               
+						</div>
+	
+									
+					{{Form::close()}}
+				</div>
+			</div>
+		</div>
+ </div>
+@stop
+@endif
+
 @if($PageName=='Flying Details')
 @section('flyingDetails')
  <div class="modal fade" id="flyingDetails" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -1367,10 +1672,10 @@
 							 </div>
 
 						</div> 
-						        <div class="input-append bootstrap-timepicker">
+						        <!--<div class="input-append bootstrap-timepicker">
             <input id="timepicker1" type="text" class="input-small">
             <span class="add-on"><i class="glyphicon glyphicon-time"></i></span>
-        </div>
+        </div>-->
 						<div class="form-group ">
 							{{Form::label('sun_rise', 'Sun Rise', array('class' => 'control-label col-xs-4'))}}
 							<div class="col-xs-6">
@@ -1412,23 +1717,23 @@
 						</div> 
 
 						<div class="form-group ">
-							{{Form::label('off_block', 'Off Block', array('class' => 'control-label col-xs-4'))}}
+							{{Form::label('off_block', 'Off Block(Minute)', array('class' => 'control-label col-xs-4'))}}
 							<div class="col-xs-6">
-							{{Form::text('off_block','', array('class' => 'form-control','placeholder'=>''))}}
+							{{Form::text('off_block','', array('class' => 'form-control','placeholder'=>'In Minute'))}}
 							 </div>
 						</div> 
 
 						<div class="form-group ">
-							{{Form::label('on_block', 'On Block', array('class' => 'control-label col-xs-4'))}}
+							{{Form::label('on_block', 'On Block(Minute)', array('class' => 'control-label col-xs-4'))}}
 							<div class="col-xs-6">
-							{{Form::text('on_block','', array('class' => 'form-control','placeholder'=>''))}}
+							{{Form::text('on_block','', array('class' => 'form-control','placeholder'=>'In Minute'))}}
 							 </div>
 						</div> 
 
 						<div class="form-group ">
-							{{Form::label('flight', 'Flight', array('class' => 'control-label col-xs-4'))}}
+							{{Form::label('flight', 'Flight(Minute)', array('class' => 'control-label col-xs-4'))}}
 							<div class="col-xs-6">
-							{{Form::text('flight','', array('class' => 'form-control','placeholder'=>''))}}
+							{{Form::text('flight','', array('class' => 'form-control','placeholder'=>'In Minute'))}}
 							 </div>
 						</div> 
 

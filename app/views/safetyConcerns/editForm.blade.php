@@ -1,8 +1,163 @@
-
+@if($PageName=='Single Inspection')
 @section('inspectionPrimary')
-<!--@ single Inspection-->
-@stop
+@foreach($ins_primary_infos as $info)
+<div class="modal fade" id="inspectionInfo{{$info->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Inspection Primary Information</h4>
+            </div>
 
+            <div class="modal-body">
+                <!-- The form is placed inside the body of modal -->
+               
+				{{Form::open(array('url' => 'safety/updatePrimaryInspection', 'method' => 'post',  'class'=>'form-horizontal','data-toggle'=>'validator', 'role'=>'form'))}}
+
+					{{Form::hidden('id',$info->id)}}
+					<div class="form-group ">
+                                        
+											{{Form::label('inspection_number', 'Inspection Number', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('inspection_number',$info->inspection_number, array('class' => 'form-control','placeholder'=>'','disabled'=>''))}}
+											</div>
+											
+                    </div>
+					<div class="form-group ">
+                                        
+											{{Form::label('inspection_title', 'Inspection Title', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('inspection_title',$info->inspection_title, array('class' => 'form-control','placeholder'=>''))}}
+											</div>
+											
+                    </div>
+					<div class="form-group ">
+                                        
+											{{Form::label('lead_inspector', 'Lead Inspector', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											<select id='lead_inspector{{$info->id}}' name='lead_inspector' class="demo-default" placeholder="Select Lead Inspector">
+												<option value="{{$info->lead_inspector}}">{{$info->lead_inspector}}</option>			
+												@foreach($inspectors as $inspector)
+												<option value="{{$inspector}}">{{$inspector}}</option>
+												@endforeach 
+											</select>
+											</div>
+											
+                    </div>
+					<div class="form-group ">
+                                        
+											{{Form::label('team_members', 'Team Members', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+
+											<select id="team_members{{$info->id}}"  multiple name="team_members[]" class="demo-default" >
+											@if($teamMemmber=CommonFunction::updateMultiSelection('sc_primary_inspection', 'id',$info->id,'team_members'))
+												@foreach($teamMemmber as $key=>$value)
+												<option selected='selected' value="{{$value}}">{{$value}}</option>
+												@endforeach
+												@endif
+												@foreach($inspectors as $inspector)
+												<option value="{{$inspector}}">{{$inspector}}</option>
+												@endforeach 
+											</select>
+											
+											</div>
+											
+                    </div>
+					<div class="form-group ">
+                                        
+											{{Form::label('type_of_inspection', 'Type Of Inspection', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											<select id='type_of_inspection{{$info->id}}' name='type_of_inspection' class="demo-default" placeholder="Select Lead Inspector">
+												<option  value="">Select Type Of Inspection</option>
+													<option selected='selected' value="{{$info->type_of_inspection}}">{{$info->type_of_inspection}}</option>
+												<?php $lists=CommonFunction::listsOfColumn('sc_primary_inspection','type_of_inspection');?>
+												@foreach($lists as $list)
+												<option value="{{$list}}">{{$list}}</option>
+												@endforeach 
+											</select>
+											</div>
+											
+                    </div>
+					<div class="form-group ">
+                                        
+											{{Form::label('against_organization', 'Against Organization', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											<select id="against_organization{{$info->id}}" name='against_organization' class="demo-default" placeholder="Against Organization">
+												<option value="">Against Organization</option>
+												<option selected='selected' value="{{$info->against_organization}}">{{$info->against_organization}}</option>
+												
+												@foreach($organizations as $organization)
+												<option value="{{$organization}}">{{$organization}}</option>
+												@endforeach
+											</select>
+											</div>
+											
+                    </div>
+					
+                    <div class="form-group">
+                      
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
+                    
+					{{Form::close()}}
+            </div>
+        </div>
+    </div>
+	</div>
+	</div>
+	<script>
+$(document).ready(function(){
+
+
+$('#lead_inspector{{$info->id}}').selectize({
+    create: true,
+    sortField: {
+        field: 'text',
+        direction: 'asc'
+    }
+});
+$('#type_of_inspection{{$info->id}}').selectize({
+    create: true,
+    sortField: {
+        field: 'text',
+        direction: 'asc'
+    }
+});
+$('#against_organization{{$info->id}}').selectize({
+    create: true,
+    sortField: {
+        field: 'text',
+        direction: 'asc'
+    }
+});
+
+//multiple selection from options
+var eventHandler = function(name) {
+					return function() {
+						console.log(name, arguments);
+						$('#log').append('<div><span class="name">' + name + '</span></div>');
+					};
+				};
+var $select = $('#team_members{{$info->id}}').selectize({
+					create          : true,
+					onChange        : eventHandler('onChange'),
+					onItemAdd       : eventHandler('onItemAdd'),
+					onItemRemove    : eventHandler('onItemRemove'),
+					onOptionAdd     : eventHandler('onOptionAdd'),
+					onOptionRemove  : eventHandler('onOptionRemove'),
+					onDropdownOpen  : eventHandler('onDropdownOpen'),
+					onDropdownClose : eventHandler('onDropdownClose'),
+					onFocus         : eventHandler('onFocus'),
+					onBlur          : eventHandler('onBlur'),
+					onInitialize    : eventHandler('onInitialize'),
+				});
+//end multiple selection from options	
+});
+</script>
+@endforeach
+	
+@stop
+@endif
+@if($PageName=='Single Safety concern')	
 @section('editIssueSafety')
 	@foreach($safetyConcernDatas as $sc)
 <div class="modal fade" id="editIssueSafety{{$sc->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -28,12 +183,32 @@
 					{{Form::hidden('id',$sc->id)}}
 					{{Form::hidden('old_eir_file',$sc->eir_file)}}
 					{{Form::hidden('old_job_aid_file',$sc->job_aid_file)}}
-					
+					{{--<div class="form-group ">
+                                        
+											{{Form::label('provided_to', 'Responsible Inspector ', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											<select id="provided_to" name='provided_to' class="demo-default" placeholder="SelectProvided To">
+												<option value="">Select Provided To</option>
+												<option selected="selected" value="{{$sc->provided_to}}">{{$sc->provided_to}}</option>
+											
+											</select>
+											</div>
+											
+                    </div>--}}
 					<div class="form-group ">
                                         
 											{{Form::label('safety_issue_number', 'Safety Issue Number', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
 											{{Form::text('safety_issue_number',$sc->safety_issue_number, array('class' => 'form-control','placeholder'=>'','disabled'=>''))}}
+											</div>
+											
+                    </div>
+                    
+					<div class="form-group required">
+                                        
+											{{Form::label('sia_number', 'SIA Number', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											{{Form::text('sia_number',$sc->sia_number, array('class' => 'form-control','placeholder'=>''))}}
 											</div>
 											
                     </div>
@@ -64,7 +239,7 @@
 										'Non-Adherence: CAA Guidance'=>'Non-Adherence: CAA Guidance',
 										'Non-Conformance: ICAO Standard'=>'Non-Conformance: ICAO Standard',
 										'Inadequate System Function'=>'Inadequate System Function',
-										'Initial Investigation'=>'Initial Investigation'), $sc->type_of_issue ,array('class'=>'form-control','id'=>'category','required'=>''))}}
+										'Initial Investigation'=>'Initial Investigation','Any Others'=>'Any Others',), $sc->type_of_issue ,array('class'=>'form-control','id'=>'category','required'=>''))}}
 											</div>
 											
                     </div>
@@ -93,9 +268,6 @@
 											<select required id="assigned_inspector" name='assigned_inspector'class="demo-default" >
 												<option value="">Select Assigned Inspector</option>
 													<option selected="selected" value="{{$sc->assigned_inspector}}">{{$sc->assigned_inspector}}</option>
-												{{--@foreach($roles as $role)
-												<option value="{{$role}}">{{$role}}</option>
-												@endforeach --}}
 											</select>
 											</div>
 											
@@ -131,6 +303,15 @@
 											{{Form::label('place_or_airport', 'Place/Airport', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
 											{{Form::text('place_or_airport',$sc->place_or_airport, array('class' => 'form-control','placeholder'=>''))}}
+											</div>
+											
+                    </div>
+                    <div class="form-group " style="background: #D0F4B3">
+                	<div class="form-group ">
+                                        
+											{{Form::label('', '', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+												{{Form::label('', 'SMS Area', array('class' => 'col-xs-4 control-label'))}}
 											</div>
 											
                     </div>
@@ -171,7 +352,7 @@
 				
 					<div class="form-group ">
                                         
-											{{Form::label('initial_risk_analysis', 'Initial Risk Analysis', array('class' => 'col-xs-4 control-label'))}}
+											{{Form::label('initial_risk_analysis', 'Risk Analysis', array('class' => 'col-xs-4 control-label'))}}
 										
 											<div class="col-xs-6">
 											{{Form::select('initial_risk_analysis', array('' => '--Select Initial Risk Analysis--', 'High Risk' => 'High Risk','Medium Risk'=>'Medium Risk','Low Risk'=>'Low Risk','No Risk'=>'No Risk'),$sc->initial_risk_analysis,array('class'=>'form-control','required'=>''))}}
@@ -196,21 +377,8 @@
 											</div>
 											
                     </div>
+					</div>
 					
-					<div class="form-group ">
-                                        
-											{{Form::label('provided_to', 'Provided To', array('class' => 'col-xs-4 control-label'))}}
-											<div class="col-xs-6">
-											<select id="provided_to" name='provided_to' class="demo-default" placeholder="SelectProvided To">
-												<option value="">Select Provided To</option>
-												<option selected="selected" value="{{$sc->provided_to}}">{{$sc->provided_to}}</option>
-												{{--@foreach($roles as $role)
-												<option value="{{$role}}">{{$role}}</option>
-												@endforeach --}}
-											</select>
-											</div>
-											
-                    </div>
 					<div class="form-group ">
                                            
 											{{Form::label('target_date', 'Target Date', array('class' => 'col-xs-4 control-label'))}}
@@ -791,3 +959,4 @@ $(document).ready(function(){
 });
 </script>
 @stop
+@endif

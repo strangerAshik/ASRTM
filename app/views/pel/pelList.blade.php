@@ -8,7 +8,7 @@
 							<div class="box box-primary">
                                 <div class="box-header">
 									
-                                    <h3 class="box-title">All Employees</h3>
+                                    <h3 class="box-title">All PELs</h3>
 									<div class="col-md-4 col-md-offset-3  position">
 										<form action="" class="search-form">
 											<div class="form-group has-feedback">
@@ -28,7 +28,7 @@
 												<th>Full Name</th>
 												<th>Email</th>
 												<th>Mobile</th>
-												<th>Role</th>
+												<th>License Type</th>
 												<th>View Details</th>
 											</tr>
 										</thead>
@@ -40,7 +40,8 @@
 												<td class='text-centre'>{{$emp->first_name.' '.$emp->middle_name.' '.$emp->last_name.' '}}</td>
 												<td class='text-centre'>{{$emp->email}}</td>
 												<td class='text-centre'>{{$emp->mobile_no}}</td>
-												<td class='text-centre'>{{$emp->role}}</td>
+												<?php $lycenseType= CommonFunction::pelLicenseType($emp->emp_id) ;?>
+												<td class='text-centre'>{{$lycenseType}}</td>
 												
 												<td class='text-centre'>
 												<a target="b_link" href="compView/{{$emp->emp_id}}">view Details</a>

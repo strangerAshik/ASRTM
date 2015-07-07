@@ -43,6 +43,20 @@
 					
 					<div class="form-group required">
                                            
+											{{Form::label('state_registration', 'State Of Registration', array('class' => 'col-xs-4 control-label'))}}
+											<div class="col-xs-6">
+											<select id="state_registration" name='state_registration' class="demo-default" placeholder="Select  State Of Registration...">
+												<?php $options=CommonFunction::stateOfReg();?>
+												<option value="">Select  State Of Registration...</option>
+												@foreach($options as $option)
+												<option value="{{$option}}">{{$option}}</option>
+												@endforeach
+											</select>
+											</div>
+											
+                    </div>
+					<div class="form-group required">
+                                           
 											{{Form::label('registration_no', 'Registration No#', array('class' => 'col-xs-4 control-label'))}}
 											<div class="col-xs-6">
 											{{Form::text('registration_no','', array('class' => 'form-control','placeholder'=>'','required'=>''))}}
@@ -199,7 +213,7 @@
 	<script>
 $(document).ready(function(){
 $('#organizations').selectize();
-//$('#organizations').selectize({ create: true, sortField: {field: 'text',direction: 'asc'}});
+$('#state_registration').selectize({ create: true, sortField: {field: 'text',direction: 'asc'}});
 	
 });
 </script>	

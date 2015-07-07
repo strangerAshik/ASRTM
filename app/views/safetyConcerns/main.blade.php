@@ -50,6 +50,21 @@
 				</div>
 			</div><!-- ./col -->
 			@endif
+			@if('true'==CommonFunction::hasPermission('sc_safety_concerns_list',Auth::user()->emp_id(),'access'))
+			<div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
+				<!-- small box -->
+				<div class="small-box bg-green " >
+					<div class="inner">
+						<h4 style='font-weight:bold;'>Non Standard Issue List</h4>
+						
+					</div>
+				  
+					<a class="small-box-footer" href="{{URL::to('safety/nonStandardIssuedList')}}">
+						More info <i class="fa fa-arrow-circle-right"></i>
+					</a>
+				</div>
+			</div><!-- ./col -->
+			@endif
 			@if('true'==CommonFunction::hasPermission('sc_report',Auth::user()->emp_id(),'access'))
 			<div class="col-lg-3 col-xs-6 col-md-3 col-md-3">
 				<!-- small box -->

@@ -68,7 +68,7 @@
 						
 					</div>
 				  
-					<a class="small-box-footer" href="{{URL::to('pel/languageProficiency')}}">
+					<a class="small-box-footer" href="{{URL::to('pel/atcLogDetails')}}">
 						More info <i class="fa fa-arrow-circle-right"></i>
 					</a>
 				</div>

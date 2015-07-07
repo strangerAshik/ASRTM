@@ -83,12 +83,12 @@
                         </div>
 						
 						@if('true'==CommonFunction::hasPermission('module',Auth::user()->emp_id(),'access'))
-						<div class="col-lg-3 col-md-3 col-xs-6">
+                        <div class="col-lg-3 col-md-3 col-xs-6">
                             
                             <div class="small-box bg-maroon  height">
                                 <div class="inner">
                                   <h4 class='title'>
-								   <h4 style='font-weight:bold;'>Module</h4>
+                                   <h4 style='font-weight:bold;'>Module</h4>
                                   </h4>
                                     
                                 </div>
@@ -97,6 +97,25 @@
                                 </div>
                                 <a class="small-box-footer" href="{{'viewModule'}}" >
                                     add,update Module <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        @endif
+                        @if('true'==CommonFunction::hasPermission('dropdown_management',Auth::user()->emp_id(),'access'))
+						<div class="col-lg-3 col-md-3 col-xs-6">
+                            
+                            <div class="small-box bg-teal   height">
+                                <div class="inner">
+                                  <h4 class='title'>
+								   <h4 style='font-weight:bold;'>Drop-down Management </h4>
+                                  </h4>
+                                    
+                                </div>
+                                <div class="icon">
+                                    <a href="{{'dropdownManagement'}}" > <i class="ion ion-ios7-gear"></i></a>
+                                </div>
+                                <a class="small-box-footer" href="{{'dropdownManagement'}}" >
+                                    Drop-down info <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
                         </div>

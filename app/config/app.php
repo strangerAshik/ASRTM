@@ -94,8 +94,9 @@ return array(
 	*/
 
 	'providers' => array(
-	     'Thujohn\Pdf\PdfServiceProvider',//pdf
-		 'Zizaco\Entrust\EntrustServiceProvider',//login
+		
+	    'Thujohn\Pdf\PdfServiceProvider',//pdf
+		'Zizaco\Entrust\EntrustServiceProvider',//login
 		'Way\Generators\GeneratorsServiceProvider','Way\Generators\GeneratorsServiceProvider',//laravel 4 generator
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',

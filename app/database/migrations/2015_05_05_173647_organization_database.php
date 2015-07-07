@@ -17,6 +17,7 @@ class OrganizationDatabase extends Migration {
 			
 			$table->string('org_number')->unique();
 			$table->string('org_name');
+			$table->string('org_type');
 			$table->string('active');
 
 			$table->string('row_creator');

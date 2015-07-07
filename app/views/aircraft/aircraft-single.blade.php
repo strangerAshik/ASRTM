@@ -79,6 +79,12 @@
                             </tr>
                             <tr>
                                 <td class="col-md-3">									
+									State Of Registration
+								</td>
+                                <td>{{$primary->state_registration}}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-3">									
 									Registration No#
 								</td>
                                 <td>{{$primary->registration_no}}</td>
@@ -268,17 +274,24 @@
 							</td>
 							<td>{{$tc->tc_number}}</td>
 						</tr>						
+										
 						<tr>
 							<td class="col-md-3">									
-								State Of Registration
+								Type Approval Date
 							</td>
-							<td>{{$tc->tc_state_of_registration}}</td>
-						</tr>					
+							<td>{{$tc->tc_type_approval_date}}</td>
+						</tr>			
 						<tr>
 							<td class="col-md-3">									
 								Validation Date
 							</td>
 							<td>{{$tc->tc_validation_date.' '.$tc->tc_validation_month.' '.$tc->tc_validation_year}}</td>
+						</tr>
+						<tr>
+							<td class="col-md-3">									
+								Type Acceptance Date
+							</td>
+							<td>{{$tc->tc_type_acceptance_date}}</td>
 						</tr>
 						<tr>
 							<td class="col-md-3">									
@@ -307,10 +320,11 @@
 						</tr> 
 						<tr>
 							<td class="col-md-3">									
-								SOD Notified Date
+								State Of Manufacturing
 							</td>
-							<td>{{$tc->tc_SOD_notified_date.' '.$tc->tc_SOD_notified_month.' '.$tc->tc_SOD_notified_year}}</td>
-						</tr>
+							<td>{{$tc->tc_state_of_manufacturing}}</td>
+						</tr> 
+						
 						<tr>
 							<td class="col-md-3">									
 								Power Plant Model
@@ -335,6 +349,39 @@
 							</td>
 							<td>{{$tc->tc_propeller_tds_number}}</td>
 						</tr> 
+						<tr>
+							<td class="col-md-3">									
+								TCDS No
+							</td>
+							<td>{{$tc->tcds_no}}</td>
+						</tr> 
+						<tr>
+							<td class="col-md-3">									
+								TCDS Revision Date
+							</td>
+							<td>{{$tc->tcds_revision_date}}</td>
+						</tr> 
+						<tr>
+							<td class="col-md-3">									
+								TCDS Revision No
+							</td>
+							<td>{{$tc->tcds_revision_no}}</td>
+						</tr> 
+						<tr>
+							<td class="col-md-3">									
+								TCDS Link
+							</td>
+							<td>{{$tc->tdcs_link}}</td>
+						</tr> 
+						 <tr>
+	                            <td>Document</td>
+	                            <td>
+								@if($tc->tc_upload!='Null'){{HTML::link('files/air_tc_upload/'.$tc->tc_upload,'Document',array('target'=>'_blank'))}}
+								@else
+									{{HTML::link('#','No Document Provided')}}
+								@endif
+								</td>
+	                     </tr>
                        
                         </tbody>
 						
@@ -437,7 +484,7 @@
 						</tr>
 						<tr>
 							<td class="col-md-3">									
-								Validation Date
+								Issuance Date
 							</td>
 							<td>{{$stc->stc_validation_date.' '.$stc->stc_validation_month.' '.$stc->stc_validation_year}}</td>
 						</tr>
@@ -483,6 +530,16 @@
 							</td>
 							<td>{{$stc->stc_purpose}}</td>
 						</tr>  
+
+						 <tr>
+	                            <td>Document</td>
+	                            <td>
+								@if($stc->stc_upload!='Null'){{HTML::link('files/air_stc_upload/'.$stc->stc_upload,'Document',array('target'=>'_blank'))}}
+								@else
+									{{HTML::link('#','No Document Provided')}}
+								@endif
+								</td>
+	                     </tr>
                         
                         </tbody>
 					
@@ -611,7 +668,16 @@
 							</td>
 							<td>{{$exemption->basis}}</td>
 						</tr>
-                           
+                         
+						 <tr>
+	                            <td>Document</td>
+	                            <td>
+								@if($exemption->exemption_upload!='Null'){{HTML::link('files/air_exemption_upload/'.$exemption->exemption_upload,'Document',array('target'=>'_blank'))}}
+								@else
+									{{HTML::link('#','No Document Provided')}}
+								@endif
+								</td>
+	                     </tr>  
                         
                         </tbody>					
 					@endforeach
@@ -800,8 +866,15 @@
 							}}
 							</td>
 						</tr>
-                           
-                        
+						<tr>
+	                            <td>Document</td>
+	                            <td>
+								@if($registration->registration_upload!='Null'){{HTML::link('files/air_registration_upload/'.$registration->registration_upload,'Document',array('target'=>'_blank'))}}
+								@else
+									{{HTML::link('#','No Document Provided')}}
+								@endif
+								</td>
+	                     </tr>  
                         </tbody>
 					 @endforeach
                     </table>
@@ -979,6 +1052,16 @@
 							</td>
 							<td>{{$airworthiness->ac_exemption}}  </td>
 						</tr>
+
+						<tr>
+	                            <td>Document</td>
+	                            <td>
+								@if($airworthiness->ac_upload!='Null'){{HTML::link('files/air_ac_upload/'.$airworthiness->ac_upload,'Document',array('target'=>'_blank'))}}
+								@else
+									{{HTML::link('#','No Document Provided')}}
+								@endif
+								</td>
+	                     </tr>
 					
                         </tbody>
 					@endforeach
@@ -1108,6 +1191,15 @@
 							<td>{{$approval->terms_of_approval_memo}}  </td>
 						</tr>
 						
+						<tr>
+	                            <td>Document</td>
+	                            <td>
+								@if($approval->approval_upload!='Null'){{HTML::link('files/air_approval_upload/'.$approval->approval_upload,'Document',array('target'=>'_blank'))}}
+								@else
+									{{HTML::link('#','No Document Provided')}}
+								@endif
+								</td>
+	                     </tr>
                            
                         
                         </tbody>
@@ -1272,6 +1364,15 @@
 							<td>{{$owner->owner_lessor}}  </td>
 						</tr>
 						
+						<tr>
+	                            <td>Document</td>
+	                            <td>
+								@if($owner->owner_upload!='Null'){{HTML::link('files/air_owner_upload/'.$owner->owner_upload,'Document',array('target'=>'_blank'))}}
+								@else
+									{{HTML::link('#','No Document Provided')}}
+								@endif
+								</td>
+	                     </tr>
                         </tbody>
 					@endforeach
                     </table>
@@ -1428,7 +1529,15 @@
 							<td>{{$lessee->lessee_country}}  </td>
 						</tr>
                            
-                        
+                        <tr>
+	                            <td>Document</td>
+	                            <td>
+								@if($lessee->lesse_upload!='Null'){{HTML::link('files/air_lesse_upload/'.$lessee->lesse_upload,'Document',array('target'=>'_blank'))}}
+								@else
+									{{HTML::link('#','No Document Provided')}}
+								@endif
+								</td>
+	                     </tr>
                         </tbody>
 					@endforeach
                     </table>
@@ -1600,6 +1709,16 @@
 							</td>
 							<td>{{$insurer->insurer_expiration_date.' '.$insurer->insurer_expiration_month.' '.$insurer->insurer_expiration_year}}  </td>
 						</tr>
+
+                        <tr>
+	                            <td>Document</td>
+	                            <td>
+								@if($insurer->insurer_upload!='Null'){{HTML::link('files/air_insurer_upload/'.$insurer->insurer_upload,'Document',array('target'=>'_blank'))}}
+								@else
+									{{HTML::link('#','No Document Provided')}}
+								@endif
+								</td>
+	                     </tr>
 						
                         </tbody>
 					@endforeach
@@ -1881,7 +2000,15 @@
 							</td>
 							<td>{{$equipment->note}}  </td>
 						</tr>
-				
+						<tr>
+	                            <td>Document</td>
+	                            <td>
+								@if($equipment->equip_upload!='Null'){{HTML::link('files/air_equip_upload/'.$equipment->equip_upload,'Document',array('target'=>'_blank'))}}
+								@else
+									{{HTML::link('#','No Document Provided')}}
+								@endif
+								</td>
+	                     </tr>
                            
                         
                         </tbody>

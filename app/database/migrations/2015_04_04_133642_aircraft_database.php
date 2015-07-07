@@ -20,6 +20,7 @@ class AircraftDatabase extends Migration {
 			$table->string('assigned_inspector');
 			
 			$table->string('serial_number');
+			$table->string('state_registration');
 			$table->string('registration_no');
 			$table->string('aircraft_operator');
 			$table->string('active');
@@ -29,7 +30,7 @@ class AircraftDatabase extends Migration {
 			$table->string('current_exemptions');
 			$table->string('insurance');
 			$table->string('currently_leased');
-			$table->string('memo');
+			$table->string('memo');			
 			
 			$table->integer('approve');
 			$table->integer('warning');
@@ -44,22 +45,35 @@ class AircraftDatabase extends Migration {
 			
 			$table->string('tc_number');
 			$table->string('tc_state_of_registration');
+			
+			$table->string('tc_type_approval_date');
+
 			$table->string('tc_validation_date');
 			$table->string('tc_validation_month');
 			$table->string('tc_validation_year');
+			
+			$table->string('tc_type_acceptance_date');
+
 			$table->string('tc_control_number');
 			$table->string('tc_AFM_approval_date');
 			$table->string('tc_AFM_approval_month');
 			$table->string('tc_AFM_approval_year');
 			$table->string('tc_AFM_revision');
 			$table->string('tc_state_of_design');
-			$table->string('tc_SOD_notified_date');
-			$table->string('tc_SOD_notified_month');
-			$table->string('tc_SOD_notified_year');
+
+			$table->string('tc_state_of_manufacturing');
+
 			$table->string('tc_power_plant_model');
 			$table->string('tc_power_plant_tds_number');
 			$table->string('tc_propeller_model');
 			$table->string('tc_propeller_tds_number');
+			
+			$table->string('tcds_no');
+			$table->string('tcds_revision_date');
+			$table->string('tcds_revision_no');
+			$table->string('tdcs_link');
+
+			$table->string('tc_upload');
 			
 			$table->integer('approve');
 			$table->integer('warning');
@@ -85,6 +99,8 @@ class AircraftDatabase extends Migration {
 			$table->string('stc_AFM_approval_month');
 			$table->string('stc_AFM_approval_year');
 			$table->string('stc_purpose');
+
+			$table->string('stc_upload');
 			
 			$table->integer('approve');
 			$table->integer('warning');
@@ -104,6 +120,8 @@ class AircraftDatabase extends Migration {
 			$table->string('effective_year');
 			$table->string('exemption_control_number');
 			$table->string('basis');
+
+			$table->string('exemption_upload');
 			
 			$table->integer('approve');
 			$table->integer('warning');
@@ -133,6 +151,8 @@ class AircraftDatabase extends Migration {
 			$table->string('de_regisration_basis');
 			$table->string('previous_state_registration');
 			$table->string('reg_status_memo');
+
+			$table->string('registration_upload');
 			
 			$table->integer('approve');
 			$table->integer('warning');
@@ -166,6 +186,8 @@ class AircraftDatabase extends Migration {
 			$table->string('system_of_airwothiness');
 			$table->string('ac_status_memo');
 			$table->string('ac_exemption');
+
+			$table->string('ac_upload');
 			
 			$table->integer('approve');
 			$table->integer('warning');
@@ -189,6 +211,8 @@ class AircraftDatabase extends Migration {
 			$table->string('rescinded_control_number');
 			$table->string('limiting_factor');
 			$table->string('terms_of_approval_memo');
+
+			$table->string('approval_upload');
 			
 			$table->integer('approve');
 			$table->integer('warning');
@@ -215,6 +239,8 @@ class AircraftDatabase extends Migration {
 			$table->string('owner_postal_code');
 			$table->string('owner_country');
 			$table->string('owner_lessor');
+
+			$table->string('owner_upload');
 			
 			$table->integer('approve');
 			$table->integer('warning');
@@ -240,6 +266,8 @@ class AircraftDatabase extends Migration {
 			$table->string('lessee_state_or_province');
 			$table->string('lessee_postal_code');
 			$table->string('lessee_country');
+
+			$table->string('lesse_upload');
 			
 			$table->integer('approve');
 			$table->integer('warning');
@@ -270,6 +298,8 @@ class AircraftDatabase extends Migration {
 			$table->string('insurer_expiration_date');
 			$table->string('insurer_expiration_month');
 			$table->string('insurer_expiration_year');
+
+			$table->string('insurer_upload');
 			
 			$table->integer('approve');
 			$table->integer('warning');
@@ -317,6 +347,8 @@ class AircraftDatabase extends Migration {
 			$table->string('cvr_mm');
 			$table->string('elt_mm');
 			$table->string('note');
+			
+			$table->string('equip_upload');
 			
 			$table->integer('approve');
 			$table->integer('warning');
